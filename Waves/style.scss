@@ -1,0 +1,135 @@
+$padding:1rem;
+.instrcutions{
+text-align: center;
+}
+*{
+	box-sizing:border-box;
+}
+html, body {
+  overscroll-behavior: none;
+}
+body{
+	overflow-x:hidden;
+	margin:0;
+}
+.thought{
+	text-align:center;
+	font-family:monospace;
+	padding:$padding;
+	padding-bottom:0;
+	word-break:break-all;
+}
+.output{
+	display:flex;
+	justify-content:center;
+}
+
+.GraphOutput{
+	border:1px solid #0002;
+	height:300px;
+	width:300px;
+	margin:$padding;
+	position:relative;
+}
+@media(max-width:700px){
+	.GraphOutput{
+		height:150px;
+	}
+}
+.graphPoint{
+	position:absolute;
+	height:1em;
+	width:1em;
+	transform:translate(-0.5em,-0.5em);
+	//transition:top 0.1s, left 0.1s;
+}
+.centerPoint{
+	top:50%;
+	left:50%;
+	z-index:1;
+}
+.activeFunction{
+	text-align:center;
+	padding:$padding;
+}
+.scoreOutput{
+	padding:$padding;
+	width:8em;
+	height:1em;
+	white-space:nowrap;
+}
+.storageZoneText{
+	position:absolute;
+	top:50%;
+	z-index:-1;
+}
+.card{
+	
+	overflow:hidden;
+	position:relative;
+	border-radius:1rem;
+	background-color:#fff;
+	height:4rem;
+	width :4rem;
+	transform:translate(-2rem, -2rem);
+	display:flex;
+	flex-flow:column nowrap;
+	justify-content:center;
+	align-items:center;
+	box-shadow: 0px 1px 3px 0 #0002;
+	border:2px solid #0004;
+	&:not(.dragging){
+		transition:top 0.2s;
+	}
+	.cardFunctionCanvas{
+		position:absolute;
+		mix-blend-mode:multiply;
+		top:-$padding/2;
+	}
+}
+.cards{
+	padding:$padding;
+	background:linear-gradient(#16e9,#16e9,#fff0,#fff0,#fff0);	
+	height:300px;
+	width:100%;
+}
+.textContainer{
+	display:flex;
+	flex-flow:row nowrap;
+     justify-content:center;
+}
+.buttonContainer{
+	display:flex;
+	flex-flow:row nowrap;
+	>*{
+	flex:1 1;
+	}
+}
+//Utilities
+.draggable{
+	position: absolute;
+}
+.dragContainer{
+	position:relative;
+}
+.unselectable {
+   -moz-user-select: -moz-none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+
+   /*
+     Introduced in IE 10.
+     See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+   */
+   -ms-user-select: none;
+   user-select: none;
+}
+
+.btn{
+	background-color:#e3e;
+	padding:$padding/2;
+	cursor:pointer;
+	&:hover{
+		background-color:#e7e;
+	}
+}

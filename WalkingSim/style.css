@@ -1,0 +1,132 @@
+.background {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+}
+
+.foreground {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+}
+
+.middleground {
+  position: relative;
+  height: 100px;
+}
+
+#templates {
+  display: none;
+}
+
+.person {
+  position: absolute;
+}
+
+.person.flip {
+  -webkit-transform: scalex(-1);
+          transform: scalex(-1);
+}
+
+.abs {
+  position: absolute;
+}
+
+.instructions {
+  display: none;
+}
+
+.instructions.show {
+  display: block;
+}
+
+#root {
+  width: 300px;
+}
+
+.post {
+  padding: 2em;
+  background: #fff;
+  -webkit-box-shadow: #000b 0 0 10px 10px;
+          box-shadow: #000b 0 0 10px 10px;
+  position: absolute;
+}
+
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  height: 80vh;
+  min-width: 300px;
+}
+
+.runOff {
+  -webkit-transition: 1s;
+  transition: 1s;
+  -webkit-transform: translatey(-100px);
+          transform: translatey(-100px);
+  opacity: 0;
+}
+
+.streetTransition {
+  -webkit-perspective: 500px;
+          perspective: 500px;
+  width: 100%;
+  -webkit-transform: translate(2px, 0px);
+          transform: translate(2px, 0px);
+  position: relative;
+  height: 142px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+
+.streetTransition .streetAssembly {
+  -webkit-transform: rotateY(0deg) translatex(0) translatez(0);
+          transform: rotateY(0deg) translatex(0) translatez(0);
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transition: opacity inherit;
+  transition: opacity inherit;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  -webkit-transform-origin: center;
+          transform-origin: center;
+}
+
+.streetTransition .street {
+  -webkit-transform: rotateY(0deg) translatex(0) translatez(0);
+          transform: rotateY(0deg) translatex(0) translatez(0);
+  -webkit-transform-origin: center;
+          transform-origin: center;
+  position: absolute;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transition: opacity 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+  transition: opacity 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+.streetTransition .streetTo {
+  opacity: 0;
+}
+/*# sourceMappingURL=style.css.map */

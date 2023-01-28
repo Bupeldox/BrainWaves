@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waves</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <!-- pls excuse the poor mans react -->
+<div class="instrcutions">Match the left curve to the right by moving the cards around.</div>
+<div id="root"></div>
+
+<div id="templates" style="display:none">
+	<div class="thought"></div>
+	<div class="functionTextOutput"></div>
+	<div class="output">
+	</div>
+	<div class="cardSlots">
+	</div>
+	<div class="card draggable unselectable">
+		<div class="name"></div>
+		<canvas class="cardFunctionCanvas">
+			
+		</canvas>
+	</div>
+	<div class="functionEditor">
+		<div class="thought"></div>
+		<div class="output">
+		</div>
+		<div class="buttonContainer"></div>
+		<div class="textContainer">
+			<div class="activeFunction"></div>
+			
+		</div>
+		<div class="cards dragContainer">
+			<div class="activationZoneText unselectable">
+				Active (Drag them up here)
+			</div>
+			<div class="storageZoneText unselectable">
+				Not Active
+			</div>
+		</div>
+	</div>
+	<div class="scoreOutput"></div>
+	<div class="GraphOutput">
+	</div>
+	<div class="curveMarker graphPoint">
+		🌊
+	</div>
+	<div class="centerPoint graphPoint">
+		🧠
+	</div>
+	<div class="nextButton btn">Next Curve</div>
+
+    
+    <script src="../scripts/TemplatedHtml.js"></script>
+    <script src="../scripts/Vec2.js"></script>
+    <script src="./scripts/script.js"></script>
+
+</div>
+</body>
+</html>
