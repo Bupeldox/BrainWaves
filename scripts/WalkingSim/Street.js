@@ -2,7 +2,6 @@ import TemplatedHtml from "../TemplatedHtml";
 import Vec2 from "../Vec2";
 import { Interactable } from "./Interactable";
 import { InteractableHelper } from "./InteractableHelper";
-import { persistanceManager } from "./script";
 
 export class Street {
     constructor(streetData, changeStreetFunc) {
@@ -35,14 +34,8 @@ export class Street {
         for (var i = 0; i < streetData.interactablesList.length; i++) {
             var dat = streetData.interactablesList[i];
 
-            var persisted = persistanceManager.get(dat.id);
-            let intr;
-            if (persisted) {
-                intr = persisted;
-                return;
-            } else {
-                intr = new Interactable(dat, this.element.getPart("middleground"));
-            }
+            intr = new Interactable(dat, this.element.getPart("middleground"));
+            
 
             this.interactables.push(intr);
             this.interactables.push(new InteractableHelper(this.player, intr));

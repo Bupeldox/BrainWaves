@@ -1,11 +1,9 @@
-import PersistentInteractables from "./PersistentInteractables.js";
+
 import { World } from "./World";
 
 
 
 
-export var persistanceManager = new PersistentInteractables();
-persistanceManager.setIdsOnStreetData();
 
 document.body.addEventListener("click", () => {
     document.getElementById("startButton")?.remove();

@@ -1,4 +1,4 @@
-import { persistanceManager } from "./script";
+
 import TemplatedHtml from "../TemplatedHtml.js";
 
 export class Interactable {
@@ -33,7 +33,6 @@ export class Interactable {
             return;
         }
         this.onInteract(this.element);
-        persistanceManager.save(this.id, this);
     }
     updateText(text) {
         this.text = text;

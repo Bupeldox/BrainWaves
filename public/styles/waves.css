@@ -3,8 +3,7 @@
 }
 
 * {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html, body {
@@ -25,12 +24,8 @@ body {
 }
 
 .output {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
 }
 
 .GraphOutput {
@@ -51,8 +46,7 @@ body {
   position: absolute;
   height: 1em;
   width: 1em;
-  -webkit-transform: translate(-0.5em, -0.5em);
-          transform: translate(-0.5em, -0.5em);
+  transform: translate(-0.5em, -0.5em);
 }
 
 .centerPoint {
@@ -86,28 +80,16 @@ body {
   background-color: #fff;
   height: 4rem;
   width: 4rem;
-  -webkit-transform: translate(-2rem, -2rem);
-          transform: translate(-2rem, -2rem);
-  display: -webkit-box;
-  display: -ms-flexbox;
+  transform: translate(-2rem, -2rem);
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: column nowrap;
-          flex-flow: column nowrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-shadow: 0px 1px 3px 0 #0002;
-          box-shadow: 0px 1px 3px 0 #0002;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 1px 3px 0 #0002;
   border: 2px solid #0004;
 }
 
 .card:not(.dragging) {
-  -webkit-transition: top 0.2s;
   transition: top 0.2s;
 }
 
@@ -119,39 +101,24 @@ body {
 
 .cards {
   padding: 1rem;
-  background: -webkit-gradient(linear, left top, left bottom, from(#16e9), color-stop(#16e9), color-stop(#fff0), color-stop(#fff0), to(#fff0));
   background: linear-gradient(#16e9, #16e9, #fff0, #fff0, #fff0);
   height: 300px;
   width: 100%;
 }
 
 .textContainer {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: row nowrap;
-          flex-flow: row nowrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  flex-flow: row nowrap;
+  justify-content: center;
 }
 
 .buttonContainer {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: row nowrap;
-          flex-flow: row nowrap;
+  flex-flow: row nowrap;
 }
 
 .buttonContainer > * {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1;
-          flex: 1 1;
+  flex: 1 1;
 }
 
 .draggable {
@@ -163,13 +130,10 @@ body {
 }
 
 .unselectable {
-  -moz-user-select: -moz-none;
-  -webkit-user-select: none;
   /*
      Introduced in IE 10.
      See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
    */
-  -ms-user-select: none;
   user-select: none;
 }
 
