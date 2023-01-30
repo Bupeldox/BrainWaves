@@ -1,84 +1,49 @@
-import TemplatedHtml from "../TemplatedHtml";
-import Vec2 from "../Vec2";
 
-const interactablesFunctions = {
-    showMessage: (text, then, once = false) => {
-        return (interactableElement, interactable) => {
-            var messageElement = new TemplatedHtml(
-                "post",
-                document.getElementById("root")
-            );
-            messageElement.element.textContent = text;
-            document.body.addEventListener(
-                "keydown",
-                () => {
-                    messageElement.element.remove();
-                    if (then) {
-                        then(interactableElement, interactable);
-                    }
-                }, {
-                    once: true
-                }
-            );
-            if (once) {
-                interactable.deactivate();
-            }
-        };
-    },
-    showElement: (element, then) => {
-        return (interactableElement, interactable) => {
-            var messageElement = new TemplatedHtml(
-                element,
-                document.getElementById("root")
-            );
-            document.body.addEventListener(
-                "keydown",
-                () => {
-                    messageElement.element.remove();
-                    if (then) {
-                        then(interactableElement, interactable);
-                    }
-                }, {
-                    once: true
-                }
-            );
-        };
-    }
-};
+import Vec2 from "../Vec2";
+import { CallbackInteractable } from "./Interactables/CallbackInteractable";
+import { ChangingIconInteractable } from "./Interactables/ChangingIconInteractable";
+import { DoStuffInteractable } from "./Interactables/DoStuffInteractable";
+import { MessageInteractable } from "./Interactables/MessageInteractable";
+import { ThoughtInteractable } from "./Interactables/ThoughInteractable";
 
 
 export const tstreetData = {
     street1: {
-        interactablesList: [{
-                element: "interactableTest",
-                instructionsElement: "Open",
-                pos: new Vec2(50, -20),
-                onInteract: interactablesFunctions.showElement("post", (elem) => {
-                    elem.updateText("📪", "icon");
-                })
-            },
-            {
-                icon: "🌿",
-                element: "someGrass",
-                pos: new Vec2(150, -60),
-                onInteract: interactablesFunctions.showMessage(
-                    "wow some Poa annua along with other species of grass!"
-                )
-            },
-            {
-                icon: "🎃",
-                element: "someGrass",
-                pos: new Vec2(200, -30),
-                onInteract: interactablesFunctions.showMessage(
-                    "It's not even Halloween...",
-                    (elem, interactable) => {
-                        elem.updateText("🥣", "icon");
-                        interactable.onInteract = interactablesFunctions.showMessage(
-                            "That's better"
-                        );
-                    }
-                )
-            }
+        interactablesList: [
+            () => new MessageInteractable(
+                {
+                    id: "grass1",
+                    icon: "🌿",
+                    pos: new Vec2(100, -70)
+                }
+                ,[
+                    "wow some Poa annua along with other species of grass!",
+                    "Dayum, what a specimen"
+                ]
+            ),
+            () => new ChangingIconInteractable(
+                {
+                    id: "pumpkin1",
+                    icon: "🎃",
+                    pos: new Vec2(200, -30),
+                }
+                ,[
+                    { icon: "🎃", message: "It's not even Halloween..." },
+                    { icon: "🥣", message: "Thats Better :)" },
+                ]
+            ),
+            ()=> new ChangingIconInteractable(
+                {
+                    id:"postbox1",
+                    icon:"📫",
+                    instructionsElement: "Open",
+                    pos: new Vec2(50, -20),
+                }
+                ,[
+                    { icon: "📫", message: "omg its a letter from Poaceae Weekly! Poaceae Weekly - U got a sample of Poa annua this week! 🥬" },
+                    { icon: "📪",  message: "Poaceae Weekly - U got a sample of Poa annua this week! 🥬" },
+                ]
+            )
         ],
         junctions: [{
             street: "street2",
@@ -87,12 +52,35 @@ export const tstreetData = {
         }]
     },
     street2: {
-        interactablesList: [{
-                icon: "🥗",
-                element: "someGrass",
-                pos: new Vec2(50, -20),
-                onInteract: interactablesFunctions.showMessage("Wow some more grass")
-            },
+        interactablesList: [
+            () => new MessageInteractable(
+                {
+                    id: "grass2",
+                    icon: "🥗",
+                    element: "someGrass",
+                    pos: new Vec2(50, -30)
+                },
+                ["wow some more Poa annua along with other species of grass!"]
+            ),
+            ()=> new DoStuffInteractable(
+                {
+                    id: "Monkeh1",
+                    icon: "🐒",
+                    element: "someGrass",
+                    pos: new Vec2(100, -70)
+                },
+                ["It Stole my phone!!"],
+                (that,state)=>{
+                    switch (state.messageIndex){
+                        case 1:
+                            that.element.element.classList.add("runOff");
+                            that.deactivate();
+                            break;
+                    }
+                }
+                
+            )
+            /*
             {
                 icon: "🐒",
                 element: "someGrass",
@@ -118,23 +106,24 @@ export const tstreetData = {
                         }));
                     }));
                 })
-            }
+            }*/
 
         ],
         junctions: [{
-                street: "street1",
-                pos: { x: 10, y: -50 },
-                backwards: false,
-            },
-            {
-                street: "street3",
-                pos: { x: 200, y: -70 },
-                backwards: false,
-            }
+            street: "street1",
+            pos: { x: 10, y: -50 },
+            backwards: false,
+        },
+        {
+            street: "street3",
+            pos: { x: 200, y: -70 },
+            backwards: false,
+        }
         ]
     },
     street3: {
-        interactablesList: [{
+        interactablesList: [
+            /*{
                 icon: "🥗",
                 element: "someGrass",
                 pos: new Vec2(50, -20),
@@ -151,7 +140,7 @@ export const tstreetData = {
                     },
                     true
                 )
-            }
+            }*/
         ],
         junctions: [
 

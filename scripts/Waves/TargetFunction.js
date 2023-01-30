@@ -56,6 +56,20 @@ export class TargetFunction {
 
         return totalDifference;
     }
+    setCurve(funcList){
+        var list = [];
+
+        for (var i = 0; i < funcList.length; i++) {
+            var functionIndex = funcList[i];
+            var card = mathFuncs[functionIndex];
+            var cardInstance = new Card(card, i);
+            cardInstance.activation = 1;
+            list.push(cardInstance);
+        }
+        this.cardList = list;
+        this.drawCurve();
+    }
+    /*
     generateNewCurve(complexity) {
         var list = [];
         var funcs = mathFuncs;
@@ -71,5 +85,5 @@ export class TargetFunction {
         }
         this.cardList = list;
         this.drawCurve();
-    }
+    }*/
 }

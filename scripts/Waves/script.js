@@ -12,7 +12,25 @@ import { FunctionMatchGame } from "./FunctionMatchGame";
 //As you put cards in, the output lerps between before that card and after.
 
 
-var matchGame = new FunctionMatchGame();
+var gamDat = {
+    target:[1,2],
+    useable:[0,1,2,3,4,5,6,7,8,9,10,11],
+    thought:"Test",
+};
+
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+
+if(urlParams.get('target')&&urlParams.get('useable')&&urlParams.get('thought')){
+
+    gamDat.target = urlParams.get('target').split(",").map(i=>+i);
+    gamDat.useable = urlParams.get('useable').split(",").map(i=>+i);
+    gamDat.thought = urlParams.get('thought');
+
+}
+
+
+var matchGame = new FunctionMatchGame(gamDat);
 
 //to make time based calculations use the same time.
 

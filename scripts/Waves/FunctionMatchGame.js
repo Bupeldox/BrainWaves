@@ -1,30 +1,26 @@
 import { FunctionEditor } from "./FunctionEditor";
 import { TargetFunction } from "./TargetFunction";
-import { getQuote } from "./getQuote";
 import { GitchyText } from "./GitchyText";
 import TemplatedHtml from "../TemplatedHtml";
 
 export class FunctionMatchGame {
-    constructor() {
+    constructor(gameData) {
+        this.gameData = gameData;
         this.thoughtTextOutput = new TemplatedHtml(
             "thought",
             document.getElementById("root")
         );
         this.functionEditor = new FunctionEditor(() => {
             this.onFunctionChange();
-        });
+        },gameData.useable);
         this.targetFunction = new TargetFunction(
             [],
             this.functionEditor.baseElement.getPart("output")
         );
         this.glitchyText = new GitchyText(
-            "This gets hard.",
+            this.gameData.thought,
             this.thoughtTextOutput.element
         );
-        getQuote((d) => {
-            this.nextQuote = d.content;
-        });
-        this.nextQuote = "Awaiting";
         this.level = 1;
         this.accuracyOutput = new TemplatedHtml(
             "scoreOutput",
@@ -34,6 +30,7 @@ export class FunctionMatchGame {
             "scoreOutput",
             this.functionEditor.baseElement.getPart("textContainer")
         );
+        /*
         this.nextButton = new TemplatedHtml(
             "nextButton",
             this.functionEditor.baseElement.getPart("buttonContainer")
@@ -47,11 +44,11 @@ export class FunctionMatchGame {
         });
         this.harderButton.element.addEventListener("click", () => {
             this.nextLevel(true);
-        });
+        });*/
         this.functionEditor.functionDrawer.centerPoint.updateText("💎");
-        this.functionEditor.functionDrawer.centerPoint.element.style.filter =
-            "hue-rotate(180deg)";
-        this.targetFunction.generateNewCurve(1);
+        this.functionEditor.functionDrawer.centerPoint.element.style.filter = "hue-rotate(180deg)";
+
+        this.targetFunction.setCurve(this.gameData.target);
         this.onFunctionChange();
         this.currentComplexity = 1;
         this.updateLevelText();
@@ -102,7 +99,8 @@ export class FunctionMatchGame {
             "No. of cards:" + Math.round(this.currentComplexity * 10) / 10
         );
     }
-
+    
+    /*
     nextLevel(moreDifficult) {
         if (this.hasPassed) {
             this.level++;
@@ -122,5 +120,5 @@ export class FunctionMatchGame {
             this.nextButton.updateText(this.targetFunction.functionDrawer.getText(this.targetFunction.cardList));
 
         }
-    }
+    }*/
 }

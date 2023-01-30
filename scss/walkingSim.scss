@@ -20,7 +20,7 @@
 
 .person {
   position: absolute;
- 
+
   &.flip {
     transform: scalex(-1);
   }
@@ -43,21 +43,25 @@
   width: 300px;
 }
 
-.post {
-  padding: 2em;
+.interactionMessage {
   background: #fff;
   box-shadow: #000b 0 0 10px 10px;
-  position: absolute;
+  
+
+  .text {
+    padding: 2em;
+  }
 }
 
 .container {
+  margin-top: Min(calc(50vh - 177px));
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-flow: column nowrap;
-  height: 80vh;
   min-width: 300px;
 }
+
 
 
 .runOff {
@@ -68,13 +72,11 @@
 
 .streetTransition {
   perspective: 500px;
-  width: 100%;
-  transform: translate(2px, 0px);
   position: relative;
-  height: 142px;
   $transitionTime: 0.5s;
   transition: $transitionTime;
   transform-style: preserve-3d;
+
 
   .streetAssembly {
     transform: rotateY(0deg) translatex(0) translatez(0);

@@ -41,19 +41,21 @@
   width: 300px;
 }
 
-.post {
-  padding: 2em;
+.interactionMessage {
   background: #fff;
   box-shadow: #000b 0 0 10px 10px;
-  position: absolute;
+}
+
+.interactionMessage .text {
+  padding: 2em;
 }
 
 .container {
+  margin-top: Min(calc(50vh - 177px));
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-flow: column nowrap;
-  height: 80vh;
   min-width: 300px;
 }
 
@@ -65,10 +67,7 @@
 
 .streetTransition {
   perspective: 500px;
-  width: 100%;
-  transform: translate(2px, 0px);
   position: relative;
-  height: 142px;
   transition: 0.5s;
   transform-style: preserve-3d;
 }
