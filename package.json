@@ -1,0 +1,44 @@
+{
+  "name": "brainwaves",
+  "version": "1.0.0",
+  "description": "Game idea with brainwaves\r It's in 2 parts at the moment:",
+  "private": "true",
+  "dependencies": {
+    "find-up": "^4.1.0",
+    "locate-path": "^5.0.0",
+    "mime-db": "^1.52.0",
+    "node-releases": "^2.0.8",
+    "p-limit": "^2.3.0",
+    "p-locate": "^4.1.0",
+    "p-try": "^2.2.0",
+    "path-exists": "^4.0.0",
+    "path-key": "^3.1.1",
+    "path-parse": "^1.0.7",
+    "picocolors": "^1.0.0",
+    "pkg-dir": "^4.2.0",
+    "randombytes": "^2.1.0",
+    "punycode": "^2.3.0",
+    "resolve-cwd": "^3.0.0",
+    "resolve-from": "^5.0.0",
+    "safe-buffer": "^5.2.1",
+    "serialize-javascript": "^6.0.1",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^4.11.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bupeldox/BrainWaves.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bupeldox/BrainWaves/issues"
+  },
+  "homepage": "https://github.com/Bupeldox/BrainWaves#readme"
+}

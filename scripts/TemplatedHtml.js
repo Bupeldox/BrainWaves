@@ -1,4 +1,5 @@
-class TemplatedHtml {
+
+export default class TemplatedHtml {
 	constructor(templaceClass, addToThisElement) {
 		this.element = document
 			.querySelector("#templates> ." + templaceClass)

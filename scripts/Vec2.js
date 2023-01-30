@@ -1,4 +1,4 @@
-class Vec2 {
+export default class Vec2 {
 	//My handy vec2 class ;)
 	constructor(x, y) {
 		if (x.hasOwnProperty("x") && y && y.hasOwnProperty("x")) {
