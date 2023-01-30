@@ -6,10 +6,10 @@ import { StreetTransition } from "./StreetTransition";
 import { tstreetData } from "./WorldData.js";
 
 
-const worldStateName = "levelAndPlayerPos";
+export const worldStateName = "levelAndPlayerPos";
 
 export class World {
-    constructor(levelData) {
+    constructor() {
         this.stuffThatNeedsUpdating = [];
         this.player = new Player(document.body);
 
@@ -17,20 +17,34 @@ export class World {
         if(!this.state){
             this.state = {
                 streetId:"street1",
-                playerPos:{x:0,y:0}
+                playerPos:{ x:0, y:0 }
             }
         }   
 
         this.changeStreet(this.state.streetId, false);
         this.inStreetTransition = false;
     }
+
+    goToBrainWaves(thought,icon){
+        this.state.playerPos = this.player.pos;
+        stateHandler.setState(worldStateName,this.state);
+
+        window.location.href = 
+        "./waves.html?target="+
+        thought.target.join(",")+
+        "&useable="+
+        this.player.state.functionInventory.join(",")+
+        "&thought="+
+        thought.thought+
+        "&icon="+
+        icon;
+    }
+
     changeStreet(streetId) {
         if (this.inStreetTransition) {
             return;
         }
-
-
-
+        
         this.inStreetTransition = true;
         var prevStreetId = this.streetId;
         var newStreetData = tstreetData[streetId];
@@ -38,14 +52,14 @@ export class World {
 
         if (!prevStreetId) {
             //initial player pos
-            playerPos = new Vec2(0, 0);
+            playerPos = new Vec2(this.state.playerPos);
         } else {
             playerPos = new Vec2(newStreetData.junctions.find(i => i.street == prevStreetId).pos);
         }
         this.streetId = streetId;
 
         if (prevStreetId) {
-            var newStreet = new Street(tstreetData[streetId], (s) => { this.changeStreet(s); });
+            var newStreet = new Street(tstreetData[streetId], (s) => { this.changeStreet(s); },(a,b)=>{this.goToBrainWaves(a,b)});
             var prevStreet = this.currentStreet;
 
             var junctionFrom = tstreetData[prevStreetId].junctions.find(i => i.street == streetId);
@@ -71,7 +85,7 @@ export class World {
         } else {
             this.currentStreet = new Street(tstreetData[streetId], (s) => {
                  this.changeStreet(s); 
-                });
+                },(a,b)=>{this.goToBrainWaves(a,b)});
 
             this.currentStreet.setPlayer(this.player, playerPos);
             this.stuffThatNeedsUpdating.push(this.currentStreet);

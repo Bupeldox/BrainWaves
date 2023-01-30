@@ -10,11 +10,15 @@
 </head>
 <body>
     <!-- pls excuse the poor mans react -->
-<div class="instrcutions">Match the left curve to the right by moving the cards around.</div>
+<div class="instrcutions">Match the left curve to the right by moving the squares at the bottom into and out of the blue area. This will decrypt the text. (i'll put a better description in at some point)</div>
 <div id="root"></div>
 
 <div id="templates" style="display:none">
-	<div class="thought"></div>
+	<div class="thought">
+		<span id="targetItem"></span>
+		<span>&gt; 🧠 &gt; 💬 &gt; </span>
+		<span class="text"></span>
+	</div>
 	<div class="functionTextOutput"></div>
 	<div class="output">
 	</div>
@@ -27,10 +31,14 @@
 		</canvas>
 	</div>
 	<div class="functionEditor">
-		<div class="thought"></div>
+		
 		<div class="output">
 		</div>
-		<div class="buttonContainer"></div>
+		<div class="thoughtTextArea"></div>
+		<div class="buttonContainer">
+			<a class="btn danger backButton" href="/WalkingSim.html">Stop mind reading.</a>
+			<span class="btn info hint">Hint</a>
+		</div>
 		<div class="textContainer">
 			<div class="activeFunction"></div>
 			

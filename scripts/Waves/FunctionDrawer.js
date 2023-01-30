@@ -38,8 +38,8 @@ export class FunctionDrawer {
     }
     drawCardResult(cards) {
         //1 = fully with the activated cards
-        var calcText = this.getText(cards);
-        this.functionTextElement?.updateText(calcText);
+        this.calcText = this.getText(cards);
+        this.functionTextElement?.updateText(this.calcText);
 
         var points = this.functionListCalculator.calculateCardList(cards);
 

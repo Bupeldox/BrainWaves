@@ -4,9 +4,10 @@ import { InteractableHelper } from "./InteractableHelper";
 import { CallbackInteractable } from "./Interactables/CallbackInteractable";
 
 export class Street {
-    constructor(streetData, changeStreetFunc) {
+    constructor(streetData, changeStreetFunc, goToBrainWaves) {
         this.element = new TemplatedHtml("path", document.getElementById("root"));
         this.changeStreet = changeStreetFunc;
+        this.goToBrainWaves = goToBrainWaves;
         this.setupBackground();
         this.setupForeground();
         this.setupMidground(streetData);
@@ -37,7 +38,7 @@ export class Street {
         for (var i = 0; i < streetData.interactablesList.length; i++) {
             var dat = streetData.interactablesList[i]();
 
-            dat.setup(this.element.getPart("middleground"));
+            dat.setup(this.element.getPart("middleground"),this.goToBrainWaves);
 
             this.interactables.push(dat);
             this.interactables.push(new InteractableHelper(this.player, dat));
@@ -53,7 +54,7 @@ export class Street {
                 pos: new Vec2(junctionDat.pos),
             };
             let intr = new CallbackInteractable(interactableData);
-            intr.setup( this.element.getPart("middleground"),()=>{this.changeStreet(junctionDat.street)});
+            intr.setup(this.element.getPart("middleground"),()=>{this.changeStreet(junctionDat.street)});
             this.interactables.push(intr);
             this.interactables.push(new InteractableHelper(this.player, intr));
         }

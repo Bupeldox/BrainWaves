@@ -2,6 +2,9 @@ import TemplatedHtml from "../TemplatedHtml";
 import Vec2 from "../Vec2";
 import { DirectionalInputManager } from "./DirectionalInputManager";
 import { timeSpeedMod } from "./script";
+import { stateHandler } from "./StateHandler";
+
+const playerStateId = "playerState";
 
 export class Player {
     constructor(parentElement) {
@@ -11,6 +14,13 @@ export class Player {
         this.movementInput = new DirectionalInputManager();
         this.flip = false;
         this.isMoving = false;
+        this.state = stateHandler.getState(playerStateId);
+        if(!this.state){
+            this.state={
+                functionInventory:[8,3,5,11],
+
+            }
+        }
     }
     perspective(y) {
         return 1;

@@ -1,6 +1,7 @@
 $padding:1rem;
 .instrcutions{
-text-align: center;
+	text-align: center;
+	padding-top:$padding;
 }
 *{
 	box-sizing:border-box;
@@ -12,14 +13,22 @@ body{
 	overflow-x:hidden;
 	margin:0;
 }
+.thoughtTextArea{
+	padding-bottom: $padding/2;
+}
 .thought{
 	text-align:center;
 	font-family:monospace;
 	padding:$padding;
 	padding-bottom:0;
 	word-break:break-all;
+	&.done{
+		text-decoration: underline;
+    	font-weight: bold;
+		font-size: 1.2em;
+		word-break:keep-all;
+	}
 }
-
 
 .output{
 	display:flex;
@@ -128,10 +137,27 @@ body{
 }
 
 .btn{
-	background-color:#e3e;
 	padding:$padding/2;
+	margin:$padding/4;
+	border-radius: $padding/8;
+
 	cursor:pointer;
-	&:hover{
-		background-color:#e7e;
+	&.success{
+		background-color:#5eee59;
+		&:hover{
+			background-color:#15af10;
+		}
+	}
+	&.danger{
+		background-color:#e7a8a8;
+		&:hover{
+			background-color:#e28686;
+		}
+	}
+	&.info{
+		background-color:#a8e7c4;
+		&:hover{
+			background-color:#86e2b7;
+		}
 	}
 }

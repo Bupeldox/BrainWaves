@@ -46,6 +46,11 @@
   box-shadow: #000b 0 0 10px 10px;
 }
 
+.interactionMessage .instructions {
+  padding-left: 2em;
+  padding-bottom: 1em;
+}
+
 .interactionMessage .text {
   padding: 2em;
 }

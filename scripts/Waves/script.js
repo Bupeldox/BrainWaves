@@ -21,16 +21,18 @@ var gamDat = {
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 
-if(urlParams.get('target')&&urlParams.get('useable')&&urlParams.get('thought')){
+if(urlParams.get('target' )&& urlParams.get('useable') && urlParams.get('thought')){
 
     gamDat.target = urlParams.get('target').split(",").map(i=>+i);
     gamDat.useable = urlParams.get('useable').split(",").map(i=>+i);
     gamDat.thought = urlParams.get('thought');
-
+    gamDat.icon = urlParams.get('icon');
 }
 
-
 var matchGame = new FunctionMatchGame(gamDat);
+
+
+document.getElementById("targetItem").textContent = gamDat.icon;
 
 //to make time based calculations use the same time.
 

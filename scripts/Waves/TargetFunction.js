@@ -3,16 +3,15 @@ import { FunctionDrawer } from "./FunctionDrawer";
 import Card from "./Card";
 
 export class TargetFunction {
-    constructor(cardList, element) {
+    constructor(element) {
         this.functionDrawer = new FunctionDrawer(element);
-        this.cardList = cardList;
-        this.drawCurve();
+     
     }
     drawCurve() {
         // pls fix this// pls fix this// pls fix this// pls fix this// pls fix this// pls fix this// pls fix this
-        for (var i = 0; i < 10; i++) {
-            this.functionDrawer.drawCardResult(this.cardList);
-        }
+        
+        this.functionDrawer.drawCardResult(this.cardList);
+        
         if (this.cardList.find((x) => x.activation > 0 && x.card.name.includes("t"))) {
             this.animateCurve();
         } else {

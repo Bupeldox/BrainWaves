@@ -4,10 +4,6 @@ import TemplatedHtml from "../../TemplatedHtml";
 //interface
 export class InteractableBase{
     constructor(goData){
-        /*
-        pos,
-        instructionText?
-        */
         this.pos = goData.pos;
         this.isInRange = false;
         this.goData = goData;
@@ -26,7 +22,6 @@ export class InteractableBase{
         
         this.element.element.style.top = -this.pos.y + "px";
         this.element.element.style.left = this.pos.x + "px";
-            
 
         this.eventToRemove = (e) => { this.onKeyDown(e.key); };
         document.addEventListener("keydown", this.eventToRemove);

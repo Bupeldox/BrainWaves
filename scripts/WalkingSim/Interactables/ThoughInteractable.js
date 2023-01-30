@@ -1,3 +1,5 @@
+import { stateHandler } from "../StateHandler";
+import { worldStateName } from "../World";
 import { MessageInteractable } from "./MessageInteractable";
 
 
@@ -14,14 +16,14 @@ export class ThoughtInteractable extends MessageInteractable{
         this.thought = thought
     }
 
+    setup(parentElement,gotoBrainWavesFunc){
+        this.gotoBrainWavesFunc = gotoBrainWavesFunc;
+        super.setup(parentElement);
+        this.instructionsElement.updateText("E , R-Mind Read")
+    }
+
     onThoughtRead(){
-        window.location.href = 
-        "./waves.html?target="+
-        thought.target.split(",")+
-        "&useable=&"+
-        "0,1,2,3,4,5,6,7,8,9,10,11"+
-        "target="+
-        thought.thought;
+        this.gotoBrainWavesFunc(this.thought,this.goData.icon);
     }
 
 }

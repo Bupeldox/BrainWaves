@@ -40,7 +40,7 @@ export const tstreetData = {
                     pos: new Vec2(50, -20),
                 }
                 ,[
-                    { icon: "📫", message: "omg its a letter from Poaceae Weekly! Poaceae Weekly - U got a sample of Poa annua this week! 🥬" },
+                    { icon: "📫", message: "omg its a letter from Poaceae Weekly!" },
                     { icon: "📪",  message: "Poaceae Weekly - U got a sample of Poa annua this week! 🥬" },
                 ]
             )
@@ -62,52 +62,36 @@ export const tstreetData = {
                 },
                 ["wow some more Poa annua along with other species of grass!"]
             ),
-            ()=> new DoStuffInteractable(
+            () => new ThoughtInteractable(
                 {
-                    id: "Monkeh1",
-                    icon: "🐒",
-                    element: "someGrass",
+                    id: "dude1",
+                    icon: "🧜‍♀️",
                     pos: new Vec2(100, -70)
-                },
-                ["It Stole my phone!!"],
-                (that,state)=>{
-                    switch (state.messageIndex){
-                        case 1:
-                            that.element.element.classList.add("runOff");
-                            that.deactivate();
-                            break;
-                    }
                 }
-                
-            )
-            /*
-            {
-                icon: "🐒",
-                element: "someGrass",
-                pos: new Vec2(120, -20),
-                onInteract: interactablesFunctions.showMessage(
-                    "It stole my phone",
-                    (elem, interactable) => {
-                        elem.element.classList.add("runOff");
-                    },
-                    true
-                )
-            },
-            {
-                icon: "👨‍🦳",
-                element: "someGrass",
-                pos: new Vec2(150, -30),
-                onInteract: interactablesFunctions.showMessage("My body disapeared 2 years ago. I've been stuck here ever since.", (l, interactable) => {
-                    interactable.setInteraction(interactablesFunctions.showMessage("Luckily I dont need to eat any more", (l, interactable) => {
-                        interactable.setInteraction(interactablesFunctions.showMessage("The kids play football with me", (l, interactable) => {
-                            interactable.setInteraction(interactablesFunctions.showMessage("I dont have any achey joints though", (l, interactable) => {
-                                interactable.setInteraction(interactablesFunctions.showMessage("other than my jaw.", (l, i) => { i.deactivate() }));
-                            }));
-                        }));
-                    }));
-                })
-            }*/
-
+                ,[
+                    "WTF! How did i get here?!?!? What are these buildings, where r ur fins?! II NEEED WAAATTTEERRRRRRRR",
+                    "*Dies of lack of water*"
+                ],
+                {
+                    thought:"I hope my family knows I love them.",
+                    target:[8]
+                }
+            ),
+            () => new ThoughtInteractable(
+                {
+                    id: "dude2",
+                    icon: "🤷‍♂️",
+                    pos: new Vec2(140, -40)
+                }
+                ,[
+                    "Where did that fish come from",
+                    "Oh no it needs water?!"
+                ],
+                {
+                    thought:"Do I have any buckets I could use? idk it seems kinda small, what would i even do, just shove it's head in the bucket or something? idk where it's gills are",
+                    target:[11,3]
+                }
+            ),
         ],
         junctions: [{
             street: "street1",
@@ -123,24 +107,40 @@ export const tstreetData = {
     },
     street3: {
         interactablesList: [
-            /*{
-                icon: "🥗",
-                element: "someGrass",
-                pos: new Vec2(50, -20),
-                onInteract: interactablesFunctions.showMessage("Wow some more grass")
-            },
-            {
-                icon: "🐒",
-                element: "someGrass",
-                pos: new Vec2(120, -20),
-                onInteract: interactablesFunctions.showMessage(
-                    "It stole my hat!",
-                    (elem, interactable) => {
-                        elem.element.classList.add("runOff");
-                    },
-                    true
-                )
-            }*/
+            ()=> new DoStuffInteractable(
+                {
+                    id: "Monkeh1",
+                    icon: "🐒",
+                    element: "someGrass",
+                    pos: new Vec2(110, -20)
+                },
+                ["It Stole my phone!!"],
+                (that,state)=>{
+                    switch (state.messageIndex){
+                        case 1:
+                            that.element.element.classList.add("runOff");
+                            that.deactivate();
+                            break;
+                    }
+                }
+            ),
+            
+            () => new ThoughtInteractable(
+                {
+                    id: "dude3",
+                    icon: "🙅‍♂️",
+                    pos: new Vec2(30, -40)
+                }
+                ,[
+                    "*He's looking around franticly*",
+                    "*He checks his pockets*",
+                    "*He doesn't look comfortable in the slightest*",
+                ],
+                {
+                    thought:"I REALLY need the toilet, and that frigin monkey took my phone so I can't even check where one is!",
+                    target:[8,11,3]
+                }
+            ),
         ],
         junctions: [
 

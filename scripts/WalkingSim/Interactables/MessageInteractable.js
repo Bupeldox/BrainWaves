@@ -17,7 +17,6 @@ export class MessageInteractable extends InteractableBase {
             stateHandler.setState(goData.id, this.state);
         }
         this.messageElement;
-
     }
 
     onInteract (onMessageClose) {
@@ -27,6 +26,8 @@ export class MessageInteractable extends InteractableBase {
             this.state.messageIndex++;
             stateHandler.setState(this.goData.id, this.state);
         }
+
+        
 
         document.body.addEventListener(
             "keydown",
@@ -47,6 +48,9 @@ export class MessageInteractable extends InteractableBase {
             "interactionMessage",
             document.getElementById("root")
         );
+        if(this.messages.length>this.state.messageIndex+1){
+            this.messageElement.getPart("instructions").classList.add("show");
+        }
         this.messageElement.updateText(text,"text")
     }
 }
