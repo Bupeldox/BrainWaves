@@ -73,16 +73,16 @@ export class FunctionMatchGame {
     setButtonState(state) {
         switch (state) {
             case "NextLevel":
-                this.nextButton.element.style.background = "#e3e";
-                this.nextButton.updateText("Next Wave");
-                this.harderButton.element.style.display = "block";
-                this.harderButton.element.style.background = "#f33";
-                this.harderButton.updateText("Harder Curves!!!");
+                //this.nextButton.element.style.background = "#e3e";
+                //this.nextButton.updateText("Next Wave");
+                //this.harderButton.element.style.display = "block";
+                //this.harderButton.element.style.background = "#f33";
+                //this.harderButton.updateText("Harder Curves!!!");
                 break;
             case "MidLevel":
-                this.nextButton.element.style.background = "#efe";
-                this.nextButton.updateText("Hint");
-                this.harderButton.element.style.display = "none";
+               // this.nextButton.element.style.background = "#efe";
+               // this.nextButton.updateText("Hint");
+               // this.harderButton.element.style.display = "none";
                 break;
         }
     }

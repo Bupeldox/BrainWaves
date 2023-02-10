@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Game idea with brainwaves\r It's in 2 parts at the moment:",
   "private": "true",
+  "main": "./electron/app.js",
   "dependencies": {
+    "electron-squirrel-startup": "^1.0.0",
     "find-up": "^4.1.0",
     "locate-path": "^5.0.0",
     "mime-db": "^1.52.0",
@@ -16,27 +18,34 @@
     "path-parse": "^1.0.7",
     "picocolors": "^1.0.0",
     "pkg-dir": "^4.2.0",
-    "randombytes": "^2.1.0",
     "punycode": "^2.3.0",
+    "randombytes": "^2.1.0",
     "resolve-cwd": "^3.0.0",
     "resolve-from": "^5.0.0",
     "safe-buffer": "^5.2.1",
     "serialize-javascript": "^6.0.1",
-    "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1"
   },
   "devDependencies": {
+    "@electron-forge/cli": "^6.0.5",
+    "@electron-forge/maker-deb": "^6.0.5",
+    "@electron-forge/maker-rpm": "^6.0.5",
+    "@electron-forge/maker-squirrel": "^6.0.5",
+    "@electron-forge/maker-zip": "^6.0.5",
+    "electron": "23.0.0",
+    "webpack": "^5.75.0",
     "webpack-dev-server": "^4.11.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "launchElectron":"electron ./electron/app.js"
+    "start": "npx webpack && electron-forge start --app-path ./electron/app.js",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Bupeldox/BrainWaves.git"
   },
-  "author": "",
+  "author": "Ur nan",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Bupeldox/BrainWaves/issues"

@@ -1,4 +1,6 @@
 const { app, BrowserWindow } = require('electron');
+if (require('electron-squirrel-startup')) app.quit();
+
 const path = require("path");
 const getPath = (fromRoot)=>path.join(__dirname,"../",fromRoot);
 
