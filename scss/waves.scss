@@ -80,8 +80,8 @@ body{
 	position:relative;
 	border-radius:1rem;
 	background-color:#fff;
-	height:4rem;
-	width :4rem;
+	height: 5rem;
+	width :5rem;
 	transform:translate(-2rem, -2rem);
 	display:flex;
 	flex-flow:column nowrap;
@@ -96,6 +96,26 @@ body{
 		position:absolute;
 		mix-blend-mode:multiply;
 		top:-$padding/2;
+	}
+	&.imageGem{
+		background-size: contain;
+		background-position: center;
+		background-repeat: no-repeat;
+		border:none;
+		background-color: transparent;
+		box-shadow: none;
+		filter: drop-shadow(5px 5px 5px #222);
+		&.dragging{
+			
+		filter: drop-shadow(8px 8px 5px #222222ab);
+		}
+		.name {
+			background: #ffffffd6;
+			padding: 2px;
+			border-radius: 2px;
+			/* font-weight: bold; */
+			font-family: cursive;
+		}
 	}
 }
 .cards{

@@ -42,7 +42,7 @@ export class FunctionEditor {
 
         this.cards.forEach((i) => {
             i.element.appendInto(this.baseElement.getPart("cards"));
-            i.canvasGrapher.draw();
+            i.canvasGrapher?.draw();
         });
 
         this.functionDrawer = new FunctionDrawer(

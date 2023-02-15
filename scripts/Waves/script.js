@@ -11,7 +11,6 @@ import { FunctionMatchGame } from "./FunctionMatchGame";
 //Dont want to use 'blocks' like scratch
 //As you put cards in, the output lerps between before that card and after.
 
-
 var gamDat = {
     target:[1,2],
     useable:[0,1,2,3,4,5,6,7,8,9,10,11],
@@ -30,7 +29,6 @@ if(urlParams.get('target' )&& urlParams.get('useable') && urlParams.get('thought
 }
 
 var matchGame = new FunctionMatchGame(gamDat);
-
 
 document.getElementById("targetItem").textContent = gamDat.icon;
 
