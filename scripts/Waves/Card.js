@@ -13,8 +13,16 @@ export default class Card {
         this.element.updateText(this.card.name, "name");
         this.activation = 0;
         this.updateToNewPosition();
-        this.canvasGrapher = new CanvasGrapher(this.card.func, this.element.getPart("cardFunctionCanvas"));
-
+        if(card.imageName){
+            var cnv = this.element.element;
+            cnv.classList.add("imageGem");
+            cnv.style.backgroundImage = "url('./assets/"+card.imageName+"')";
+            this.element.getPart("cardFunctionCanvas").remove();
+            this.element.getPart("cardFunctionCanvas").remove();
+        }else{
+            this.canvasGrapher = new CanvasGrapher(this.card.func, this.element.getPart("cardFunctionCanvas"));
+        }
+            
     }
 
     updateToNewPosition() {
