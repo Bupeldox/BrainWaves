@@ -2,26 +2,28 @@ import { FunctionEditor } from "./FunctionEditor";
 import { TargetFunction } from "./TargetFunction";
 import { GitchyText } from "./GitchyText";
 import TemplatedHtml from "../TemplatedHtml";
+import FunctionEditorHtmlStructureInterface from "./HtmlStructureInterface";
 
 
 export class FunctionMatchGame {
     constructor(gameData) {
         this.gameData = gameData;
         
-       
+       this.htmlStructure = new FunctionEditorHtmlStructureInterface(document.getElementById("root"));;
         
         this.functionEditor = new FunctionEditor(
             () => { this.onFunctionChange(); }, 
-            gameData.useable
+            gameData.useable,
+            this.htmlStructure
         );
 
         this.thoughtTextOutput = new TemplatedHtml(
             "thought",
-            this.functionEditor.baseElement.getPart("thoughtTextArea")
+            this.htmlStructure.getThoughOutputArea()
         );
         
         this.targetFunction = new TargetFunction(
-            this.functionEditor.baseElement.getPart("output")
+            this.htmlStructure.getTargetFunctionArea()
         );
 
         this.glitchyText = new GitchyText(
@@ -32,12 +34,12 @@ export class FunctionMatchGame {
         this.level = 1;
         this.accuracyOutput = new TemplatedHtml(
             "scoreOutput",
-            this.functionEditor.baseElement.getPart("textContainer")
+            this.htmlStructure.getStatsOutputArea()
         );
 
         this.complexityOutput = new TemplatedHtml(
             "scoreOutput",
-            this.functionEditor.baseElement.getPart("textContainer")
+            this.htmlStructure.getStatsOutputArea()
         );
       
         this.functionEditor.functionDrawer.centerPoint.updateText("💎");
@@ -48,16 +50,16 @@ export class FunctionMatchGame {
         this.currentComplexity = 1;
         this.updateLevelText();
 
-        this.functionEditor.baseElement.getPart("hint").addEventListener("click",()=>{this.onHintRequest()});
+        this.htmlStructure.getHintButton().addEventListener("click",()=>{this.onHintRequest()});
 
     }
     onHintRequest(){
-        this.functionEditor.baseElement.getPart("hint").textContent = this.targetFunction.functionDrawer.calcText;
+        this.htmlStructure.getHintButton().textContent = this.targetFunction.functionDrawer.calcText;
     }
 
     onFunctionChange() {
         if (this.accuracyOutput) {
-            this.functionEditor.baseElement.getPart("hint").textContent = "Hint";
+            this.htmlStructure.getHintButton().textContent = "Hint";
             var difference = this.getAccuracy();
             var score = 5 - Math.log(difference);
             this.hasPassed = score > 20 || isNaN(score);
@@ -66,12 +68,12 @@ export class FunctionMatchGame {
                 "score:" + (this.hasPassed ? "✅" : Math.round(score * 100) / 100)
             );
             if(this.hasPassed){
-                this.functionEditor.baseElement.getPart("backButton").classList.remove("danger");
-                this.functionEditor.baseElement.getPart("backButton").classList.add("info");
+                this.htmlStructure.getBackButton().classList.remove("danger");
+                this.htmlStructure.getBackButton().classList.add("info");
                 this.thoughtTextOutput.element.classList.add("done");
             }else{
-                this.functionEditor.baseElement.getPart("backButton").classList.add("danger");
-                this.functionEditor.baseElement.getPart("backButton").classList.remove("info");
+                this.htmlStructure.getBackButton().classList.add("danger");
+                this.htmlStructure.getBackButton().classList.remove("info");
                 this.thoughtTextOutput.element.classList.remove("done");
             }
         }

@@ -2,14 +2,16 @@ import mathFuncs from "./mathFuncs";
 import { FunctionDrawer } from "./FunctionDrawer";
 import TemplatedHtml from "../TemplatedHtml.js";
 import Card from "./Card.js";
+import FunctionEditorHtmlStructureInterface from "./HtmlStructureInterface";
 
 
 export class FunctionEditor {
-    constructor(changeCallBack,availableFuncs) {
-        this.baseElement = new TemplatedHtml(
-            "functionEditor",
-            document.getElementById("root")
-        );
+    constructor(changeCallBack,availableFuncs,htmlStructure) {
+        this.baseElement = htmlStructure;
+        // this.baseElement = new TemplatedHtml(
+        //     "functionEditor",
+        //     document.getElementById("root")
+        // );
         this.changeCallback = changeCallBack;
 
         //Just put all the cards in, why not
@@ -20,7 +22,7 @@ export class FunctionEditor {
                 var cardd = new Card(
                     c,
                     (i + 1) / (2 + ar.length),
-                    this.baseElement.getPart("cards")
+                    this.baseElement.getCardStore()
                 );
                 if (i % 2 == 0) {
                     cardd.position.y = 0.9;
@@ -41,13 +43,13 @@ export class FunctionEditor {
         */
 
         this.cards.forEach((i) => {
-            i.element.appendInto(this.baseElement.getPart("cards"));
+            i.element.appendInto(this.baseElement.getCardStore());
             i.canvasGrapher?.draw();
         });
 
         this.functionDrawer = new FunctionDrawer(
-            this.baseElement.getPart("output"),
-            this.baseElement.getPart("activeFunction")
+            this.baseElement.getTargetGraphArea(),
+            this.baseElement.getCurrentFunctionTextArea()
         );
 
         this.cards.forEach((i) => i.setupEvents(() => {
