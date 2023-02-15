@@ -3,12 +3,11 @@ $padding:1rem;
 	text-align: center;
 	padding-top:$padding;
 }
-*{
-	box-sizing:border-box;
-}
+
 html, body {
   overscroll-behavior: none;
 }
+
 body{
 	overflow-x:hidden;
 	margin:0;

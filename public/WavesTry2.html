@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WavesTry2</title>
+    <link rel="stylesheet" href="./styles/base.css">
+</head>
+
+<body>
+    <style>
+        #functionEditor {
+            overflow: hidden;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .container {
+            /* 16/9 */
+            flex: 0 0 1920px;
+            height: 1080px;
+            width: 1920px;
+
+            display: flex;
+            ;
+            flex-flow: column nowrap;
+            justify-content: stretch;
+            ;
+            margin: 0;
+            transform-origin: top center;
+            /*
+        background-image: url("./assets/Screenshot_1.png");
+        background-size: cover;*/
+        }
+
+        .topArea,
+        .bottomArea {
+            flex: 0 0 4em;
+        }
+
+        .mainSection {
+            flex: 1 1;
+            display: flex;
+            flex-flow: row nowrap;
+        }
+
+
+        /* ==== Right ==== */
+
+
+        .curveEditor {
+            flex: 0 0 42em;
+            display: flex;
+            flex-flow: column nowrap;
+        }
+
+        .active {
+            flex: 0 0 15rem;
+        }
+
+        .tray {
+            flex: 1 1;
+        }
+
+
+        /* ==== Left ==== */
+
+
+        .outputSide {
+            flex: 2 1;
+            display: flex;
+            flex-flow: column nowrap;
+        }
+
+        .curveDisplays {
+            flex: 0 0 25em;
+            display: flex;
+            flex-flow: row nowrap;
+        }
+
+        .curveDisplay {
+            flex: 1 1;
+        }
+
+        .matchScore {
+            flex: 0 0 2em;
+        }
+
+        .otherOutputs {
+            flex: 1 1;
+            display: flex;
+            flex-flow: column nowrap;
+        }
+
+        .topBar {
+            flex: 0 0;
+        }
+
+        .mainOutput {
+            flex: 1 1;
+        }
+
+        .container div {
+            background-color: #0001;
+            margin: 1rem;
+            min-height: 3rem;
+        }
+    </style>
+    <div id="functionEditor">
+        <div class="container">
+            <div class="topArea">
+                <!-- Close button -->
+            </div>
+            <div class="mainSection">
+                <div class="curveEditor">
+                    <div class="active">
+
+                        <!-- Actively used. -->
+                    </div>
+                    <div class="tray">
+
+                        <!-- Unused functions -->
+                    </div>
+                </div>
+                <div class="outputSide">
+                    <div class="curveDisplays">
+                        <div class="curveDisplay curveDisplay-machine"></div>
+                        <div class="matchScore"></div>
+                        <div class="curveDisplay curveDisplay-target"></div>
+                    </div>
+                    <div class="otherOutputs">
+                        <div class="topBar">
+                            <!-- Hint button -->
+                        </div>
+                        <div class="mainOutput"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        function onResize() {
+            var normalWidth = 1920;
+            var windowWidth = Math.min(window.innerWidth, normalWidth);
+            var widthScale = windowWidth / normalWidth;
+
+            var normalHeight = 1080;
+            var windowHeight = Math.min(window.innerHeight, normalHeight);
+            var heightScale = windowHeight / normalHeight;
+
+            var scaleToUse = Math.min(heightScale, widthScale);
+
+            document.querySelector(".container").style.transform = "scale(" + scaleToUse + ")";
+
+        }
+
+        window.addEventListener("resize", function () {
+            onResize();
+        })
+        onResize();
+
+    </script>
+</body>
+
+</html>

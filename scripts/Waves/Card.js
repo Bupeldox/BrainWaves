@@ -18,7 +18,6 @@ export default class Card {
             cnv.classList.add("imageGem");
             cnv.style.backgroundImage = "url('./assets/"+card.imageName+"')";
             this.element.getPart("cardFunctionCanvas").remove();
-            this.element.getPart("cardFunctionCanvas").remove();
         }else{
             this.canvasGrapher = new CanvasGrapher(this.card.func, this.element.getPart("cardFunctionCanvas"));
         }
