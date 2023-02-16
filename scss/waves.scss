@@ -27,6 +27,13 @@ body{
 		font-size: 1.2em;
 		word-break:keep-all;
 	}
+	span.correct {
+		//background-color: #86e2b7;
+	}
+	span.incorrect {
+		color: #0006;
+	}
+	
 }
 
 .output{

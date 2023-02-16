@@ -3,10 +3,6 @@
   padding-top: 1rem;
 }
 
-* {
-  box-sizing: border-box;
-}
-
 html, body {
   overscroll-behavior: none;
 }
@@ -27,12 +23,14 @@ body {
   padding-bottom: 0;
   word-break: break-all;
 }
-
 .thought.done {
   text-decoration: underline;
   font-weight: bold;
   font-size: 1.2em;
   word-break: keep-all;
+}
+.thought span.incorrect {
+  color: #0006;
 }
 
 .output {
@@ -53,7 +51,6 @@ body {
     height: 150px;
   }
 }
-
 .graphPoint {
   position: absolute;
   height: 1em;
@@ -100,17 +97,14 @@ body {
   box-shadow: 0px 1px 3px 0 #0002;
   border: 2px solid #0004;
 }
-
 .card:not(.dragging) {
   transition: top 0.2s;
 }
-
 .card .cardFunctionCanvas {
   position: absolute;
   mix-blend-mode: multiply;
   top: -0.5rem;
 }
-
 .card.imageGem {
   background-size: contain;
   background-position: center;
@@ -120,11 +114,9 @@ body {
   box-shadow: none;
   filter: drop-shadow(5px 5px 5px #222);
 }
-
 .card.imageGem.dragging {
   filter: drop-shadow(8px 8px 5px #222222ab);
 }
-
 .card.imageGem .name {
   background: #ffffffd6;
   padding: 2px;
@@ -150,7 +142,6 @@ body {
   display: flex;
   flex-flow: row nowrap;
 }
-
 .buttonContainer > * {
   flex: 1 1;
 }
@@ -164,10 +155,14 @@ body {
 }
 
 .unselectable {
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
   /*
-     Introduced in IE 10.
-     See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
-   */
+    Introduced in IE 10.
+    See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+  */
+  -ms-user-select: none;
   user-select: none;
 }
 
@@ -177,28 +172,21 @@ body {
   border-radius: 0.125rem;
   cursor: pointer;
 }
-
 .btn.success {
   background-color: #5eee59;
 }
-
 .btn.success:hover {
   background-color: #15af10;
 }
-
 .btn.danger {
   background-color: #e7a8a8;
 }
-
 .btn.danger:hover {
   background-color: #e28686;
 }
-
 .btn.info {
   background-color: #a8e7c4;
 }
-
 .btn.info:hover {
   background-color: #86e2b7;
 }
-/*# sourceMappingURL=waves.css.map */

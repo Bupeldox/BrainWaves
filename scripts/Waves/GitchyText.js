@@ -41,8 +41,26 @@ export class GitchyText {
             this.lerpingValue = this.lerpingValue + Math.sign(delta) * this.lerpSpeed;
         }
 
-        this.element.textContent = this.textScrambler.updateScrambledness(
+        
+        var scrambledTextDat = this.textScrambler.updateScrambledness(
             clamp(0, this.value, 1)
         );
+
+        this.element.innerHTML = "";
+        for (let index = 0; index < scrambledTextDat.textOut.length; index++) {
+            const letter = scrambledTextDat.textOut[index];
+
+            var isCorrect = scrambledTextDat.correctLetters[index];
+            var elem = document.createElement("span");
+            elem.textContent = letter;
+            var classToAdd = "incorrect";
+            if(isCorrect){
+                classToAdd = "correct";
+            }
+            elem.classList.add(classToAdd);
+            this.element.appendChild(elem);
+        }
+        
+        
     }
 }
