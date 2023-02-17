@@ -20,7 +20,6 @@
 .person {
   position: absolute;
 }
-
 .person.flip {
   transform: scalex(-1);
 }
@@ -32,7 +31,6 @@
 .instructions {
   display: none;
 }
-
 .instructions.show {
   display: block;
 }
@@ -43,20 +41,18 @@
 
 .interactionMessage {
   background: #fff;
-  box-shadow: #000b 0 0 10px 10px;
+  box-shadow: rgba(0, 0, 0, 0.7333333333) 0 0 10px 10px;
 }
-
 .interactionMessage .instructions {
   padding-left: 2em;
   padding-bottom: 1em;
 }
-
 .interactionMessage .text {
   padding: 2em;
 }
 
 .container {
-  margin-top: Min(calc(50vh - 177px));
+  margin-top: min(50vh - 177px);
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -76,7 +72,6 @@
   transition: 0.5s;
   transform-style: preserve-3d;
 }
-
 .streetTransition .streetAssembly {
   transform: rotateY(0deg) translatex(0) translatez(0);
   transform-style: preserve-3d;
@@ -84,7 +79,6 @@
   transition: 0.5s;
   transform-origin: center;
 }
-
 .streetTransition .street {
   transform: rotateY(0deg) translatex(0) translatez(0);
   transform-origin: center;
@@ -93,8 +87,8 @@
   transition: opacity 0.5s cubic-bezier(0.33, 1, 0.68, 1);
   -webkit-font-smoothing: subpixel-antialiased;
 }
-
 .streetTransition .streetTo {
   opacity: 0;
 }
+
 /*# sourceMappingURL=walkingSim.css.map */
