@@ -31,7 +31,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx webpack && npx sass ./scss:./public/styles"
+    "compile": "npx webpack && npx sass ./scss:./public/styles"
   },
   "repository": {
     "type": "git",
