@@ -20,15 +20,13 @@ body {
 .thoughtTextArea {
 	padding-bottom: $padding/2;
 }
-
-.thought {
-	text-align: center;
-	font-family: monospace;
-	padding: $padding;
-	padding-bottom: 0;
-	word-break: break-all;
-
-	&.done {
+.thought{
+	text-align:center;
+	font-family:monospace;
+	padding:$padding;
+	padding-bottom:0;
+	word-break:break-all;
+	&.done{
 		text-decoration: underline;
 		font-weight: bold;
 		font-size: 1.2em;
@@ -55,7 +53,6 @@ body {
 		height: 150px;
 	}
 }
-
 .graphPoint {
 	position: absolute;
 	height: 1em;
@@ -63,25 +60,21 @@ body {
 	transform: translate(-0.5em, -0.5em);
 	//transition:top 0.1s, left 0.1s;
 }
-
 .centerPoint {
 	top: 50%;
 	left: 50%;
 	z-index: 1;
 }
-
 .activeFunction {
 	text-align: center;
 	padding: $padding;
 }
-
 .scoreOutput {
 	padding: $padding;
 	width: 8em;
 	height: 1em;
 	white-space: nowrap;
 }
-
 .storageZoneText {
 	position: absolute;
 	top: 50%;
@@ -113,7 +106,6 @@ body {
 		mix-blend-mode: multiply;
 		top: -$padding/2;
 	}
-
 	&.imageGem {
 		background-size: contain;
 		background-position: center;
@@ -137,14 +129,12 @@ body {
 		}
 	}
 }
-
 .cards {
 	padding: $padding;
 	background: linear-gradient(#16e9, #16e9, #fff0, #fff0, #fff0);
 	height: 300px;
 	width: 100%;
 }
-
 .textContainer {
 	display: flex;
 	flex-flow: row nowrap;

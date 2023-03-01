@@ -24,12 +24,14 @@ body {
   padding-bottom: 0;
   word-break: break-all;
 }
-
 .thought.done {
   text-decoration: underline;
   font-weight: bold;
   font-size: 1.2em;
   word-break: keep-all;
+}
+.thought span.incorrect {
+  color: rgba(0, 0, 0, 0.4);
 }
 
 .output {
@@ -39,7 +41,8 @@ body {
 
 .GraphOutput {
   border: 1px solid #0002;
-  height: 100%;
+  height: 300px;
+  width: 300px;
   margin: 1rem;
   position: relative;
 }
@@ -49,7 +52,6 @@ body {
     height: 150px;
   }
 }
-
 .graphPoint {
   position: absolute;
   height: 1em;
@@ -93,20 +95,17 @@ body {
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  box-shadow: 0px 1px 3px 0 #0002;
-  border: 2px solid #0004;
+  box-shadow: 0px 1px 3px 0 rgba(0, 0, 0, 0.1333333333);
+  border: 2px solid rgba(0, 0, 0, 0.2666666667);
 }
-
 .card:not(.dragging) {
   transition: top 0.2s;
 }
-
 .card .cardFunctionCanvas {
   position: absolute;
   mix-blend-mode: multiply;
   top: -0.5rem;
 }
-
 .card.imageGem {
   background-size: contain;
   background-position: center;
@@ -116,13 +115,11 @@ body {
   box-shadow: none;
   filter: drop-shadow(5px 5px 5px #222);
 }
-
 .card.imageGem.dragging {
-  filter: drop-shadow(8px 8px 5px #222222ab);
+  filter: drop-shadow(8px 8px 5px rgba(34, 34, 34, 0.6705882353));
 }
-
 .card.imageGem .name {
-  background: #fffffff5;
+  background: #ffffffd6;
   padding: 2px;
   border-radius: 4px;
   /* font-weight: bold; */
@@ -131,7 +128,7 @@ body {
 
 .cards {
   padding: 1rem;
-  background: linear-gradient(#16e9, #16e9, #fff0, #fff0, #fff0);
+  background: linear-gradient(rgba(17, 102, 238, 0.6), rgba(17, 102, 238, 0.6), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0));
   height: 300px;
   width: 100%;
 }
@@ -146,7 +143,6 @@ body {
   display: flex;
   flex-flow: row nowrap;
 }
-
 .buttonContainer > * {
   flex: 1 1;
 }
@@ -160,10 +156,14 @@ body {
 }
 
 .unselectable {
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
   /*
-     Introduced in IE 10.
-     See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
-   */
+      Introduced in IE 10.
+      See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+    */
+  -ms-user-select: none;
   user-select: none;
 }
 
@@ -173,140 +173,22 @@ body {
   border-radius: 0.125rem;
   cursor: pointer;
 }
-
 .btn.success {
   background-color: #5eee59;
 }
-
 .btn.success:hover {
   background-color: #15af10;
 }
-
 .btn.danger {
   background-color: #e7a8a8;
 }
-
 .btn.danger:hover {
   background-color: #e28686;
 }
-
 .btn.info {
   background-color: #a8e7c4;
 }
-
 .btn.info:hover {
   background-color: #86e2b7;
-}
-
-.curveEditor .active {
-  background-image: url(../assets/boxActive.png);
-  background-size: contain;
-  background-size: 102% 100%;
-  background-position-x: 50%;
-}
-
-.curveEditor .tray {
-  background-image: url(../assets/boxTray.png);
-  background-size: 100% 66%;
-}
-
-.card .name {
-  transform: translate(26px, 27px);
-}
-
-.card {
-  z-index: 1;
-}
-
-.functionEditor2 {
-  overflow: hidden;
-  flex-flow: row nowrap;
-  justify-content: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
-  /* ==== Left ==== */
-  /* ==== Right ==== */
-}
-
-.functionEditor2 .container {
-  /* 16/9 */
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: stretch;
-  margin: 0;
-  transform-origin: top center;
-}
-
-.functionEditor2 .topArea,
-.functionEditor2 .bottomArea {
-  flex: 0 0 4em;
-}
-
-.functionEditor2 .mainSection {
-  flex: 1 1;
-  display: flex;
-  flex-flow: row nowrap;
-}
-
-.functionEditor2 .curveEditor {
-  flex: 0 1 42em;
-  display: flex;
-  flex-flow: column nowrap;
-}
-
-.functionEditor2 .active {
-  flex: 0 0 15rem;
-}
-
-.functionEditor2 .tray {
-  flex: 1 1;
-}
-
-.functionEditor2 .outputSide {
-  flex: 2 1;
-  display: flex;
-  flex-flow: column nowrap;
-}
-
-.functionEditor2 .curveDisplays {
-  flex: 0 0 25em;
-  display: flex;
-  flex-flow: row nowrap;
-}
-
-.functionEditor2 .curveDisplay {
-  flex: 1 1;
-}
-
-.functionEditor2 .matchScore {
-  flex: 0 0 2em;
-}
-
-.functionEditor2 .stats {
-  display: flex;
-  flex-flow: row nowrap;
-}
-
-.functionEditor2 .otherOutputs {
-  flex: 1 1;
-  display: flex;
-  flex-flow: column nowrap;
-}
-
-.functionEditor2 .topBar {
-  flex: 0 0;
-  display: flex;
-  flex-flow: row nowrap;
-}
-
-.functionEditor2 .mainOutput {
-  flex: 1 1;
-}
-
-.functionEditor2 .container div {
-  margin: 1rem;
 }
 /*# sourceMappingURL=waves.css.map */
