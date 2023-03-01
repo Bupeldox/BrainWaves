@@ -30,9 +30,6 @@ body {
   font-size: 1.2em;
   word-break: keep-all;
 }
-.thought span.incorrect {
-  color: rgba(0, 0, 0, 0.4);
-}
 
 .output {
   display: flex;
@@ -40,9 +37,8 @@ body {
 }
 
 .GraphOutput {
-  border: 1px solid #0002;
-  height: 300px;
-  width: 300px;
+  border: 1px solid rgba(0, 0, 0, 0.1333333333);
+  height: 100%;
   margin: 1rem;
   position: relative;
 }
@@ -119,7 +115,7 @@ body {
   filter: drop-shadow(8px 8px 5px rgba(34, 34, 34, 0.6705882353));
 }
 .card.imageGem .name {
-  background: #ffffffd6;
+  background: rgba(255, 255, 255, 0.9607843137);
   padding: 2px;
   border-radius: 4px;
   /* font-weight: bold; */
@@ -191,4 +187,101 @@ body {
 .btn.info:hover {
   background-color: #86e2b7;
 }
+
+.curveEditor .active {
+  background-image: url(../assets/boxActive.png);
+  background-size: contain;
+  background-size: 102% 100%;
+  background-position-x: 50%;
+}
+.curveEditor .tray {
+  background-image: url(../assets/boxTray.png);
+  background-size: 100% 66%;
+}
+
+.card .name {
+  transform: translate(26px, 27px);
+}
+
+.card {
+  z-index: 1;
+}
+
+.functionEditor2 {
+  overflow: hidden;
+  flex-flow: row nowrap;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  /* ==== Left ==== */
+  /* ==== Right ==== */
+}
+.functionEditor2 .container {
+  /* 16/9 */
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: stretch;
+  margin: 0;
+  transform-origin: top center;
+}
+.functionEditor2 .topArea,
+.functionEditor2 .bottomArea {
+  flex: 0 0 4em;
+}
+.functionEditor2 .mainSection {
+  flex: 1 1;
+  display: flex;
+  flex-flow: row nowrap;
+}
+.functionEditor2 .curveEditor {
+  flex: 0 1 42em;
+  display: flex;
+  flex-flow: column nowrap;
+}
+.functionEditor2 .active {
+  flex: 0 0 15rem;
+}
+.functionEditor2 .tray {
+  flex: 1 1;
+}
+.functionEditor2 .outputSide {
+  flex: 2 1;
+  display: flex;
+  flex-flow: column nowrap;
+}
+.functionEditor2 .curveDisplays {
+  flex: 0 0 25em;
+  display: flex;
+  flex-flow: row nowrap;
+}
+.functionEditor2 .curveDisplay {
+  flex: 1 1;
+}
+.functionEditor2 .matchScore {
+  flex: 0 0 2em;
+}
+.functionEditor2 .stats {
+  display: flex;
+  flex-flow: row nowrap;
+}
+.functionEditor2 .otherOutputs {
+  flex: 1 1;
+  display: flex;
+  flex-flow: column nowrap;
+}
+.functionEditor2 .topBar {
+  flex: 0 0;
+  display: flex;
+  flex-flow: row nowrap;
+}
+.functionEditor2 .mainOutput {
+  flex: 1 1;
+}
+.functionEditor2 .container div {
+  margin: 1rem;
+}
+
 /*# sourceMappingURL=waves.css.map */
