@@ -7,6 +7,8 @@ export default class MouseDragHelper {
         var that = this;
 
         var eToMousePos = (e) => {
+            //var tScale = window.tscale??1;
+            //var tScale=1;
             if (e.touches) {
                 return new Vec2(e.touches[0].clientX, e.touches[0].clientY);
             } else {

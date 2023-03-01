@@ -10,117 +10,119 @@
 </head>
 
 <body>
-    <style>
-        #functionEditor {
-            overflow: hidden;
-            display: flex;
-            flex-flow: row nowrap;
-            justify-content: center;
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100vh;
-            width: 100vw;
-        }
+  <style>
+    
+.functionEditor2 {
+	overflow: hidden;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100vw;
+}
 
-        .container {
-            /* 16/9 */
-            flex: 0 0 1920px;
-            height: 1080px;
-            width: 1920px;
+	.container {
+		/* 16/9 */
+		flex: 0 0 1920px;
+		height: 1080px;
+		width: 1920px;
 
-            display: flex;
-            ;
-            flex-flow: column nowrap;
-            justify-content: stretch;
-            ;
-            margin: 0;
-            transform-origin: top center;
-            /*
-        background-image: url("./assets/Screenshot_1.png");
-        background-size: cover;*/
-        }
+		display: flex;		
+		flex-flow: column nowrap;
+		justify-content: stretch;
+		
+		margin: 0;
+		transform-origin: top center;
+		/*
+background-image: url("./assets/Screenshot_1.png");
+background-size: cover;*/
+	}
 
-        .topArea,
-        .bottomArea {
-            flex: 0 0 4em;
-        }
+	.topArea,
+	.bottomArea {
+		flex: 0 0 4em;
+	}
 
-        .mainSection {
-            flex: 1 1;
-            display: flex;
-            flex-flow: row nowrap;
-        }
-
-
-        /* ==== Right ==== */
+	.mainSection {
+		flex: 1 1;
+		display: flex;
+		flex-flow: row nowrap;
+	}
 
 
-        .curveEditor {
-            flex: 0 0 42em;
-            display: flex;
-            flex-flow: column nowrap;
-        }
-
-        .active {
-            flex: 0 0 15rem;
-        }
-
-        .tray {
-            flex: 1 1;
-        }
+	/* ==== Right ==== */
 
 
-        /* ==== Left ==== */
+	.curveEditor {
+		flex: 0 0 42em;
+		display: flex;
+		flex-flow: column nowrap;
+	}
+
+	.active {
+		flex: 0 0 15rem;
+	}
+
+	.tray {
+		flex: 1 1;
+	}
 
 
-        .outputSide {
-            flex: 2 1;
-            display: flex;
-            flex-flow: column nowrap;
-        }
+	/* ==== Left ==== */
 
-        .curveDisplays {
-            flex: 0 0 25em;
-            display: flex;
-            flex-flow: row nowrap;
-        }
 
-        .curveDisplay {
-            flex: 1 1;
-        }
+	.outputSide {
+		flex: 2 1;
+		display: flex;
+		flex-flow: column nowrap;
+	}
 
-        .matchScore {
-            flex: 0 0 2em;
-        }
+	.curveDisplays {
+		flex: 0 0 25em;
+		display: flex;
+		flex-flow: row nowrap;
+	}
 
-        .otherOutputs {
-            flex: 1 1;
-            display: flex;
-            flex-flow: column nowrap;
-        }
+	.curveDisplay {
+		flex: 1 1;
+	}
 
-        .topBar {
-            flex: 0 0;
-        }
+	.matchScore {
+		flex: 0 0 2em;
+	}
 
-        .mainOutput {
-            flex: 1 1;
-        }
+	.otherOutputs {
+		flex: 1 1;
+		display: flex;
+		flex-flow: column nowrap;
+	}
 
-        .container div {
-            background-color: #0001;
-            margin: 1rem;
-            min-height: 3rem;
-        }
-    </style>
-    <div id="functionEditor">
+	.topBar {
+		flex: 0 0;
+	}
+
+	.mainOutput {
+		flex: 1 1;
+	}
+
+	.container div {
+		background-color: #0001;
+		margin: 1rem;
+		min-height: 3rem;
+	}
+
+  </style>
+    <div class="functionEditor2">
         <div class="container">
             <div class="topArea">
                 <!-- Close button -->
             </div>
             <div class="mainSection">
                 <div class="curveEditor">
+                    <div class="currentFunction"></div>
                     <div class="active">
 
                         <!-- Actively used. -->
@@ -138,9 +140,14 @@
                     </div>
                     <div class="otherOutputs">
                         <div class="topBar">
+                            <div class="btn backButton">Back</div>
+                            <div class="btn hintButton">Hint</div>
                             <!-- Hint button -->
                         </div>
-                        <div class="mainOutput"></div>
+                        <div class="mainOutput">
+                            <div class="stats"></div>
+                            <div class="thought"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -159,7 +166,7 @@
 
             var scaleToUse = Math.min(heightScale, widthScale);
 
-            document.querySelector(".container").style.transform = "scale(" + scaleToUse + ")";
+            document.querySelector(":not(#templates) .functionEditor2 .container").style.transform = "scale(" + scaleToUse + ")";
 
         }
 

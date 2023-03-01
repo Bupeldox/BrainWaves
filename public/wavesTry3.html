@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waves</title>
+</head>
+
+<body>
+    <div id="templates">      
+        <div class="centeriser functionEditor3">
+            <div class="bgImage centerAlignedBlock"></div>
+            <div class="characterReading centerAlignedBlock"></div>
+            <div class="characterReadingWave centerAlignedBlock"></div>
+            <div class="projectingWave centerAlignedBlock"></div>
+            <div class="activeArea centerAlignedBlock"></div>
+            <div class="pieceStartingArea centerAlignedBlock"></div>
+            
+            <div class="currentFunction centerAlignedBlock"></div>
+            <div class="thought centerAlignedBlock"></div>
+            <div class="stats centerAlignedBlock"></div>
+            <div class="hitButton centerAlignedBlock"></div>
+            <div class="backButton centerAlignedBlock"></div>
+        </div>
+    </div>
+    <style>
+        body,
+        html {
+            margin: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        .centeriser {
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: center;
+            
+            width: 100%;
+            height: 100vh;
+            margin: auto;
+
+        }
+
+        .centerAlignedBlock {
+            opacity: 0.5;
+            height: 20px;
+            width: 20px;
+            background-color: #5228;
+            position: absolute;
+        }
+
+        .characterReading {
+            top: 0vh;
+            height: 30vh;
+            width: 30vh;
+            background-color: hsl(0, 50%, 50%);
+        }
+
+        .characterReadingWave {
+            top: 10vh;
+            height: 40vh;
+            width: 50vh;
+            background-color: hsl(30, 50%, 50%);
+        }
+
+        .projectingWave {
+            top: 30vh;
+            height: 40vh;
+            width: 50vh;
+            background-color: hsl(60, 50%, 50%);
+        }
+
+        .activeArea {
+            top: 50vh;
+            height: 20vh;
+            width: 100%;
+            background-color: hsl(90, 50%, 50%);
+        }
+
+        .pieceStartingArea {
+            top: 70vh;
+            height: 20vh;
+            width: 50vh;
+            background-color: hsl(120, 50%, 50%);
+        }
+
+        .bgImage {
+            top: 0;
+            height: 100vh;
+            width: 177vh; 
+            background-color: hsl(150, 50%, 50%);
+        }
+    </style>
+</body>
+
+</html>

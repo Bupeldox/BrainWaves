@@ -1,9 +1,13 @@
 
 export default class TemplatedHtml {
 	constructor(templaceClass, addToThisElement) {
-		this.element = document
-			.querySelector("#templates> ." + templaceClass)
-			.cloneNode(true);
+		var telem = document.querySelector("#templates> ." + templaceClass);
+
+		if (!telem) {
+			console.log("." + templaceClass);
+		}
+
+		this.element = telem.cloneNode(true);
 		if (addToThisElement) {
 			this.appendInto(addToThisElement);
 		}
@@ -21,7 +25,7 @@ export default class TemplatedHtml {
 		return this.element.querySelector("." + part);
 	}
 
-	updateText(text,target) {
+	updateText(text, target) {
 		//watch out, textcontent removes all the stuff in an element.
 		if (!target) {
 			this.element.textContent = text;

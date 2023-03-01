@@ -24,9 +24,11 @@ export class FunctionEditor {
                     (i + 1) / (2 + ar.length),
                     this.baseElement.getCardStore()
                 );
-                if (i % 2 == 0) {
-                    cardd.position.y = 0.9;
-                }
+                
+                cardd.position.y = 0.1 + (i % 3)/3;
+                
+                cardd.position.x = (0.3+Math.floor(i/3))/4;
+
                 cardd.updateToNewPosition();
                 return cardd;
             });

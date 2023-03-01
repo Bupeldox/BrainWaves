@@ -1,71 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Waves</title>
-    <link rel="stylesheet" href="./styles/waves.css">
-    
-</head>
-<body>
-    <!-- pls excuse the poor mans react -->
-<div class="instrcutions">Match the left curve to the right by moving the squares at the bottom into and out of the blue area. This will decrypt the text. (i'll put a better description in at some point)</div>
-<div id="root"></div>
 
-<div id="templates" style="display:none">
-	<div class="thought">
-		<span id="targetItem"></span>
-		<span>&gt; 🧠 &gt; 💬 &gt; </span>
-		<span class="text"></span>
-	</div>
-	<div class="functionTextOutput"></div>
-	<div class="output">
-	</div>
-	<div class="cardSlots">
-	</div>
-	<div class="card draggable unselectable">
-		<div class="name"></div>
-		<canvas class="cardFunctionCanvas">
-			
-		</canvas>
-	</div>
-	<div class="functionEditor">
-		
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Waves</title>
+	<link rel="stylesheet" href="./styles/waves.css">
+	<style>
+        body,
+        html {
+            margin: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        .centeriser {
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: center;
+            
+            width: 100%;
+            height: 100vh;
+            margin: auto;
+
+        }
+
+        .centerAlignedBlock {
+            opacity: 0.5;
+            height: 20px;
+            width: 20px;
+            background-color: #5228;
+            position: absolute;
+        }
+
+        .characterReading {
+            /*top: 0vh;*/
+            height: 30vh;
+            width: 30vh;
+            background-color: hsl(0, 50%, 50%);
+        }
+
+        .characterReadingWave {
+            top: 10vh;
+			height: 50vh;
+    		width: 90vh;
+            background-color: hsl(30, 50%, 50%);
+        }
+
+        .projectingWave {
+            top: 25vh;
+            height: 50vh;
+    		width: 90vh;
+            background-color: hsl(60, 50%, 50%);
+        }
+
+        .activeArea {
+            top: 50vh;
+            height: 20vh;
+            width: 100%;
+            background-color: hsl(90, 50%, 50%);
+        }
+
+        .pieceStartingArea {
+            top: 75vh;
+            height: 20vh;
+            width: 50vh;
+            background-color: hsl(120, 50%, 50%);
+        }
+
+        .bgImage {
+            top: 0;
+            height: 100vh;
+            width: 177vh; 
+            background-color: hsl(150, 50%, 50%);
+        }
+    </style>
+</head>
+
+<body>
+	<!-- pls excuse the poor mans react -->
+	<div class="instrcutions">Match the left curve to the right by moving the squares at the bottom into and out of the
+		blue area. This will decrypt the text. (i'll put a better description in at some point)</div>
+	<div id="root"></div>
+
+	<div id="templates" style="display:none">
+		<div class="thought">
+			<span id="targetItem"></span>
+			<span>&gt; 🧠 &gt; 💬 &gt; </span>
+			<span class="text"></span>
+		</div>
+		<div class="functionTextOutput"></div>
 		<div class="output">
 		</div>
-		<div class="thoughtTextArea"></div>
-		<div class="buttonContainer">
-			<a class="btn danger backButton" href="./WalkingSim.html">Stop mind reading.</a>
-			<span class="btn info hint">Hint</a>
+		<div class="cardSlots">
 		</div>
-		<div class="textContainer">
-			<div class="activeFunction"></div>
+		<div class="card draggable unselectable">
+			<div class="name"></div>
+			<canvas class="cardFunctionCanvas">
+
+			</canvas>
+		</div>
+		<div class="functionEditor">
+
+			<div class="output">
+			</div>
+			<div class="thoughtTextArea"></div>
+			<div class="buttonContainer">
+				<a class="btn danger backButton" href="./WalkingSim.html">Stop mind reading.</a>
+				<span class="btn info hint">Hint</a>
+			</div>
+			<div class="textContainer">
+				<div class="activeFunction"></div>
+
+			</div>
+			<div class="cards dragContainer">
+				<div class="activationZoneText unselectable">
+					Active (Drag them up here)
+				</div>
+				<div class="storageZoneText unselectable">
+					Not Active
+				</div>
+			</div>
+		</div>
+		<div class="scoreOutput"></div>
+		<div class="GraphOutput">
+		</div>
+		<div class="curveMarker graphPoint">
+			🌊
+		</div>
+		<div class="centerPoint graphPoint">
+			🧠
+		</div>
+		<div class="nextButton btn">Next Curve</div>
+		<div class="functionEditor2">
+			<div class="container">
+				<div class="topArea">
+					<!-- Close button -->
+				</div>
+				<div class="mainSection">
+					<div class="curveEditor">
+						<div class="currentFunction"></div>
+						<div class="active unselectable">
+	
+							<!-- Actively used. -->
+						</div>
+						<div class="tray unselectable">
+	
+							<!-- Unused functions -->
+						</div>
+					</div>
+					<div class="outputSide">
+						<div class="curveDisplays">
+							<div class="curveDisplay curveDisplay-machine"></div>
+							<div class="matchScore"></div>
+							<div class="curveDisplay curveDisplay-target"></div>
+						</div>
+						<div class="otherOutputs">
+							<div class="topBar">
+								<div class="btn backButton">Back</div>
+								<div class="btn hintButton">Hint</div>
+								<!-- Hint button -->
+							</div>
+							<div class="mainOutput">
+								<div class="stats"></div>
+								<div class="thought"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		   
+		<div class="centeriser functionEditor3">
+			<div class="bgImage centerAlignedBlock"></div>
+			<div class="characterReading centerAlignedBlock"></div>
+			<div class="characterReadingWave centerAlignedBlock"></div>
+			<div class="projectingWave centerAlignedBlock"></div>
+			<div class="activeArea centerAlignedBlock"></div>
+			<div class="pieceStartingArea centerAlignedBlock"></div>
 			
+			<div class="currentFunction centerAlignedBlock"></div>
+			<div class="thought centerAlignedBlock"></div>
+			<div class="stats centerAlignedBlock"></div>
+			<div class="hitButton centerAlignedBlock"></div>
+			<div class="backButton centerAlignedBlock"></div>
 		</div>
-		<div class="cards dragContainer">
-			<div class="activationZoneText unselectable">
-				Active (Drag them up here)
-			</div>
-			<div class="storageZoneText unselectable">
-				Not Active
-			</div>
-		</div>
-	</div>
-	<div class="scoreOutput"></div>
-	<div class="GraphOutput">
-	</div>
-	<div class="curveMarker graphPoint">
-		🌊
-	</div>
-	<div class="centerPoint graphPoint">
-		🧠
-	</div>
-	<div class="nextButton btn">Next Curve</div>
 
-    
-    <script src="./scripts/Waves/bundle.js"></script>
+	</div>
+	<script src="./scripts/Waves/bundle.js"></script>
+	<script>
+		var scale = 1;
+        function onResize() {
+            var normalWidth = 1920;
+            var windowWidth = Math.min(window.innerWidth, normalWidth);
+            var widthScale = windowWidth / normalWidth;
 
-</div>
+            var normalHeight = 1080;
+            var windowHeight = Math.min(window.innerHeight, normalHeight);
+            var heightScale = windowHeight / normalHeight;
+
+            window.tscale = Math.min(heightScale, widthScale);
+			
+            document.querySelector(":not(#templates) .functionEditor2 .container").style.transform = "scale(" + window.tscale + ")";
+
+        }
+
+        window.addEventListener("resize", function () {
+           // onResize();
+        })
+       // onResize();
+
+    </script>
 </body>
+
 </html>

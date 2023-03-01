@@ -1,182 +1,345 @@
-$padding:1rem;
-.instrcutions{
+@import './base.scss';
+
+$padding: 1rem;
+
+.instrcutions {
 	text-align: center;
-	padding-top:$padding;
+	padding-top: $padding;
 }
 
-html, body {
-  overscroll-behavior: none;
+html,
+body {
+	overscroll-behavior: none;
 }
 
-body{
-	overflow-x:hidden;
-	margin:0;
+body {
+	overflow-x: hidden;
+	margin: 0;
 }
-.thoughtTextArea{
+
+.thoughtTextArea {
 	padding-bottom: $padding/2;
 }
-.thought{
-	text-align:center;
-	font-family:monospace;
-	padding:$padding;
-	padding-bottom:0;
-	word-break:break-all;
-	&.done{
+
+.thought {
+	text-align: center;
+	font-family: monospace;
+	padding: $padding;
+	padding-bottom: 0;
+	word-break: break-all;
+
+	&.done {
 		text-decoration: underline;
-    	font-weight: bold;
+		font-weight: bold;
 		font-size: 1.2em;
-		word-break:keep-all;
+		word-break: keep-all;
 	}
 }
 
-.output{
-	display:flex;
-	justify-content:center;
+.output {
+	display: flex;
+	justify-content: center;
 }
 
-.GraphOutput{
-	border:1px solid #0002;
-	height:300px;
-	width:300px;
-	margin:$padding;
-	position:relative;
+.GraphOutput {
+	border: 1px solid #0002;
+	height: 100%;
+	//height: 300px;
+	//width: 300px;
+	margin: $padding;
+	position: relative;
 }
-@media(max-width:700px){
-	.GraphOutput{
-		height:150px;
+
+@media(max-width:700px) {
+	.GraphOutput {
+		height: 150px;
 	}
 }
-.graphPoint{
-	position:absolute;
-	height:1em;
-	width:1em;
-	transform:translate(-0.5em,-0.5em);
+
+.graphPoint {
+	position: absolute;
+	height: 1em;
+	width: 1em;
+	transform: translate(-0.5em, -0.5em);
 	//transition:top 0.1s, left 0.1s;
 }
-.centerPoint{
-	top:50%;
-	left:50%;
-	z-index:1;
+
+.centerPoint {
+	top: 50%;
+	left: 50%;
+	z-index: 1;
 }
-.activeFunction{
-	text-align:center;
-	padding:$padding;
+
+.activeFunction {
+	text-align: center;
+	padding: $padding;
 }
-.scoreOutput{
-	padding:$padding;
-	width:8em;
-	height:1em;
-	white-space:nowrap;
+
+.scoreOutput {
+	padding: $padding;
+	width: 8em;
+	height: 1em;
+	white-space: nowrap;
 }
-.storageZoneText{
-	position:absolute;
-	top:50%;
-	z-index:-1;
+
+.storageZoneText {
+	position: absolute;
+	top: 50%;
+	z-index: -1;
 }
-.card{
-	
-	overflow:hidden;
-	position:relative;
-	border-radius:1rem;
-	background-color:#fff;
+
+.card {
+
+	overflow: visible;
+	position: relative;
+	border-radius: 1rem;
+	background-color: #fff;
 	height: 5rem;
-	width :5rem;
-	transform:translate(-2rem, -2rem);
-	display:flex;
-	flex-flow:column nowrap;
-	justify-content:center;
-	align-items:center;
+	width: 5rem;
+	transform: translate(-2rem, -2rem);
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-items: center;
 	box-shadow: 0px 1px 3px 0 #0002;
-	border:2px solid #0004;
-	&:not(.dragging){
-		transition:top 0.2s;
+	border: 2px solid #0004;
+
+	&:not(.dragging) {
+		transition: top 0.2s;
 	}
-	.cardFunctionCanvas{
-		position:absolute;
-		mix-blend-mode:multiply;
-		top:-$padding/2;
+
+	.cardFunctionCanvas {
+		position: absolute;
+		mix-blend-mode: multiply;
+		top: -$padding/2;
 	}
-	&.imageGem{
+
+	&.imageGem {
 		background-size: contain;
 		background-position: center;
 		background-repeat: no-repeat;
-		border:none;
+		border: none;
 		background-color: transparent;
 		box-shadow: none;
 		filter: drop-shadow(5px 5px 5px #222);
-		&.dragging{
-			
-		filter: drop-shadow(8px 8px 5px #222222ab);
+
+		&.dragging {
+
+			filter: drop-shadow(8px 8px 5px #222222ab);
 		}
+
 		.name {
-			background: #ffffffd6;
+			background: #fffffff5;
 			padding: 2px;
-			border-radius: 2px;
+			border-radius: 4px;
 			/* font-weight: bold; */
 			font-family: cursive;
 		}
 	}
 }
-.cards{
-	padding:$padding;
-	background:linear-gradient(#16e9,#16e9,#fff0,#fff0,#fff0);	
-	height:300px;
-	width:100%;
+
+.cards {
+	padding: $padding;
+	background: linear-gradient(#16e9, #16e9, #fff0, #fff0, #fff0);
+	height: 300px;
+	width: 100%;
 }
-.textContainer{
-	display:flex;
-	flex-flow:row nowrap;
-     justify-content:center;
+
+.textContainer {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
 }
-.buttonContainer{
-	display:flex;
-	flex-flow:row nowrap;
-	>*{
-	flex:1 1;
+
+.buttonContainer {
+	display: flex;
+	flex-flow: row nowrap;
+
+	>* {
+		flex: 1 1;
 	}
 }
+
 //Utilities
-.draggable{
+.draggable {
 	position: absolute;
 }
-.dragContainer{
-	position:relative;
-}
-.unselectable {
-   -moz-user-select: -moz-none;
-   -khtml-user-select: none;
-   -webkit-user-select: none;
 
-   /*
+.dragContainer,.tray {
+	position: relative;
+}
+
+.unselectable {
+	-moz-user-select: -moz-none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+
+	/*
      Introduced in IE 10.
      See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
    */
-   -ms-user-select: none;
-   user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
-.btn{
-	padding:$padding/2;
-	margin:$padding/4;
+.btn {
+	padding: $padding/2;
+	margin: $padding/4;
 	border-radius: $padding/8;
 
-	cursor:pointer;
-	&.success{
-		background-color:#5eee59;
-		&:hover{
-			background-color:#15af10;
+	cursor: pointer;
+
+	&.success {
+		background-color: #5eee59;
+
+		&:hover {
+			background-color: #15af10;
 		}
 	}
-	&.danger{
-		background-color:#e7a8a8;
-		&:hover{
-			background-color:#e28686;
+
+	&.danger {
+		background-color: #e7a8a8;
+
+		&:hover {
+			background-color: #e28686;
 		}
 	}
-	&.info{
-		background-color:#a8e7c4;
-		&:hover{
-			background-color:#86e2b7;
+
+	&.info {
+		background-color: #a8e7c4;
+
+		&:hover {
+			background-color: #86e2b7;
 		}
+	}
+}
+
+
+//Visual
+
+.curveEditor{
+	.active{
+		background-image:url(../assets/boxActive.png);
+		background-size: contain;
+		background-size: 102% 100%;
+    	background-position-x: 50%;
+	}
+	.tray{
+		background-image:url(../assets/boxTray.png);
+		background-size: 100% 66%;
+	}
+}
+.card .name{
+	transform: translate(26px, 27px);
+}
+.card{
+	z-index: 1;
+}
+
+//Structure
+
+.functionEditor2 {
+	overflow: hidden;
+	//display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100vw;
+
+
+	.container {
+		/* 16/9 */
+		//flex: 0 0 1920px;
+		//height: 1080px;
+		//width: 1920px;
+
+		display: flex;		
+		flex-flow: column nowrap;
+		justify-content: stretch;
+		
+		margin: 0;
+		transform-origin: top center;
+	
+	}
+
+	.topArea,
+	.bottomArea {
+		flex: 0 0 4em;
+	}
+
+	.mainSection {
+		flex: 1 1;
+		display: flex;
+		flex-flow: row nowrap;
+	}
+
+
+	
+	/* ==== Left ==== */
+	
+	.curveEditor {
+		flex: 0 1 42em;
+		display: flex;
+		flex-flow: column nowrap;
+	}
+
+	.active {
+		flex: 0 0 15rem;
+	}
+	
+	.tray {
+		flex: 1 1;
+	}
+	
+	
+	
+	/* ==== Right ==== */
+
+	.outputSide {
+		flex: 2 1;
+		display: flex;
+		flex-flow: column nowrap;
+	}
+
+	.curveDisplays {
+		flex: 0 0 25em;
+		display: flex;
+		flex-flow: row nowrap;
+	}
+
+	.curveDisplay {
+		flex: 1 1;
+	}
+
+	.matchScore {
+		flex: 0 0 2em;
+	}
+	.stats{
+		display: flex;
+		flex-flow: row nowrap;
+	}
+	.otherOutputs {
+		flex: 1 1;
+		display: flex;
+		flex-flow: column nowrap;
+	}
+
+	.topBar {
+		flex: 0 0;
+		display: flex;;
+		flex-flow: row nowrap;;
+	}
+
+	.mainOutput {
+		flex: 1 1;
+	}
+
+	.container div {
+		//background-color: #0001;
+		margin: 1rem;
+		//min-height: 3rem;
 	}
 }

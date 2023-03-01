@@ -15,10 +15,15 @@ var gamDat = {
     target:[1,2],
     useable:[0,1,2,3,4,5,6,7,8,9,10,11],
     thought:"Test",
+    source:"endless",
+    onBack: ()=>{
+        window.location.href = "./index.html";
+    }
 };
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
+
 
 if(urlParams.get('target' )&& urlParams.get('useable') && urlParams.get('thought')){
 
@@ -26,6 +31,10 @@ if(urlParams.get('target' )&& urlParams.get('useable') && urlParams.get('thought
     gamDat.useable = urlParams.get('useable').split(",").map(i=>+i);
     gamDat.thought = urlParams.get('thought');
     gamDat.icon = urlParams.get('icon');
+    gamDat.source = "walkingSim";
+    gamDat.onBack = ()=>{
+        window.location.href = "./walkingsim.html";
+    };
 }
 
 var matchGame = new FunctionMatchGame(gamDat);

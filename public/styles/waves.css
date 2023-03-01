@@ -3,11 +3,8 @@
   padding-top: 1rem;
 }
 
-* {
-  box-sizing: border-box;
-}
-
-html, body {
+html,
+body {
   overscroll-behavior: none;
 }
 
@@ -42,8 +39,7 @@ body {
 
 .GraphOutput {
   border: 1px solid #0002;
-  height: 300px;
-  width: 300px;
+  height: 100%;
   margin: 1rem;
   position: relative;
 }
@@ -86,7 +82,7 @@ body {
 }
 
 .card {
-  overflow: hidden;
+  overflow: visible;
   position: relative;
   border-radius: 1rem;
   background-color: #fff;
@@ -126,9 +122,9 @@ body {
 }
 
 .card.imageGem .name {
-  background: #ffffffd6;
+  background: #fffffff5;
   padding: 2px;
-  border-radius: 2px;
+  border-radius: 4px;
   /* font-weight: bold; */
   font-family: cursive;
 }
@@ -159,7 +155,7 @@ body {
   position: absolute;
 }
 
-.dragContainer {
+.dragContainer, .tray {
   position: relative;
 }
 
@@ -200,5 +196,117 @@ body {
 
 .btn.info:hover {
   background-color: #86e2b7;
+}
+
+.curveEditor .active {
+  background-image: url(../assets/boxActive.png);
+  background-size: contain;
+  background-size: 102% 100%;
+  background-position-x: 50%;
+}
+
+.curveEditor .tray {
+  background-image: url(../assets/boxTray.png);
+  background-size: 100% 66%;
+}
+
+.card .name {
+  transform: translate(26px, 27px);
+}
+
+.card {
+  z-index: 1;
+}
+
+.functionEditor2 {
+  overflow: hidden;
+  flex-flow: row nowrap;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  /* ==== Left ==== */
+  /* ==== Right ==== */
+}
+
+.functionEditor2 .container {
+  /* 16/9 */
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: stretch;
+  margin: 0;
+  transform-origin: top center;
+}
+
+.functionEditor2 .topArea,
+.functionEditor2 .bottomArea {
+  flex: 0 0 4em;
+}
+
+.functionEditor2 .mainSection {
+  flex: 1 1;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.functionEditor2 .curveEditor {
+  flex: 0 1 42em;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.functionEditor2 .active {
+  flex: 0 0 15rem;
+}
+
+.functionEditor2 .tray {
+  flex: 1 1;
+}
+
+.functionEditor2 .outputSide {
+  flex: 2 1;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.functionEditor2 .curveDisplays {
+  flex: 0 0 25em;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.functionEditor2 .curveDisplay {
+  flex: 1 1;
+}
+
+.functionEditor2 .matchScore {
+  flex: 0 0 2em;
+}
+
+.functionEditor2 .stats {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.functionEditor2 .otherOutputs {
+  flex: 1 1;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.functionEditor2 .topBar {
+  flex: 0 0;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.functionEditor2 .mainOutput {
+  flex: 1 1;
+}
+
+.functionEditor2 .container div {
+  margin: 1rem;
 }
 /*# sourceMappingURL=waves.css.map */

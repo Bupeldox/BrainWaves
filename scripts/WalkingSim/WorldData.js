@@ -148,6 +148,42 @@ export const tstreetData = {
                 street: "street2",
                 pos: { x: 150, y: -70 },
                 backwards: true,
+            },
+            
+            {
+                street: "street4",
+                pos: { x: 350, y: -30 },
+                backwards: true,
+            }
+        ]
+    },
+    street4: {
+        interactablesList: [
+            
+            
+            () => new ThoughtInteractable(
+                {
+                    id: "dude4",
+                    icon: "💇‍♂️",
+                    pos: new Vec2(30, -40)
+                }
+                ,[
+                    "awdawdawd",
+                    "oranges    ",
+                    "Im having a stroke",
+                ],
+                {
+                    thought:"The credits of the dreamworks movies are weird",
+                    target:[8,11,3]
+                }
+            ),
+        ],
+        junctions: [
+
+            {
+                street: "street3",
+                pos: { x: 150, y: -70 },
+                backwards: false,
             }
         ]
     }
