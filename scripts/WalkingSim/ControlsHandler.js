@@ -16,16 +16,15 @@ export default class ControlsHandler{
 
 class InteractionInputManager{
     constructor(guiContainer){
-
         this.guiElement = new TemplatedHtml("mobile-interaction",guiContainer);
-
+        
         this.interactEventRegister = new EventRegister();
         this.mindReadEventRegister = new EventRegister();
         this.interactionExitEventRegister = new EventRegister();
 
         this.setupButtonEvents();
-
     }
+
     setupButtonEvents(){
         this.guiElement.getPart("btn-e").addEventListener("click",(e)=>{
             this.onInteractExit(e);
@@ -50,6 +49,7 @@ class InteractionInputManager{
         })
     }
 
+
     onInteract(p){
         this.interactEventRegister.onEvent(p);
     }
@@ -60,24 +60,28 @@ class InteractionInputManager{
         this.interactionExitEventRegister.onEvent(p);
     }
 
-    registerOnInteractExit(f){
-        var id = this.interactionExitEventRegister.registerFunc(f);
-        return ()=>{this.unregisterInteractionEvent(id)}
-    }
+    
     registerOnInteract(f){
         var id = this.interactEventRegister.registerFunc(f);
         return ()=>{this.unregisterInteractionEvent(id)}
     }
-
     registerOnMindRead(f){
         var id = this.mindReadEventRegister.registerFunc(f);
         return ()=>{this.unregisterMindReadEvent(id)};
     }
+    registerOnInteractExit(f){
+        var id = this.interactionExitEventRegister.registerFunc(f);
+        return ()=>{this.unregisterInteractionEvent(id)}
+    }
+
     unregisterInteractionEvent(id){
-        this.mindReadEventRegister.unRegister(id);
+        this.interactEventRegister.unRegister(id);
     }
     unregisterMindReadEvent(id){
         this.mindReadEventRegister.unRegister(id);
+    }
+    unregisterInteractionExitEvent(){
+        this.interactionExitEventRegister.unRegister(id);
     }
 }
 

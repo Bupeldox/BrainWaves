@@ -60,11 +60,16 @@
            
         </div>
         <div class="mobile-directional-input">
-            <div class="direction" style="flex:1 1 200px; height:200px; width:200px; position:relative;">
-                <button class="btn-up" style="position: absolute; top:0%; left:calc(50% - 40px);">⬆</button>
-                <button class="btn-left" style="position: absolute; top:calc(50% - 40px); left:0%;">⬅</button>
-                <button class="btn-right" style="position: absolute; top:calc(50% - 40px); right:0%;">➡</button>
-                <button class="btn-down" style="position: absolute; bottom:0%; left:calc(50% - 40px);">⬇</button>
+            <div class="direction" style="display: flex; flex-flow: row wrap; height:200px; width:200px; position:relative;">
+                <div class="space"></div>
+                <button class="space btn-up">⬆</button>
+                <div class="space"></div>
+                <button class="space btn-left">⬅</button>
+                <div class="space"></div>
+                <button class="space btn-right">➡</button>
+                <div class="space"></div>
+                <button class="space btn-down">⬇</button>
+                <div class="space"></div>
 
             </div>
         </div>
@@ -74,8 +79,14 @@
         </div>
     </div>
     <style>
-        .gui-container button {
-            padding: 20px;
+        .gui-container .space {
+            width:33.3%;
+            height:33.3%;
+            flex:0 0 auto;
+        }
+        .mobile-interaction button{
+            padding:20px;
+            margin-bottom: 1em;;
         }
     </style>
 

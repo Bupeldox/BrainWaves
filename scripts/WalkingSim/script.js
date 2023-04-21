@@ -8,8 +8,8 @@ document.body.addEventListener("click", () => {
     document.getElementById("startButton")?.remove();
 });
 
-var controlsHandler = new ControlsHandler(document.body);
-window.world = new World(controlsHandler);
+window.controlsHandler = new ControlsHandler(document.body);
+window.world = new World(window.controlsHandler);
 
 var TickTime = 10;
 

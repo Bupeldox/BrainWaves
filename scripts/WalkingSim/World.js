@@ -32,16 +32,20 @@ export class World {
     goToBrainWaves(thought,icon){
         this.state.playerPos = this.player.pos;
         stateHandler.setState(worldStateName,this.state);
+        //transition
+        //this.currentStreet.element.element.classList.add("wavesTransition");
+        //setTimeout(()=>{
 
-        window.location.href = 
-        "./waves.html?target="+
-        thought.target.join(",")+
-        "&useable="+
-        this.player.state.functionInventory.join(",")+
-        "&thought="+
-        thought.thought+
-        "&icon="+
-        icon;
+            window.location.href = 
+            "./waves.html?target="+
+            thought.target.join(",")+
+            "&useable="+
+            this.player.state.functionInventory.join(",")+
+            "&thought="+
+            thought.thought+
+            "&icon="+
+            icon;
+        //},500)
     }
 
     changeStreet(streetId) {
