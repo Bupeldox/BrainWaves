@@ -20,27 +20,24 @@ export class MessageInteractable extends InteractableBase {
     }
 
     onInteract (onMessageClose) {
+        this.onMessageClose = onMessageClose;
         this.showMessage(this.messages[Math.min(this.state.messageIndex,this.messages.length-1)]);
 
         if (this.state.messageIndex < this.messages.length) {
             this.state.messageIndex++;
             stateHandler.setState(this.goData.id, this.state);
         }
+    }
 
-        
-
-        document.body.addEventListener(
-            "keydown",
-            () => {
-                this.messageElement.element.remove();
-                if (onMessageClose) {
-                    onMessageClose();
-                }
-            }, {
-                once: true
+    onInteractExit(){
+        if(this.messageElement?.element){
+            this.messageElement.element.remove();
+            if (this.onMessageClose) {
+                this.onMessageClose();
+                this.onMessageClose = false;
             }
-        );
-
+        }
+        
     }
 
     showMessage (text) {

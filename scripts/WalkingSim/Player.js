@@ -7,11 +7,11 @@ import { stateHandler } from "./StateHandler";
 const playerStateId = "playerState";
 
 export class Player {
-    constructor(parentElement) {
+    constructor(parentElement,directionalInputManager) {
         this.pos = new Vec2(20, -20);
         this.speed = 90;
         this.element = new TemplatedHtml("person", parentElement);
-        this.movementInput = new DirectionalInputManager();
+        this.movementInput = directionalInputManager;
         this.flip = false;
         this.isMoving = false;
         this.state = stateHandler.getState(playerStateId);

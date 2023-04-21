@@ -1,3 +1,4 @@
+import TemplatedHtml from "../TemplatedHtml";
 import Vec2 from "../Vec2";
 import { Player } from "./Player";
 import { stateHandler } from "./StateHandler";
@@ -9,17 +10,20 @@ import { tstreetData } from "./WorldData.js";
 export const worldStateName = "levelAndPlayerPos";
 
 export class World {
-    constructor() {
+    constructor(controlsHandler) {
         this.stuffThatNeedsUpdating = [];
-        this.player = new Player(document.body);
+        this.controlsHandler = controlsHandler;
+        var guiContainer = new TemplatedHtml("gui-container",document.body);
+        this.player = new Player(document.body,this.controlsHandler.directionInput);
 
-        this.state = stateHandler.getState(worldStateName); 
+        this.state = stateHandler.getState(worldStateName);
+
         if(!this.state){
             this.state = {
                 streetId:"street1",
                 playerPos:{ x:0, y:0 }
             }
-        }   
+        }
 
         this.changeStreet(this.state.streetId, false);
         this.inStreetTransition = false;
@@ -41,6 +45,7 @@ export class World {
     }
 
     changeStreet(streetId) {
+        
         if (this.inStreetTransition) {
             return;
         }
@@ -59,7 +64,7 @@ export class World {
         this.streetId = streetId;
 
         if (prevStreetId) {
-            var newStreet = new Street(tstreetData[streetId], (s) => { this.changeStreet(s); },(a,b)=>{this.goToBrainWaves(a,b)});
+            var newStreet = new Street(tstreetData[streetId], (s) => { this.changeStreet(s); },(a,b)=>{this.goToBrainWaves(a,b)},this.controlsHandler.interactionInput);
             var prevStreet = this.currentStreet;
 
             var junctionFrom = tstreetData[prevStreetId].junctions.find(i => i.street == streetId);
@@ -85,7 +90,7 @@ export class World {
         } else {
             this.currentStreet = new Street(tstreetData[streetId], (s) => {
                  this.changeStreet(s); 
-                },(a,b)=>{this.goToBrainWaves(a,b)});
+                },(a,b)=>{this.goToBrainWaves(a,b)},this.controlsHandler.interactionInput);
 
             this.currentStreet.setPlayer(this.player, playerPos);
             this.stuffThatNeedsUpdating.push(this.currentStreet);

@@ -1,4 +1,5 @@
 
+import ControlsHandler from "./ControlsHandler";
 import { World } from "./World";
 
 
@@ -7,7 +8,8 @@ document.body.addEventListener("click", () => {
     document.getElementById("startButton")?.remove();
 });
 
-window.world = new World();
+var controlsHandler = new ControlsHandler(document.body);
+window.world = new World(controlsHandler);
 
 var TickTime = 10;
 

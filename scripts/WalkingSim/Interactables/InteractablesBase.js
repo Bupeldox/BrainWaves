@@ -3,11 +3,12 @@ import TemplatedHtml from "../../TemplatedHtml";
 
 //interface
 export class InteractableBase{
-    constructor(goData){
+    constructor(goData,interactionManager){
         this.pos = goData.pos;
         this.isInRange = false;
         this.goData = goData;
         this.deactivated = false;
+        this.interactionManager = interactionManager;
     }
 
     setup(parentElement){
@@ -22,25 +23,6 @@ export class InteractableBase{
         
         this.element.element.style.top = -this.pos.y + "px";
         this.element.element.style.left = this.pos.x + "px";
-
-        this.eventToRemove = (e) => { this.onKeyDown(e.key); };
-        document.addEventListener("keydown", this.eventToRemove);
-    }
-
-    onKeyDown(key) {
-        if (!this.isInRange || this.deactivated) {
-            return;
-        }
-
-        switch(key){
-            case "e":
-                this.onInteract();
-                break;
-            case "r":
-                if(this.onThoughtRead){
-                    this.onThoughtRead();
-                }
-        }
     }
     
     update(){
@@ -59,6 +41,12 @@ export class InteractableBase{
         }
     }
     onInteract(){
+
+    }
+    onThoughtRead(){
+
+    }
+    onInteractExit(){
 
     }
     deactivate(){

@@ -4,13 +4,13 @@ import { InteractableHelper } from "./InteractableHelper";
 import { CallbackInteractable } from "./Interactables/CallbackInteractable";
 
 export class Street {
-    constructor(streetData, changeStreetFunc, goToBrainWaves) {
+    constructor(streetData, changeStreetFunc, goToBrainWaves,interactionInputManager) {
         this.element = new TemplatedHtml("path", document.getElementById("root"));
         this.changeStreet = changeStreetFunc;
         this.goToBrainWaves = goToBrainWaves;
         this.setupBackground();
         this.setupForeground();
-        this.setupMidground(streetData);
+        this.setupMidground(streetData,interactionInputManager);
     }
 
     setupBackground() {
@@ -33,7 +33,7 @@ export class Street {
         }
     }
     
-    setupMidground(streetData) {
+    setupMidground(streetData,interactionHelper) {
         this.interactables = [];
         for (var i = 0; i < streetData.interactablesList.length; i++) {
             var dat = streetData.interactablesList[i]();
@@ -41,7 +41,7 @@ export class Street {
             dat.setup(this.element.getPart("middleground"),this.goToBrainWaves);
 
             this.interactables.push(dat);
-            this.interactables.push(new InteractableHelper(this.player, dat));
+            this.interactables.push(new InteractableHelper(this.player, dat,interactionHelper));
         }
 
         
@@ -56,7 +56,7 @@ export class Street {
             let intr = new CallbackInteractable(interactableData);
             intr.setup(this.element.getPart("middleground"),()=>{this.changeStreet(junctionDat.street)});
             this.interactables.push(intr);
-            this.interactables.push(new InteractableHelper(this.player, intr));
+            this.interactables.push(new InteractableHelper(this.player, intr,interactionHelper));
         }
     }
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,18 +8,20 @@
     <title>Walking Sim</title>
     <link rel="stylesheet" href="./styles/walkingSim.css">
 </head>
+
 <body>
     <div class="container">
         <div id="root">
-            
+
         </div>
         <div>WASD or arrow keys to move</div>
         <button id=startButton>Start</button>
+
     </div>
     <div id="templates">
         <div class="interactionMessage">
             <div class="text">
-                
+
             </div>
             <div class="instructions">
                 E - Next
@@ -42,17 +45,42 @@
         </div>
 
         <div class="instructions">E</div>
-        
+
         <div class="streetTransition turn">
             <div class="streetAssembly">
                 <div class="street streetFrom"></div>
                 <div class="street streetTo"></div>
             </div>
         </div>
-    </div>
 
+        
+        <div class="gui-container"
+            style="position: fixed; display: flex; bottom:0; width:100vw; flex-flow: row nowrap;">
+           
+           
+        </div>
+        <div class="mobile-directional-input">
+            <div class="direction" style="flex:1 1 200px; height:200px; width:200px; position:relative;">
+                <button class="btn-up" style="position: absolute; top:0%; left:calc(50% - 40px);">⬆</button>
+                <button class="btn-left" style="position: absolute; top:calc(50% - 40px); left:0%;">⬅</button>
+                <button class="btn-right" style="position: absolute; top:calc(50% - 40px); right:0%;">➡</button>
+                <button class="btn-down" style="position: absolute; bottom:0%; left:calc(50% - 40px);">⬇</button>
+
+            </div>
+        </div>
+        <div class="mobile-interaction" style="flex:1 1; text-align: right;">
+            <button class="btn-e">Interact (E)</button><br>
+            <button class="btn-r">Mind Read (R)</button>
+        </div>
+    </div>
+    <style>
+        .gui-container button {
+            padding: 20px;
+        }
+    </style>
 
     <script src="./scripts/WalkingSim/bundle.js"></script>
 
 </body>
+
 </html>
