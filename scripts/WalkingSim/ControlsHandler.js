@@ -59,30 +59,6 @@ class InteractionInputManager{
     onInteractExit(p){
         this.interactionExitEventRegister.onEvent(p);
     }
-
-    
-    registerOnInteract(f){
-        var id = this.interactEventRegister.registerFunc(f);
-        return ()=>{this.unregisterInteractionEvent(id)}
-    }
-    registerOnMindRead(f){
-        var id = this.mindReadEventRegister.registerFunc(f);
-        return ()=>{this.unregisterMindReadEvent(id)};
-    }
-    registerOnInteractExit(f){
-        var id = this.interactionExitEventRegister.registerFunc(f);
-        return ()=>{this.unregisterInteractionEvent(id)}
-    }
-
-    unregisterInteractionEvent(id){
-        this.interactEventRegister.unRegister(id);
-    }
-    unregisterMindReadEvent(id){
-        this.mindReadEventRegister.unRegister(id);
-    }
-    unregisterInteractionExitEvent(){
-        this.interactionExitEventRegister.unRegister(id);
-    }
 }
 
 
@@ -98,9 +74,9 @@ class EventRegister{
         var id = Math.random();
 
         this.registeredFuncs.push({id:id,func:func});
-        return id;
+        return ()=>{this.unregisterFunc(id)};
     }
-    unRegister(id){
+    unregisterFunc(id){
         var index = this.registeredFuncs.findIndex(i=>i.id == id);
         if(index!=-1){
 

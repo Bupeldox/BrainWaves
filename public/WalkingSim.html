@@ -14,7 +14,6 @@
         <div id="root">
 
         </div>
-        <div>WASD or arrow keys to move</div>
         <button id=startButton>Start</button>
 
     </div>
@@ -65,7 +64,7 @@
                 <button class="space btn-up">⬆</button>
                 <div class="space"></div>
                 <button class="space btn-left">⬅</button>
-                <div class="space"></div>
+                <div class="space" style="padding:0.2rem;">or wasd/ arrow keys</div>
                 <button class="space btn-right">➡</button>
                 <div class="space"></div>
                 <button class="space btn-down">⬇</button>
@@ -87,6 +86,13 @@
         .mobile-interaction button{
             padding:20px;
             margin-bottom: 1em;;
+        }
+        .wavesTransition{
+            transition:0.5s transform;
+            transform:scale(10);
+        }
+        body{
+            overflow: hidden;
         }
     </style>
 

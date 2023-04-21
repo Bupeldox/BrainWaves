@@ -5,11 +5,25 @@ export class InteractableHelper {
         this.player = player;
         this.interactable = interactable;
 
-        this.removeInteractEvent = interactionInputManager.registerOnInteract(()=>{!this.interactable.isInRange || this.interactable.deactivated || this.interactable.onInteract()});
-        this.removeThoughtReadEvent = interactionInputManager.registerOnMindRead(()=>{!this.interactable.isInRange || this.interactable.deactivated ||this.interactable.onThoughtRead()});
-        this.removeInteractExitEvent = interactionInputManager.registerOnInteractExit(()=>{this.interactable.onInteractExit()});
+        this.removeInteractEvent = interactionInputManager.interactEventRegister.registerFunc(()=>{this.onInteract()},"note:" + interactable.icon);
+        this.removeThoughtReadEvent = interactionInputManager.mindReadEventRegister.registerFunc(()=>{this.onMindRead()});
+        this.removeInteractExitEvent = interactionInputManager.interactionExitEventRegister.registerFunc(()=>{this.onInteractionExit()});
     }
-
+    onInteract(){
+        if(!this.interactable.isInRange || this.interactable.deactivated){
+            return;
+        }
+        this.interactable.onInteract()
+    }
+    onMindRead(){
+        if(!this.interactable.isInRange || this.interactable.deactivated ){
+            return
+        }
+        this.interactable.onThoughtRead()
+    }
+    onInteractionExit(){
+        this.interactable.onInteractExit()
+    }
     update() {
         if (this.player.pos.distance(this.interactable.pos) < range) {
             this.interactable.isInRange = true;
