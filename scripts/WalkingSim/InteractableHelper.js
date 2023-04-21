@@ -6,12 +6,10 @@ export class InteractableHelper {
         this.interactable = interactable;
 
         this.removeInteractEvent = interactionInputManager.registerOnInteract(()=>{!this.interactable.isInRange || this.interactable.deactivated || this.interactable.onInteract()});
-        this.removeInteractExitEvent = interactionInputManager.registerOnInteractExit(()=>{this.interactable.onInteractExit()});
         this.removeThoughtReadEvent = interactionInputManager.registerOnMindRead(()=>{!this.interactable.isInRange || this.interactable.deactivated ||this.interactable.onThoughtRead()});
-        
-        
-        
+        this.removeInteractExitEvent = interactionInputManager.registerOnInteractExit(()=>{this.interactable.onInteractExit()});
     }
+
     update() {
         if (this.player.pos.distance(this.interactable.pos) < range) {
             this.interactable.isInRange = true;
@@ -19,7 +17,9 @@ export class InteractableHelper {
             this.interactable.isInRange = false;
         }
     }
+
     draw() {}
+    
     destroy(){
         this.removeInteractEvent();
         this.removeThoughtReadEvent();
