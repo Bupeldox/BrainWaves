@@ -74,22 +74,23 @@ float Function(float x)
     toutput = funcy(toutput,uFunc9);
     toutput = funcy(toutput,uFunc10);
 
-    if(uActivatingFuncIndex != 0){
+    if(uActivatingFuncIndex >= 0 ){
         
         float toutput2 = x;
-        toutput2 = funcy(toutput2,uActivatingFuncIndex == 1 ? 0 : uFunc1);
-        toutput2 = funcy(toutput2,uActivatingFuncIndex == 2 ? 0 : uFunc2);
-        toutput2 = funcy(toutput2,uActivatingFuncIndex == 3 ? 0 : uFunc3);
-        toutput2 = funcy(toutput2,uActivatingFuncIndex == 4 ? 0 : uFunc4);
-        toutput2 = funcy(toutput2,uActivatingFuncIndex == 5 ? 0 : uFunc5);
-        toutput2 = funcy(toutput2,uActivatingFuncIndex == 6 ? 0 : uFunc6);
-        toutput2 = funcy(toutput2,uActivatingFuncIndex == 7 ? 0 : uFunc7);
-        toutput2 = funcy(toutput2,uActivatingFuncIndex == 8 ? 0 : uFunc8);
-        toutput2 = funcy(toutput2,uActivatingFuncIndex == 9 ? 0 : uFunc9);
-        toutput2 = funcy(toutput2,uActivatingFuncIndex ==10 ? 0 : uFunc10);
-    
+        //Get the func that isnt activated
+        toutput2 = funcy(toutput2,uActivatingFuncIndex == 0 ?  0 : uFunc1);
+        toutput2 = funcy(toutput2,uActivatingFuncIndex == 1 ?  0 : uFunc2);
+        toutput2 = funcy(toutput2,uActivatingFuncIndex == 2 ?  0 : uFunc3);
+        toutput2 = funcy(toutput2,uActivatingFuncIndex == 3 ?  0 : uFunc4);
+        toutput2 = funcy(toutput2,uActivatingFuncIndex == 4 ?  0 : uFunc5);
+        toutput2 = funcy(toutput2,uActivatingFuncIndex == 5 ?  0 : uFunc6);
+        toutput2 = funcy(toutput2,uActivatingFuncIndex == 6 ?  0 : uFunc7);
+        toutput2 = funcy(toutput2,uActivatingFuncIndex == 7 ?  0 : uFunc8);
+        toutput2 = funcy(toutput2,uActivatingFuncIndex == 8 ?  0 : uFunc9);
+        toutput2 = funcy(toutput2,uActivatingFuncIndex == 9 ? 0 : uFunc10);
+        
         float delta = toutput-toutput2;
-        toutput = toutput+(delta*uActivationAmount);
+        toutput = toutput+(delta*(-(1.-uActivationAmount)));
     }
 
     return toutput;

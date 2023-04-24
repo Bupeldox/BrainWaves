@@ -1,7 +1,3 @@
-*{
-
-  box-sizing: border-box;
-}
 .background {
   display: flex;
   flex-flow: row nowrap;
@@ -19,6 +15,10 @@
 
 #templates {
   display: none;
+}
+
+* {
+  user-select: none;
 }
 
 .person {

@@ -94,9 +94,7 @@ export class FunctionDrawerShader {
         var activeCards = cardData.filter(i => i.activation != 0);
 
         //already sorted
-        var activatingCardIndex = activeCards.findIndex(i => i.activation != 0 && i.activation != 1);
-        var activatingCardAmount = activeCards.find(i => i.activation != 0 && i.activation != 1)?.activation ?? 0;
-
+        
         for (var i = 0; i < maxFunctions; i++) {
             if (activeCards.length <= i) {
                 this.gl.uniform1i(this.progDraw.functionUniforms[i], 0);
@@ -105,8 +103,14 @@ export class FunctionDrawerShader {
             var card = activeCards[i];
             this.gl.uniform1i(this.progDraw.functionUniforms[i], card.card.index);
         }
-        this.gl.uniform1i(this.progDraw.uActivatingFuncIndex, activatingCardIndex+1);
+
+        var activatingCardIndex = activeCards.findIndex(i => i.activation != 0 && i.activation != 1);
+        var activatingCardAmount = activeCards.find(i => i.activation != 0 && i.activation != 1)?.activation ?? 0;
+
+        this.gl.uniform1i(this.progDraw.uActivatingFuncIndex, activatingCardIndex);
         this.gl.uniform1f(this.progDraw.uActivationAmount, activatingCardAmount);
+        console.log(activatingCardAmount);
+        console.log(activatingCardIndex);
     }
 }
 

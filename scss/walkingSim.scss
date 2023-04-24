@@ -17,6 +17,9 @@
   display: none;
 }
 
+* {
+  user-select: none;
+}
 
 .person {
   position: absolute;
@@ -25,7 +28,6 @@
     transform: scalex(-1);
   }
 }
-
 
 .abs {
   position: absolute;
@@ -46,9 +48,9 @@
 .interactionMessage {
   background: #fff;
   box-shadow: #000b 0 0 10px 10px;
-  
-  .instructions{
-    padding-left:2em;
+
+  .instructions {
+    padding-left: 2em;
     padding-bottom: 1em;
   }
   .text {
@@ -65,8 +67,6 @@
   min-width: 300px;
 }
 
-
-
 .runOff {
   transition: 1s;
   transform: translatey(-100px);
@@ -79,7 +79,6 @@
   $transitionTime: 0.5s;
   transition: $transitionTime;
   transform-style: preserve-3d;
-
 
   .streetAssembly {
     transform: rotateY(0deg) translatex(0) translatez(0);

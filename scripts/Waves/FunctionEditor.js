@@ -32,17 +32,6 @@ export class FunctionEditor {
                 cardd.updateToNewPosition();
                 return cardd;
             });
-        /*
-            var c = 2;
-            this.cards[c].position.y = 0.2;
-            this.cards[c].activation = 1;
-            this.cards[c].updateToNewPosition();
-
-            c = 5;
-            this.cards[c].position.y = 0.2;
-            this.cards[c].activation = 1;
-            this.cards[c].updateToNewPosition();
-        */
 
         this.cards.forEach((i) => {
             i.element.appendInto(this.baseElement.getCardStore());
@@ -59,7 +48,6 @@ export class FunctionEditor {
         }));
 
         this.onCardChange();
-        this.animateCurve();
     }
 
     onCardChange() {

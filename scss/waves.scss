@@ -17,6 +17,10 @@ body {
 	margin: 0;
 }
 
+*{
+	user-select: none;
+}
+
 .thoughtTextArea {
 	padding-bottom: $padding/2;
 }
