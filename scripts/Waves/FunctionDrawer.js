@@ -52,7 +52,7 @@ export class FunctionDrawer {
 
         var points = this.functionListCalculator.calculateCardList(cards);
 
-        this.functionDrawerShader.update();
+        this.functionDrawerShader.drawCardResult(cards);
     }
 }
 

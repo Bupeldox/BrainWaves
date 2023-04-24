@@ -74,7 +74,7 @@ float Function(float x)
     toutput = funcy(toutput,uFunc9);
     toutput = funcy(toutput,uFunc10);
 
-    if(uActivationAmount != 0){
+    if(uActivatingFuncIndex != 0){
         
         float toutput2 = x;
         toutput2 = funcy(toutput2,uActivatingFuncIndex == 1 ? 0 : uFunc1);
