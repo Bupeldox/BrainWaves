@@ -73,9 +73,14 @@ class DirectionGUI {
        this.onButtonPress = ()=>{};
     }
     setupEvents(clas,vec){
+        //mouse
         this.buttonElement.getPart(clas).addEventListener("mousedown",()=>{this.dirDown(vec);});
-        this.buttonElement.getPart(clas).addEventListener("mouseup",()=>{this.dirUp(    vec);});
+        document.body.addEventListener("mouseup",()=>{this.dirUp(    vec);});
         this.buttonElement.getPart(clas).addEventListener("mouseleave",()=>{this.dirUp( vec);});
+        //touch
+        this.buttonElement.getPart(clas).addEventListener("touchstart",()=>{this.dirDown(vec);});
+        document.body.addEventListener("touchend",()=>{this.dirUp(vec);});
+        document.body.addEventListener("touchcancel",()=>{this.dirUp(vec);});
     }
 
     dirDown(dir){
