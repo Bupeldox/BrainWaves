@@ -40,7 +40,7 @@ export class World {
         setTimeout(()=>{
 
             window.location.href = 
-            "./waves.html?target="+
+            "./wavestry4.html?target="+
             thought.target.join(",")+
             "&useable="+
             this.player.state.functionInventory.join(",")+

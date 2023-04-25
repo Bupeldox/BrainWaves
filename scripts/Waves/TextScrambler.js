@@ -1,11 +1,9 @@
 export class TextScrambler {
     constructor(text) {
-        this.text = text;
         this.letters =
             "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890!£$%^&*()-=_+[]{};'#:@~,./<>?";
-            
-        this.scrambledText = new Array(text.length).fill(0).map(i=>this.getRandomCharacter());
-        this.unscrambleOrder = new Array(text.length).fill(0).map((e,i)=>i).sort(i=>Math.random()-0.5);
+        this.updateText(text);
+        
     }
     getRandomCharacter (){
         var index = Math.floor(Math.random() * this.letters.length);
@@ -32,5 +30,10 @@ export class TextScrambler {
             textOut:text,
             correctLetters:arr
         };
+    }
+    updateText(text){
+        this.text = text;
+        this.scrambledText = new Array(text.length).fill(0).map(i=>this.getRandomCharacter());
+        this.unscrambleOrder = new Array(text.length).fill(0).map((e,i)=>i).sort(i=>Math.random()-0.5);
     }
 }

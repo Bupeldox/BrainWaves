@@ -19,7 +19,7 @@ export class GitchyText {
         this.loop();
     }
     updateText(text) {
-        this.textScrambler.text = text;
+        this.textScrambler.updateText(text);
         this.loop();
     }
     loop(stop) {

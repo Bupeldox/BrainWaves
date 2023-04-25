@@ -47,7 +47,7 @@ export class FunctionMatchGame {
 
         this.targetFunction.setCurve(this.gameData.target);
         this.onFunctionChange();
-        this.currentComplexity = 1;
+        this.currentComplexity = gameData.target.length ;
         this.updateLevelText();
 
         this.htmlStructure.getHintButton().addEventListener("click",()=>{this.onHintRequest()});

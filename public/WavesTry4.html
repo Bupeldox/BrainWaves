@@ -24,30 +24,33 @@
             
             <div class="col">
 
-                <div class="currentWave">
+                <div class="currentWave section">
                     <h2>
                         Current:
                     </h2>
                 </div>
-                <div class="active">
-                    <div class="currentFunc">
+                <div class=" section">
+
+                    <div class="active">
+                        <div class="currentFunc">
+                        </div>
                     </div>
-                </div>
-                <div class="inactive dragContainer">
+                    <div class="inactive dragContainer">
+                    </div>
                 </div>
             </div>
             <div class="col">
 
-                <div class="targetWave">
+                <div class="targetWave section">
                     <h2>
                         Target:
                     </h2>
                 </div>
 
-                <div>
+                <div class="section">
                     <h3>Deets</h3>
                     <div class="score">Score: <span class="scoreOutput">2</span></div>
-                    <div class="thought">Thought: <span class="thoughtOutput">this is the thought</span></div>
+                    <div class="thoughtOutput"></div>
                     <div class="btn hint">Hint</div>
                     <div class="btn back">Back</div>
                 </div>
@@ -84,6 +87,9 @@
             ;
             align-items: center;
             ;
+        }
+        .section{
+            margin:1em;
         }
     </style>
 
