@@ -36,10 +36,15 @@ if(urlParams.get('target' )&& urlParams.get('useable') && urlParams.get('thought
         window.location.href = "./walkingsim.html";
     };
 }
+var matchGame;
+document.addEventListener("DOMContentLoaded",()=>{
+    matchGame = new FunctionMatchGame(gamDat);
+    
+    document.getElementById("targetItem").textContent = gamDat.icon;
+},{ once:true });
 
-var matchGame = new FunctionMatchGame(gamDat);
 
-document.getElementById("targetItem").textContent = gamDat.icon;
+
 
 //to make time based calculations use the same time.
 

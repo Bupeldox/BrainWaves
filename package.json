@@ -31,7 +31,7 @@
     "webpack-glsl-loader": "^1.0.1"
   },
   "scripts": {
-    "start": "npx webpack serve",
+    "start": "npx webpack serve & npx sass ./scss:./public/styles --watch",
     "test": "echo \"Error: no test specified\" && exit 1",
     "compile": "npx webpack && npx sass ./scss:./public/styles"
   },

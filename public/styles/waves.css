@@ -23,7 +23,6 @@ body {
 }
 
 .thought {
-  text-align: center;
   font-family: monospace;
   padding: 1rem;
   padding-bottom: 0;
@@ -154,43 +153,6 @@ body {
 
 .dragContainer, .tray {
   position: relative;
-}
-
-.unselectable {
-  -moz-user-select: -moz-none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  /*
-      Introduced in IE 10.
-      See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
-    */
-  -ms-user-select: none;
-  user-select: none;
-}
-
-.btn {
-  padding: 0.5rem;
-  margin: 0.25rem;
-  border-radius: 0.125rem;
-  cursor: pointer;
-}
-.btn.success {
-  background-color: #5eee59;
-}
-.btn.success:hover {
-  background-color: #15af10;
-}
-.btn.danger {
-  background-color: #e7a8a8;
-}
-.btn.danger:hover {
-  background-color: #e28686;
-}
-.btn.info {
-  background-color: #a8e7c4;
-}
-.btn.info:hover {
-  background-color: #86e2b7;
 }
 
 .curveEditor .active {

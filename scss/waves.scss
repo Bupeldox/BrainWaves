@@ -26,7 +26,7 @@ body {
 	padding-bottom: $padding/2;
 }
 .thought{
-	text-align:center;
+	//text-align:center;
 	font-family:monospace;
 	padding:$padding;
 	padding-bottom:0;
@@ -44,14 +44,7 @@ body {
 	justify-content: center;
 }
 
-.GraphOutput {
-	border: 1px solid #0002;
-	height: 100%;
-	//height: 300px;
-	//width: 300px;
-	margin: $padding;
-	position: relative;
-}
+
 
 @media(max-width:700px) {
 	.GraphOutput {
@@ -63,12 +56,6 @@ body {
 	height: 1em;
 	width: 1em;
 	transform: translate(-0.5em, -0.5em);
-	//transition:top 0.1s, left 0.1s;
-}
-.centerPoint {
-	top: 50%;
-	left: 50%;
-	z-index: 1;
 }
 .activeFunction {
 	text-align: center;
@@ -163,52 +150,6 @@ body {
 .dragContainer,.tray {
 	position: relative;
 }
-
-.unselectable {
-	-moz-user-select: -moz-none;
-	-khtml-user-select: none;
-	-webkit-user-select: none;
-
-	/*
-     Introduced in IE 10.
-     See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
-   */
-	-ms-user-select: none;
-	user-select: none;
-}
-
-.btn {
-	padding: $padding/2;
-	margin: $padding/4;
-	border-radius: $padding/8;
-
-	cursor: pointer;
-
-	&.success {
-		background-color: #5eee59;
-
-		&:hover {
-			background-color: #15af10;
-		}
-	}
-
-	&.danger {
-		background-color: #e7a8a8;
-
-		&:hover {
-			background-color: #e28686;
-		}
-	}
-
-	&.info {
-		background-color: #a8e7c4;
-
-		&:hover {
-			background-color: #86e2b7;
-		}
-	}
-}
-
 
 //Visual
 

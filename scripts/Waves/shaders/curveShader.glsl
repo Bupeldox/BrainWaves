@@ -123,7 +123,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
     float intensity = smoothstep(0., 1., 1. - distanceToPlot * 1. * iResolution.y);
     intensity = pow(intensity,1./2.2);
     
-    vec3 col = vec3(intensity);
+    vec3 col = vec3(intensity,0,0);
 
     fragColor = vec4(col,intensity);
 }

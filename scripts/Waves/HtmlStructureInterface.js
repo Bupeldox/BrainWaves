@@ -32,6 +32,8 @@ export default class FunctionEditorHtmlStructureInterface{
     }
 }
 */
+/*
+//
 export default class FunctionEditorHtmlStructureInterface{
     constructor(parent){
         this.element = new TemplatedHtml("functionEditor3",parent);
@@ -60,4 +62,38 @@ export default class FunctionEditorHtmlStructureInterface{
     getBackButton(){
         return this.element.getPart("backButton");
     }
+}*/
+
+export default class FunctionEditorHtmlStructureInterface {
+    constructor(parent) {
+        this.element = new TemplatedHtml("theFuncer",null,false);
+    }
+    getCardStore() {
+        return this.element.getPart("inactive")
+    }
+    //CanvasContainerForTarget
+    getTargetGraphArea() {
+        return this.element.getPart("currentWave");
+    }
+    //CanvasContainerForTarget
+    getTargetFunctionArea() {
+        return this.element.getPart("targetWave");
+    }
+    getCurrentFunctionTextArea() {
+        return this.element.getPart("currentFuncOutput");
+    }
+    getThoughOutputArea() {
+        return this.element.getPart("thoughtOutput");
+    }
+    
+    getStatsOutputArea() {
+        return this.element.getPart("score");
+    }
+    getHintButton() {
+        return this.element.getPart("hint");
+    }
+    getBackButton() {
+        return this.element.getPart("back");
+    }
+
 }

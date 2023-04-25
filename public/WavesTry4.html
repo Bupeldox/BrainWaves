@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>Waves</title>
+    <!-- <link rel="stylesheet" href="./styles/waves.css"> -->
+    <link rel="stylesheet" href="./styles/base.css">
+    <link rel="stylesheet" href="./styles/wavesBase.css">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <script src="./scripts/Waves/bundle.js"></script>
+
+</head>
+
+<body>
+    <div class="theFuncer" style="/*width:700px; margin:auto;*/">
+        <h3>Funcer</h3>
+        <div class="instruction">
+            Match the Current function to the target by activating the gems in a order which produces the same curve
+        </div>
+        <div class="row">
+            
+            <div class="col">
+
+                <div class="currentWave">
+                    <h2>
+                        Current:
+                    </h2>
+                </div>
+                <div class="active">
+                    <div class="currentFunc">
+                    </div>
+                </div>
+                <div class="inactive dragContainer">
+                </div>
+            </div>
+            <div class="col">
+
+                <div class="targetWave">
+                    <h2>
+                        Target:
+                    </h2>
+                </div>
+
+                <div>
+                    <h3>Deets</h3>
+                    <div class="score">Score: <span class="scoreOutput">2</span></div>
+                    <div class="thought">Thought: <span class="thoughtOutput">this is the thought</span></div>
+                    <div class="btn hint">Hint</div>
+                    <div class="btn back">Back</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        .row {
+            display: flex;
+            flex-flow: row nowrap;
+        }
+
+        .col {
+            flex: 1 1 50%;
+        }
+
+        .gem {
+            height: 20px;
+            width: 20px;
+            background-color: #999;
+            margin: 5px;
+        }
+
+        .inactive {
+            height: 300px;
+        }
+
+        .active {
+            background-color: rgba(51, 85, 221, 0.514);
+            height: 4em;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+            ;
+            align-items: center;
+            ;
+        }
+    </style>
+
+    <div id="templates">
+        <div class="thought">
+            <span id="targetItem"></span>
+            <span>&gt; 🧠 &gt; 💬 &gt; </span>
+            <span class="text"></span>
+        </div>
+        <div class="functionTextOutput"></div>
+        <div class="output">
+        </div>
+        <div class="cardSlots">
+        </div>
+        <div class="card draggable unselectable">
+            <div class="name"></div>
+            <canvas class="cardFunctionCanvas">
+
+            </canvas>
+        </div>
+        <div class="functionEditor">
+
+            <div class="output">
+            </div>
+            <div class="thoughtTextArea"></div>
+            <div class="buttonContainer">
+                <a class="btn danger backButton" href="./WalkingSim.html">Stop mind reading.</a>
+                <span class="btn info hint">Hint</a>
+            </div>
+            <div class="textContainer">
+                <div class="activeFunction"></div>
+
+            </div>
+            <div class="cards dragContainer">
+                <div class="activationZoneText unselectable">
+                    Active (Drag them up here)
+                </div>
+                <div class="storageZoneText unselectable">
+                    Not Active
+                </div>
+            </div>
+        </div>
+        <div class="scoreOutput"></div>
+        <div class="GraphOutput">
+        </div>
+        <div class="curveMarker graphPoint">
+            🌊
+        </div>
+        <div class="centerPoint graphPoint">
+            🧠
+        </div>
+    </div>
+
+</body>
+
+</html>

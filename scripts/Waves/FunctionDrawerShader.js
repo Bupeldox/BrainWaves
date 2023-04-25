@@ -15,7 +15,7 @@ export class FunctionDrawerShader {
 
         let initScene = () => {
 
-            this.gl = canvas.getContext("experimental-webgl");
+            this.gl = canvas.getContext("webgl");
             if (!this.gl)
                 return;
 
@@ -67,8 +67,14 @@ export class FunctionDrawerShader {
 
             this.gl.enable(this.gl.DEPTH_TEST);
             this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
-
-            //window.onresize = resize;
+            var resize = ()=>{
+                this.gl.uniform2f(this.progDraw.iResolution, this.canvas.width, this.canvas.height);
+            }
+            window.addEventListener("resize",()=>{
+                this.canvas.width = 0;
+                this.canvas.width = this.canvas.parentElement.getBoundingClientRect().width;
+                //this.canvas.height = this.canvas.parentElement.getBoundingClientRect().height;
+            })
             //resize();
             requestAnimationFrame(render);
         }

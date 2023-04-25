@@ -45,7 +45,11 @@ export default class Card {
         var onMouseUp = () => {
             if (!(this.activation == 0 || this.activation == 1)) {
                 this.activation = clamp(0, Math.round(this.activation), 1);
-                this.position.y = 1 - (this.activation + 2) / 4;
+                if(this.activation == 0){
+                    this.position.y = 0;
+                }else{
+                    this.position.y = -0.1;
+                }
                 this.updateToNewPosition();
                 callback();
             }

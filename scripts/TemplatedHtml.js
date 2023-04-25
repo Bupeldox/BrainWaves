@@ -1,16 +1,29 @@
 
 export default class TemplatedHtml {
-	constructor(templaceClass, addToThisElement) {
-		var telem = document.querySelector("#templates> ." + templaceClass);
+	constructor(templateClass, addToThisElement,fromTemplate=true) {
+		if(!fromTemplate){
+			this.constructWithExitsingElement(templateClass);
+			return;
+		}
+		var telem = document.querySelector("#templates> ." + templateClass);
 
 		if (!telem) {
-			console.log("." + templaceClass);
+			console.log("." + templateClass);
 		}
 
 		this.element = telem.cloneNode(true);
 		if (addToThisElement) {
 			this.appendInto(addToThisElement);
 		}
+	}
+	constructWithExitsingElement(templateClass){
+		var telem = document.querySelector("." + templateClass);
+		
+		if (!telem) {
+			console.log("." + templateClass);
+		}
+
+		this.element = telem;
 	}
 
 	appendInto(elem) {

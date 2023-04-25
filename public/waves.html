@@ -34,56 +34,63 @@
             opacity: 0.5;
             height: 20px;
             width: 20px;
-            background-color: #5228;
+            /* background-color: #5228; */
             position: absolute;
         }
 
         .characterReading {
-            /*top: 0vh;*/
             height: 30vh;
             width: 30vh;
-            background-color: hsl(0, 50%, 50%);
+            /* background-color: hsl(0, 50%, 50%); */
         }
 
         .characterReadingWave {
             top: 10vh;
 			height: 50vh;
     		width: 90vh;
-            background-color: hsl(30, 50%, 50%);
+            /* background-color: hsl(30, 50%, 50%); */
         }
 
         .projectingWave {
             top: 25vh;
             height: 50vh;
     		width: 90vh;
-            background-color: hsl(60, 50%, 50%);
+            /* background-color: hsl(60, 50%, 50%); */
         }
 
         .activeArea {
             top: 50vh;
             height: 20vh;
             width: 100%;
-            background-color: hsl(90, 50%, 50%);
+            /* background-color: hsl(90, 50%, 50%); */
         }
 
         .pieceStartingArea {
             top: 75vh;
             height: 20vh;
-            width: 50vh;
-            background-color: hsl(120, 50%, 50%);
+            width: 600px;
+            /* background-color: hsl(120, 50%, 50%); */
         }
 
         .bgImage {
             top: 0;
             height: 100vh;
             width: 177vh; 
-            background-color: hsl(150, 50%, 50%);
+            /* background-color: hsl(150, 50%, 50%); */
         }
+		/* canvas{
+			filter:invert(1); 
+		} */
+		.projectingWave canvas{
+			filter:hue-rotate(100deg);
+		}
+		.characterReadingWave canvas{
+			filter:hue-rotate(200deg);
+		}
     </style>
 </head>
 
 <body>
-	<!-- pls excuse the poor mans react -->
 	<div class="instrcutions">Match the left curve to the right by moving the squares at the bottom into and out of the
 		blue area. This will decrypt the text. (i'll put a better description in at some point)</div>
 	<div id="root"></div>
@@ -184,11 +191,11 @@
 			<div class="activeArea centerAlignedBlock"></div>
 			<div class="pieceStartingArea centerAlignedBlock"></div>
 			
-			<div class="currentFunction centerAlignedBlock"></div>
-			<div class="thought centerAlignedBlock"></div>
-			<div class="stats centerAlignedBlock"></div>
-			<div class="hitButton centerAlignedBlock"></div>
-			<div class="backButton centerAlignedBlock"></div>
+			<div class="currentFunction "></div>
+			<div class="thought "></div>
+			<div class="stats "></div>
+			<div class="hitButton "></div>
+			<div class="backButton "></div>
 		</div>
 
 	</div>
