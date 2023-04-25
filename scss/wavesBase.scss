@@ -1,0 +1,125 @@
+
+$padding: 1rem;
+
+
+* {
+    user-select: none;
+    box-sizing: border-box;
+}
+
+.GraphOutput {
+	height: 100%;
+	margin: $padding;
+	position: relative;
+    .centerPoint {
+        top: calc(50% - 0.5em);
+        left: calc(50% - 0.5ch);
+        z-index: 1;
+        width:1ch;
+        position: absolute;
+    }
+}
+
+.card {
+    overflow: visible;
+    position: relative;
+    border-radius: 1rem;
+    background-color: #fff;
+    height: 5rem;
+    width: 5rem;
+    transform: translate(-2rem, -2rem);
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 1px 3px 0 #0002;
+    border: 2px solid #0004;
+
+    &:not(.dragging) {
+        transition: top 0.2s;
+    }
+
+    .cardFunctionCanvas {
+        position: absolute;
+        mix-blend-mode: multiply;
+        top: $padding/-2;
+    }
+    &.imageGem {
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        border: none;
+        background-color: transparent;
+        box-shadow: none;
+        filter: drop-shadow(5px 5px 5px #222);
+
+        &.dragging {
+            filter: drop-shadow(8px 8px 5px #222222ab);
+        }
+
+        .name {
+            background: #fffffff5;
+            padding: 2px;
+            border-radius: 4px;
+            /* font-weight: bold; */
+            font-family: cursive;
+        }
+    }
+}
+
+
+//Utilities
+.draggable {
+	position: absolute;
+}
+.dragContainer,.tray {
+	position: relative;
+}
+
+
+.unselectable {
+	-moz-user-select: -moz-none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+
+	/*
+     Introduced in IE 10.
+     See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+   */
+	-ms-user-select: none;
+	user-select: none;
+}
+
+
+
+.btn {
+	padding: $padding/2;
+	margin: $padding/4;
+	border-radius: $padding/8;
+
+	cursor: pointer;
+
+	&.success {
+		background-color: #5eee59;
+
+		&:hover {
+			background-color: #15af10;
+		}
+	}
+
+	&.danger {
+		background-color: #e7a8a8;
+
+		&:hover {
+			background-color: #e28686;
+		}
+	}
+
+	&.info {
+		background-color: #a8e7c4;
+
+		&:hover {
+			background-color: #86e2b7;
+		}
+	}
+}
