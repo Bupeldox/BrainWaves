@@ -14,12 +14,12 @@
 </head>
 
 <body>
-    <a href="./">Back</a>
     <div id="functionGameContainer">
     <div class="theFuncer">
-        <h3>Funcer</h3>
+        
+        <h3>Funcer <a href="./" style="float: right">Back</a></h3>
         <div class="instruction">
-            Match the Current function to the target by activating the gems in a order which produces the same curve
+            Ask for instructions, i cba to write good ones atm.
         </div>
         <div class="row">
 
@@ -67,7 +67,15 @@
         #functionGameContainer canvas {
             width: 100%;
             height: 27vh;
-            
+        }
+        @media only screen and (max-width: 600px) {
+            #functionGameContainer canvas{
+                height:100px;
+            }
+            .thought{
+                height:4em;
+                overflow-y: scroll;
+            }
         }
 
         .row {

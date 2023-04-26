@@ -8,7 +8,6 @@ const maxFunctions = 9;
 export class FunctionDrawerFactory{
     constructor(){}
     getFunctionDrawer(){
-        return FunctionDrawerCanvas;
         if(!this.isMobile() && this.webgl_support()){
             return FunctionDrawerShader;
         }else{
