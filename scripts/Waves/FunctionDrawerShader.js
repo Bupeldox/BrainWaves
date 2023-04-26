@@ -143,8 +143,7 @@ class FunctionDrawerShader {
 
         this.gl.uniform1i(this.progDraw.uActivatingFuncIndex, activatingCardIndex);
         this.gl.uniform1f(this.progDraw.uActivationAmount, activatingCardAmount);
-        console.log(activatingCardAmount);
-        console.log(activatingCardIndex);
+      
     }
 }
 

@@ -13,6 +13,7 @@
 </head>
 
 <body>
+    <a href="./">back</a>
     <div id="functionGameContainer">
         <div class="theFuncer">
             <h3>Funcer</h3>
@@ -99,8 +100,8 @@
             }
 
             body {
-                overflow: hidden;
-                ;
+                overflow: hidden;;
+                min-height: 90vh;
             }
         </style>
     </div>
@@ -128,7 +129,8 @@
             }
 
             #walkingSimContainer {
-                overflow: hidden;
+               
+                height:100%;
             }
         </style>
     </div>
@@ -153,7 +155,7 @@
         <div class="interactableItem abs">
             <div class="icon">🥬</div>
         </div>
-        <div class="instructions">E</div>
+        <div class="instructions tag">E</div>
         <div class="streetTransition turn">
             <div class="streetAssembly">
                 <div class="street streetFrom"></div>
@@ -189,7 +191,7 @@
         <div class="thought">
             <span class="targetItem"></span>
             <span>&gt; 🧠 &gt; 💬 &gt; </span>
-            <span class="text"></span>
+            <span class="text tag"></span>
         </div>
         <div class="functionTextOutput"></div>
         <div class="card draggable unselectable">

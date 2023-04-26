@@ -14,13 +14,14 @@
 </head>
 
 <body>
-    <div class="theFuncer" >
+    <div id="functionGameContainer">
+    <div class="theFuncer">
         <h3>Funcer</h3>
         <div class="instruction">
             Match the Current function to the target by activating the gems in a order which produces the same curve
         </div>
         <div class="row">
-            
+
             <div class="col">
 
                 <div class="currentWave section">
@@ -56,7 +57,16 @@
             </div>
         </div>
     </div>
+</div>
     <style>
+        #functionGameContainer {
+            width: 100%;
+        }
+
+        #functionGameContainer canvas {
+            width: 100%;
+        }
+
         .row {
             display: flex;
             flex-flow: row nowrap;
@@ -83,15 +93,18 @@
             display: flex;
             flex-flow: row nowrap;
             justify-content: center;
-            ;
             align-items: center;
-            ;
         }
-        .section{
-            margin:1em;
+
+        .section {
+            margin: 1em;
+        }
+
+        body {
+            overflow: hidden;;
+            min-height: 90vh;
         }
     </style>
-
     <div id="templates">
         <div class="thought">
             <span class="targetItem"></span>
@@ -111,7 +124,6 @@
             🧠
         </div>
     </div>
-
     <script src="./scripts/Waves/bundle.js"></script>
 </body>
 

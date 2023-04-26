@@ -63,10 +63,17 @@ $padding: 1rem;
             padding: 2px;
             border-radius: 4px;
             /* font-weight: bold; */
-            font-family: cursive;
+            font-family: monospace;
             transform: translate(26px, 27px);
         }
     }
+}
+.label{
+    background: #fffffff5;
+    padding: 2px;
+    border-radius: 4px;
+    /* font-weight: bold; */
+    font-family: monospace;
 }
 
 .thought{
@@ -78,7 +85,7 @@ $padding: 1rem;
 	&.done{
 		text-decoration: underline;
 		font-weight: bold;
-		font-size: 1.2em;
+		//font-size: 1.2em;
 		word-break: keep-all;
 	}
 }

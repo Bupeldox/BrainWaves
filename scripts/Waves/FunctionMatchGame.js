@@ -60,8 +60,8 @@ export class FunctionMatchGame {
         this.currentComplexity = target.length;
         this.glitchyText.updateText(thought);
         this.htmlStructure.element.getPart("targetItem").textContent = icon;
-        this.onFunctionChange();
         this.updateLevelText();
+        this.onFunctionChange();
         this.onBack = onBack;
     }
     onHintRequest(){
@@ -74,6 +74,9 @@ export class FunctionMatchGame {
             var difference = this.getAccuracy();
             var score = 5 - Math.log(difference);
             this.hasPassed = score > 20 || isNaN(score);
+            if(isNaN(score)){
+                score = 21;
+            }
             this.glitchyText.updateValue((score + 4) / 10);
             this.accuracyOutput.updateText(
                 "score:" + (this.hasPassed ? "✅" : Math.round(score * 100) / 100)

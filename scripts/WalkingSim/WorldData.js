@@ -174,7 +174,7 @@ export const tstreetData = {
                 ],
                 {
                     thought:"The credits of the dreamworks movies are weird",
-                    target:[8,11,3]
+                    target:[3,11,8,5]
                 }
             ),
         ],

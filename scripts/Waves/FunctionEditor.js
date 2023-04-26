@@ -14,15 +14,14 @@ export class FunctionEditor {
         // );
         this.changeCallback = changeCallBack;
 
-        this.setUseableCards(availableFuncs);
         
         this.functionDrawer = new FunctionDrawer(
             this.baseElement.getTargetGraphArea(),
             this.baseElement.getCurrentFunctionTextArea()
-        );
+            );
+            
+        this.setUseableCards(availableFuncs);
 
-
-        this.onCardChange();
     }
     setUseableCards(availableFuncs){
         //Just put all the cards in, why not
@@ -57,6 +56,7 @@ export class FunctionEditor {
         this.cards.forEach((i) => i.setupEvents(() => {
             this.onCardChange();
         }));
+        this.onCardChange();
     }
     onCardChange() {
         this.cards = this.cards.sort((a, b) => a.position.x - b.position.x);
