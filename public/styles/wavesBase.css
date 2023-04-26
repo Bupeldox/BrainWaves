@@ -30,6 +30,7 @@
   align-items: center;
   box-shadow: 0px 1px 3px 0 rgba(0, 0, 0, 0.1333333333);
   border: 2px solid rgba(0, 0, 0, 0.2666666667);
+  z-index: 1;
 }
 .card:not(.dragging) {
   transition: top 0.2s;
@@ -57,6 +58,20 @@
   border-radius: 4px;
   /* font-weight: bold; */
   font-family: cursive;
+  transform: translate(26px, 27px);
+}
+
+.thought {
+  font-family: monospace;
+  padding: 1rem;
+  padding-bottom: 0;
+  word-break: break-all;
+}
+.thought.done {
+  text-decoration: underline;
+  font-weight: bold;
+  font-size: 1.2em;
+  word-break: keep-all;
 }
 
 .draggable {
@@ -65,6 +80,10 @@
 
 .dragContainer, .tray {
   position: relative;
+}
+
+.hidden {
+  display: none !important;
 }
 
 .unselectable {

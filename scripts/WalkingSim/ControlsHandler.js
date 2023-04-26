@@ -12,6 +12,16 @@ export default class ControlsHandler{
         this.interactionInput = new InteractionInputManager(this.guiContainer.element);
         this.directionInput.onButtonPress = ()=>{this.interactionInput.onInteractExit()};
     }
+    pause(){
+        this.directionInput.isPaused = true;
+        this.interactionInput.isPaused = true;
+        this.guiContainer.element.classList.add("hidden");
+    }
+    resume(){
+        this.guiContainer.element.classList.remove("hidden");
+        this.directionInput.isPaused = false;
+        this.interactionInput.isPaused = false;
+    }
 }
 
 
@@ -52,14 +62,23 @@ class InteractionInputManager{
     }
 
     onInteract(p){
+        if(this.isPaused){
+            return;
+        }
         this.interactEventRegister.onEvent(p);
     }
 
     onMindRead(p){
+        if(this.isPaused){
+            return;
+        }
         this.mindReadEventRegister.onEvent(p);
     }
 
     onInteractExit(p){
+        if(this.isPaused){
+            return;
+        }
         this.interactionExitEventRegister.onEvent(p);
     }
 }

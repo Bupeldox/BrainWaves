@@ -10,12 +10,12 @@ import { tstreetData } from "./WorldData.js";
 export const worldStateName = "levelAndPlayerPos";
 
 export class World {
-    constructor(controlsHandler) {
+    constructor(controlsHandler,goToWaves) {
         this.stuffThatNeedsUpdating = [];
         this.controlsHandler = controlsHandler;
         var guiContainer = new TemplatedHtml("gui-container",document.body);
         this.player = new Player(document.body,this.controlsHandler.directionInput);
-
+        this.goToWaves = goToWaves;
         this.state = stateHandler.getState(worldStateName);
 
         if(!this.state){
@@ -36,18 +36,23 @@ export class World {
         
         //transition
         this.currentStreet.element.element.classList.add("wavesTransition");
+        
 
         setTimeout(()=>{
-
-            window.location.href = 
-            "./wavestry4.html?target="+
-            thought.target.join(",")+
-            "&useable="+
-            this.player.state.functionInventory.join(",")+
-            "&thought="+
-            thought.thought+
-            "&icon="+
-            icon;
+            if(this.goToWaves){
+                this.goToWaves(thought.target,this.player.state.functionInventory,thought.thought,icon);
+            }else{
+                window.location.href = 
+                "./wavestry4.html?target="+
+                thought.target.join(",")+
+                "&useable="+
+                this.player.state.functionInventory.join(",")+
+                "&thought="+
+                thought.thought+
+                "&icon="+
+                icon;
+            }
+            this.currentStreet.element.element.classList.remove("wavesTransition");
         },300)
     }
 

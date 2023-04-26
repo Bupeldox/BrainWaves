@@ -17,10 +17,10 @@ export default [
     new CardType(4,"x²", (x) => Math.pow(x, 2),"gem8.png"),
     new CardType(5,"x³", (x) => Math.pow(x, 3),"gem3.png"),
     new CardType(6,"√x", (x) => Math.pow(x, 0.5),"gem7.png"),
-    new CardType(7,"sin(x)", (x) => Math.sin(x),"gem12.png"),
+    new CardType(7,"sin(x)", (x) => Math.sin(x),"gem11.png"),
     new CardType(8,"e^x", (x) => Math.pow(2, x),"gem6.png"),
     new CardType(9,"ln(x)", (x) => Math.log2(x),"gem4.png"), //shhhh
-    new CardType(10,"x+sin(t)", (x) => x + Math.sin(getTime() / 1000),"gem11.png"),
+    new CardType(10,"x+sin(t)", (x) => x + Math.sin(getTime() / 1000),"gem12.png"),
     new CardType(11,"|x|", (x) => Math.abs(x),"gem1.png"),
     new CardType(12,"x%2", (x) => x % 2,"gem10.png")
 ];

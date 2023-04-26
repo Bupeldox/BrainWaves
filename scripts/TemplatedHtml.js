@@ -6,7 +6,7 @@ export default class TemplatedHtml {
 			return;
 		}
 		var telem = document.querySelector("#templates> ." + templateClass);
-
+		telem.classList.add("used");
 		if (!telem) {
 			console.log("." + templateClass);
 		}

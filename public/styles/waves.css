@@ -40,13 +40,6 @@ body {
   justify-content: center;
 }
 
-.GraphOutput {
-  border: 1px solid rgba(0, 0, 0, 0.1333333333);
-  height: 100%;
-  margin: 1rem;
-  position: relative;
-}
-
 @media (max-width: 700px) {
   .GraphOutput {
     height: 150px;
@@ -57,12 +50,6 @@ body {
   height: 1em;
   width: 1em;
   transform: translate(-0.5em, -0.5em);
-}
-
-.centerPoint {
-  top: 50%;
-  left: 50%;
-  z-index: 1;
 }
 
 .activeFunction {

@@ -1,8 +1,7 @@
 import TemplatedHtml from "../TemplatedHtml";
 import Vec2 from "../Vec2";
-import { DirectionalInputManager } from "./DirectionalInputManager";
-import { timeSpeedMod } from "./script";
 import { stateHandler } from "./StateHandler";
+import { timeSpeedMod } from "./WalkingSimSettings";
 
 const playerStateId = "playerState";
 

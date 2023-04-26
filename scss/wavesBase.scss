@@ -34,6 +34,7 @@ $padding: 1rem;
     align-items: center;
     box-shadow: 0px 1px 3px 0 #0002;
     border: 2px solid #0004;
+    z-index: 1;
 
     &:not(.dragging) {
         transition: top 0.2s;
@@ -63,10 +64,24 @@ $padding: 1rem;
             border-radius: 4px;
             /* font-weight: bold; */
             font-family: cursive;
+            transform: translate(26px, 27px);
         }
     }
 }
 
+.thought{
+	//text-align:center;
+	font-family:monospace;
+	padding:$padding;
+	padding-bottom:0;
+	word-break:break-all;
+	&.done{
+		text-decoration: underline;
+		font-weight: bold;
+		font-size: 1.2em;
+		word-break: keep-all;
+	}
+}
 
 //Utilities
 .draggable {
@@ -75,7 +90,9 @@ $padding: 1rem;
 .dragContainer,.tray {
 	position: relative;
 }
-
+.hidden{
+    display: none!important;
+}
 
 .unselectable {
 	-moz-user-select: -moz-none;

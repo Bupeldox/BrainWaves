@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>Walking Sim</title>
+    <link rel="stylesheet" href="./styles/walkingSim.css">
+    <link rel="stylesheet" href="./styles/base.css">
+    <link rel="stylesheet" href="./styles/wavesBase.css">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+</head>
+
+<body>
+    <div id="functionGameContainer">
+        <div class="theFuncer">
+            <h3>Funcer</h3>
+            <div class="instruction">
+                Match the Current function to the target by activating the gems in a order which produces the same curve
+            </div>
+            <div class="row">
+                
+                <div class="col">
+    
+                    <div class="currentWave section">
+                        <h2>
+                            Current:
+                        </h2>
+                    </div>
+                    <div class=" section">
+    
+                        <div class="active">
+                            <div class="currentFunc">
+                            </div>
+                        </div>
+                        <div class="inactive dragContainer">
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+    
+                    <div class="targetWave section">
+                        <h2>
+                            Target:
+                        </h2>
+                    </div>
+    
+                    <div class="section">
+                        <h3>Deets</h3>
+                        <div class="score">Score: <span class="scoreOutput">2</span></div>
+                        <div class="thoughtOutput"></div>
+                        <div class="btn hint">Hint</div>
+                        <div class="btn back">Back</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <style>
+            .row {
+                display: flex;
+                flex-flow: row nowrap;
+            }
+    
+            .col {
+                flex: 1 1 50%;
+            }
+    
+            .gem {
+                height: 20px;
+                width: 20px;
+                background-color: #999;
+                margin: 5px;
+            }
+    
+            .inactive {
+                height: 300px;
+            }
+    
+            .active {
+                background-color: rgba(51, 85, 221, 0.514);
+                height: 4em;
+                display: flex;
+                flex-flow: row nowrap;
+                justify-content: center;
+                ;
+                align-items: center;
+                ;
+            }
+            .section{
+                margin:1em;
+            }
+        </style>
+    </div>
+    
+    <div class="container" id="walkingSimContainer">
+        <div id="root">
+
+        </div>
+        <button id=startButton>Start</button>
+        <style>
+            .gui-container .space {
+                width:33.3%;
+                height:33.3%;
+                flex:0 0 auto;
+            }
+            .mobile-interaction button{
+                padding:20px;
+                margin-bottom: 1em;;
+            }
+            .wavesTransition{
+                transition:0.5s transform;
+                transform:scale(10);
+            }
+            body{
+                overflow: hidden;
+            }
+        </style>
+    </div>
+
+    <div id="templates">
+        <div class="interactionMessage">
+            <div class="text">
+
+            </div>
+            <div class="instructions">
+                E - Next
+            </div>
+        </div>
+        <div class="path">
+            <div class="background"></div>
+            <div class="middleground"></div>
+            <div class="foreground"></div>
+        </div>
+        <div class="building">🏡</div>
+        <div class="plant">☘</div>
+        <div class="person">🚶‍♀️</div>
+        <div class="interactableItem abs">
+            <div class="icon">🥬</div>
+        </div>
+        <div class="instructions">E</div>
+        <div class="streetTransition turn">
+            <div class="streetAssembly">
+                <div class="street streetFrom"></div>
+                <div class="street streetTo"></div>
+            </div>
+        </div>
+        <div class="gui-container"
+            style="position: fixed; display: flex; bottom:0; width:100vw; flex-flow: row nowrap;">
+           
+           
+        </div>
+        <div class="mobile-directional-input">
+            <div class="direction" style="display: flex; flex-flow: row wrap; height:200px; width:200px; position:relative;">
+                <div class="space"></div>
+                <button class="space btn-up">⬆</button>
+                <div class="space"></div>
+                <button class="space btn-left">⬅</button>
+                <div class="space" style="padding:0.2rem;">or wasd/ arrow keys</div>
+                <button class="space btn-right">➡</button>
+                <div class="space"></div>
+                <button class="space btn-down">⬇</button>
+                <div class="space"></div>
+
+            </div>
+        </div>
+        <div class="mobile-interaction" style="flex:1 1; text-align: right;">
+            <button class="btn-e">Interact (E)</button><br>
+            <button class="btn-r">Mind Read (R)</button>
+        </div>
+
+        <!--Waves-->
+        <div class="thought">
+            <span class="targetItem"></span>
+            <span>&gt; 🧠 &gt; 💬 &gt; </span>
+            <span class="text"></span>
+        </div>
+        <div class="functionTextOutput"></div>
+        <div class="card draggable unselectable">
+            <div class="name"></div>
+            <canvas class="cardFunctionCanvas">
+
+            </canvas>
+        </div>
+        <div class="scoreOutput"></div>
+        <div class="GraphOutput"></div>
+        <div class="centerPoint graphPoint">
+            🧠
+        </div>
+
+    </div>
+   
+
+    <script src="./scripts/bundle.js"></script>
+
+</body>
+
+</html>

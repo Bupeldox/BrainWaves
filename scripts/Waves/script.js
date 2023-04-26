@@ -1,8 +1,10 @@
 //import vec2
 //import Glitchy Text
 
-import { FunctionMatchGame } from "./FunctionMatchGame";
+import { FunctionMatchGameWrapper } from "./FunctionMatchGameWrapper";
 import { getQuote } from "./getQuote";
+
+
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
@@ -20,6 +22,7 @@ var gamDat = {
     target:useableTings.sort((a,b)=>Math.random()-0.5).slice(0,(urlParams.get('c')||3)),
     useable:useableTings,
     thought:"test",
+    icon:"?",
     source:"endless",
     onBack: ()=>{
         window.location.href = "./index.html";
@@ -40,13 +43,12 @@ if(urlParams.get('target' )&& urlParams.get('useable') && urlParams.get('thought
     };
 }
 
-var matchGame;
-document.addEventListener("DOMContentLoaded",()=>{
-    matchGame = new FunctionMatchGame(gamDat);
-    getQuote((v)=>{matchGame.glitchyText.updateText(v.content)});
-    
-    document.getElementById("targetItem").textContent = gamDat.icon;
-},{ once:true });
+getQuote((v)=>{
+    matchGame.start(gamDat.target,gamDat.useable,v.content,gamDat.icon)
+});
+var matchGame = new FunctionMatchGameWrapper();
+
+
 
 
 

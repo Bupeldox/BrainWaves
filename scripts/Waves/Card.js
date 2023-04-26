@@ -26,6 +26,12 @@ export default class Card {
         }
     }
 
+    destroy(){
+        this.MouseDragHelper.destroy();
+        this.element.element.remove();
+        delete this;
+    }
+
     updateToNewPosition() {
         
         

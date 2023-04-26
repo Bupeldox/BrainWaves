@@ -39,6 +39,9 @@ export class DirectionalInputManager {
     }
 
     getDirection() {
+        if(this.isPaused){
+            return new Vec2(0, 0);
+        }
         var vecTotal = new Vec2(0, 0);
         for (var i = 0; i < this.keysDown.length; i++) {
             var key = this.keysDown[i];

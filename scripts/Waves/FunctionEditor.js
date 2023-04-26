@@ -14,7 +14,23 @@ export class FunctionEditor {
         // );
         this.changeCallback = changeCallBack;
 
+        this.setUseableCards(availableFuncs);
+        
+        this.functionDrawer = new FunctionDrawer(
+            this.baseElement.getTargetGraphArea(),
+            this.baseElement.getCurrentFunctionTextArea()
+        );
+
+
+        this.onCardChange();
+    }
+    setUseableCards(availableFuncs){
         //Just put all the cards in, why not
+        if(this.cards && this.cards.length>0){
+            this.cards.forEach(i=>i.destroy());
+            this.cards = [];
+        }
+
         this.cards = 
             mathFuncs
             .filter((a,i)=>availableFuncs.includes(i))
@@ -38,18 +54,10 @@ export class FunctionEditor {
             i.canvasGrapher?.draw();
         });
 
-        this.functionDrawer = new FunctionDrawer(
-            this.baseElement.getTargetGraphArea(),
-            this.baseElement.getCurrentFunctionTextArea()
-        );
-
         this.cards.forEach((i) => i.setupEvents(() => {
             this.onCardChange();
         }));
-
-        this.onCardChange();
     }
-
     onCardChange() {
         this.cards = this.cards.sort((a, b) => a.position.x - b.position.x);
         if (this.cards.find((x) => x.activation > 0 && x.card.name.includes("t"))) {

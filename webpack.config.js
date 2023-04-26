@@ -4,7 +4,8 @@ module.exports = {
   mode: 'development',
   entry: {
     './scripts/WalkingSim/bundle': './scripts/WalkingSim/script.js',
-    './scripts/Waves/bundle': './scripts/Waves/script.js'
+    './scripts/Waves/bundle': './scripts/Waves/script.js',
+    './scripts/bundle': './scripts/combinedScript.js'
   },
   output: {
     path: path.resolve(__dirname, 'public'),
