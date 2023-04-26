@@ -63,6 +63,8 @@ export class FunctionMatchGame {
         this.updateLevelText();
         this.onFunctionChange();
         this.onBack = onBack;
+        this.targetFunction.functionDrawer.pokeTheRenderer();
+        this.functionEditor.functionDrawer.pokeTheRenderer();
     }
     onHintRequest(){
         this.htmlStructure.getHintButton().textContent = this.targetFunction.functionDrawer.calcText;

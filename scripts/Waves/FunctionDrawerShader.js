@@ -8,6 +8,7 @@ const maxFunctions = 9;
 export class FunctionDrawerFactory{
     constructor(){}
     getFunctionDrawer(){
+        return FunctionDrawerCanvas;
         if(!this.isMobile() && this.webgl_support()){
             return FunctionDrawerShader;
         }else{
@@ -99,11 +100,8 @@ class FunctionDrawerShader {
                 this.gl.uniform2f(this.progDraw.iResolution, this.canvas.width, this.canvas.height);
             }
             window.addEventListener("resize",()=>{
-                this.canvas.width = 0;
-                this.canvas.width = this.canvas.parentElement.getBoundingClientRect().width;
-                //this.canvas.height = this.canvas.parentElement.getBoundingClientRect().height;
-            })
-            //resize();
+              this.onResize();  
+            });
             requestAnimationFrame(render);
         }
 
@@ -121,6 +119,12 @@ class FunctionDrawerShader {
         }
 
         initScene();
+    }
+    onResize(){
+        this.canvas.width = 0;
+        this.canvas.width = this.canvas.parentElement.getBoundingClientRect().width;
+        this.canvas.height=  this.canvas.getBoundingClientRect().height;
+        //this.canvas.height = this.canvas.parentElement.getBoundingClientRect().height;
     }
     drawCardResult(cardData) {
         //^list of cards
@@ -152,8 +156,26 @@ class FunctionDrawerCanvas{
     constructor(canvas){
         this.canvas = canvas;
         this.ctx = canvas.getContext("2d");
+        window.addEventListener("resize",()=>{
+            this.onResize();  
+        });
+    }
+    onResize(){
+        this.canvas.width = 0;
+        this.canvas.width = this.canvas.parentElement.getBoundingClientRect().width;
+        this.canvas.height=  this.canvas.getBoundingClientRect().height;
+        this.drawCardResult(false);
     }
     drawCardResult(cardData,points){
+        
+        
+        if(!cardData){
+            cardData = this.prevData.cardData;
+            points = this.prevData.points;
+        }else{
+            this.prevData = {cardData:cardData,points:points};
+        }
+
         var cardFuncer = new CardFuncer();
         cardFuncer.setCards(cardData);
 

@@ -43,10 +43,28 @@ if(urlParams.get('target' )&& urlParams.get('useable') && urlParams.get('thought
     };
 }
 
-getQuote((v)=>{
-    matchGame.start(gamDat.target,gamDat.useable,v.content,gamDat.icon)
-});
 var matchGame = new FunctionMatchGameWrapper();
+
+document.querySelector(".btn.back").textContent="harder";
+startGaem(1);
+
+var currentDifficulty = 1;
+function startGaem(d){
+    currentDifficulty = d;
+    getQuote((v)=>{
+        var target = useableTings.sort((a,b)=>Math.random()-0.5).slice(0,d);
+        matchGame.start(target,gamDat.useable,v.content,gamDat.icon,()=>{
+            startGaem(d+1);
+        });
+    });
+}
+var newCurveButton = document.createElement("div");
+newCurveButton.classList.add("btn","danger");
+newCurveButton.textContent  ="New Curve";
+newCurveButton.addEventListener("click",()=>{
+    startGaem(currentDifficulty);
+})
+document.querySelector(".btn.back").parentElement.appendChild(newCurveButton);
 
 
 

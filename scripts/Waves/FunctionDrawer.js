@@ -55,6 +55,11 @@ export class FunctionDrawer {
 
         this.functionDrawerShader.drawCardResult(cards,points);
     }
+    pokeTheRenderer(){
+        setTimeout(() => {
+            this.functionDrawerShader.onResize();
+        }, 10);
+    }
 }
 
 
