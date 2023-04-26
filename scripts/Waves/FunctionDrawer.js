@@ -1,7 +1,7 @@
 import TemplatedHtml from "../TemplatedHtml";
 import Vec2 from "../Vec2";
 import { FunctionListCalculator } from "./FunctionListCalculator";
-import { FunctionDrawerShader } from "./FunctionDrawerShader";
+import { FunctionDrawerFactory } from "./FunctionDrawerShader";
 
 
 export class FunctionDrawer {
@@ -21,8 +21,9 @@ export class FunctionDrawer {
 
         canvas.height = this.element.element.offsetHeight;
         canvas.width = this.element.element.offsetWidth;
-
-        this.functionDrawerShader = new FunctionDrawerShader(canvas);
+        
+        var fac = new FunctionDrawerFactory();
+        this.functionDrawerShader = new (fac.getFunctionDrawer())(canvas);
     }
 
     formatPointsForDisplay(points) {
@@ -52,7 +53,7 @@ export class FunctionDrawer {
 
         var points = this.functionListCalculator.calculateCardList(cards);
 
-        this.functionDrawerShader.drawCardResult(cards);
+        this.functionDrawerShader.drawCardResult(cards,points);
     }
 }
 

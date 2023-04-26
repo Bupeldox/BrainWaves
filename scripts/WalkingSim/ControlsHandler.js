@@ -76,6 +76,7 @@ class InteractionInputManager{
     }
 
     onInteractExit(p){
+        document.getElementById("startButton")?.remove();
         if(this.isPaused){
             return;
         }

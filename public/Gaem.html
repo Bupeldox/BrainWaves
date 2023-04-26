@@ -20,16 +20,16 @@
                 Match the Current function to the target by activating the gems in a order which produces the same curve
             </div>
             <div class="row">
-                
+
                 <div class="col">
-    
+
                     <div class="currentWave section">
                         <h2>
                             Current:
                         </h2>
                     </div>
                     <div class=" section">
-    
+
                         <div class="active">
                             <div class="currentFunc">
                             </div>
@@ -39,13 +39,13 @@
                     </div>
                 </div>
                 <div class="col">
-    
+
                     <div class="targetWave section">
                         <h2>
                             Target:
                         </h2>
                     </div>
-    
+
                     <div class="section">
                         <h3>Deets</h3>
                         <div class="score">Score: <span class="scoreOutput">2</span></div>
@@ -57,62 +57,77 @@
             </div>
         </div>
         <style>
+            #functionGameContainer {
+                width: 100%;
+            }
+
+            #functionGameContainer canvas {
+                width: 100%;
+            }
+
             .row {
                 display: flex;
                 flex-flow: row nowrap;
             }
-    
+
             .col {
                 flex: 1 1 50%;
             }
-    
+
             .gem {
                 height: 20px;
                 width: 20px;
                 background-color: #999;
                 margin: 5px;
             }
-    
+
             .inactive {
                 height: 300px;
             }
-    
+
             .active {
                 background-color: rgba(51, 85, 221, 0.514);
                 height: 4em;
                 display: flex;
                 flex-flow: row nowrap;
                 justify-content: center;
-                ;
                 align-items: center;
-                ;
             }
-            .section{
-                margin:1em;
+
+            .section {
+                margin: 1em;
+            }
+
+            body {
+                overflow: hidden;
+                ;
             }
         </style>
     </div>
-    
+
     <div class="container" id="walkingSimContainer">
         <div id="root">
 
         </div>
-        <button id=startButton>Start</button>
+        <button id="startButton">Start</button>
         <style>
             .gui-container .space {
-                width:33.3%;
-                height:33.3%;
-                flex:0 0 auto;
+                width: 33.3%;
+                height: 33.3%;
+                flex: 0 0 auto;
             }
-            .mobile-interaction button{
-                padding:20px;
-                margin-bottom: 1em;;
+
+            .mobile-interaction button {
+                padding: 20px;
+                margin-bottom: 1em;
             }
-            .wavesTransition{
-                transition:0.5s transform;
-                transform:scale(10);
+
+            .wavesTransition {
+                transition: 0.5s transform;
+                transform: scale(10);
             }
-            body{
+
+            #walkingSimContainer {
                 overflow: hidden;
             }
         </style>
@@ -147,11 +162,12 @@
         </div>
         <div class="gui-container"
             style="position: fixed; display: flex; bottom:0; width:100vw; flex-flow: row nowrap;">
-           
-           
+
+
         </div>
         <div class="mobile-directional-input">
-            <div class="direction" style="display: flex; flex-flow: row wrap; height:200px; width:200px; position:relative;">
+            <div class="direction"
+                style="display: flex; flex-flow: row wrap; height:200px; width:200px; position:relative;">
                 <div class="space"></div>
                 <button class="space btn-up">⬆</button>
                 <div class="space"></div>
@@ -189,7 +205,7 @@
         </div>
 
     </div>
-   
+
 
     <script src="./scripts/bundle.js"></script>
 
