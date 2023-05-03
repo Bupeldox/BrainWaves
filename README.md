@@ -1,7 +1,7 @@
 # BrainWaves
 Game idea with brainwaves
 
-(Do the thing here)[https://bupeldox.github.io/BrainWaves/public/]
+[Do the thing here](https://bupeldox.github.io/BrainWaves/public/)
 
 
 - Range of reader -> can read people on roof/across river
