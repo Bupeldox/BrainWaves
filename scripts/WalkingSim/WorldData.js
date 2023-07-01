@@ -49,7 +49,13 @@ export const tstreetData = {
             street: "street2",
             pos: { x: 150, y: -10 },
             backwards: true,
-        }]
+        },
+        {
+            street: "imgStreet3",
+            pos: { x: 0, y: -20 },
+            backwards: false,
+        }
+    ]
     },
     street2: {
         interactablesList: [
@@ -186,5 +192,99 @@ export const tstreetData = {
                 backwards: false,
             }
         ]
-    }
+    },
+    imgStreet1:{
+        backgroundImage:{
+            name:"street1.png"
+        },
+        interactablesList: [
+            () => new MessageInteractable(
+                {
+                    id: "statue",
+                    icon: "🌿",
+                    pos: new Vec2(100, -70)
+                }
+                ,[
+                    "a honce!",
+                    "I love this statue"
+                ]
+            )
+        ],
+        junctions: [{
+            street: "imgStreet2",
+            pos: { x: 132, y: -136 },
+            backwards: false,
+            angle:30,
+        },{
+            street: "imgStreet3",
+            pos: { x: 458, y: -136 },
+            backwards: true,
+            angle:30,
+        },]
+
+    },
+    imgStreet2:{
+        backgroundImage:{
+            name:"street2.png"
+        },
+        interactablesList: [
+            () => new MessageInteractable(
+                {
+                    id: "statue",
+                    icon: "🌿",
+                    pos: new Vec2(100, -70)
+                }
+                ,[
+                    "a honce!",
+                    "I love this statue"
+                ]
+            )
+        ],
+        junctions: [{
+            street: "imgStreet3",
+            pos: { x: 365, y: -138 },
+            backwards: false,
+            angle:30,
+        },{
+            street: "imgStreet1",
+            pos: { x: 667, y: -138 },
+            backwards: true,
+            angle:30,
+        }]
+
+    },
+    imgStreet3:{
+        backgroundImage:{
+            name:"street3.png"
+        },
+        interactablesList: [
+            () => new MessageInteractable(
+                {
+                    id: "statue",
+                    icon: "🌿",
+                    pos: new Vec2(100, -70)
+                }
+                ,[
+                    "a honce!",
+                    "I love this statue"
+                ]
+            )
+        ],
+        junctions: [{
+            street: "street1",
+            pos: { x: 192, y: -138 },
+            backwards: true,
+        },{
+            street: "imgStreet1",
+            pos: { x: 500, y: -140 },
+            backwards: false,
+            angle:30,
+        },{
+            street: "imgStreet2",
+            pos: { x: 787, y: -140 },
+            backwards: true,
+            angle:30,
+        }]
+
+    },
 };

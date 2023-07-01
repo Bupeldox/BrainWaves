@@ -94,7 +94,8 @@ export class World {
                     this.state.playerPos = playerPos;
                     this.state.streetId = streetId;
                     stateHandler.setState(worldStateName,this.state); 
-                });
+                }
+                );
 
             this.currentStreet = newStreet;
             this.currentStreet.setPlayer(this.player, playerPos);

@@ -8,8 +8,7 @@ export class StreetTransition {
         this.junctionTo = junctionTo;
         this.newStreet = newStreet;
         this.prevStreet = prevStreet;
-
-        var angle = 90;
+        var angle = prevStreet.angle||90;
 
         var prevWidth = this.prevStreet.element.element.offsetWidth;
         var prevHeight = this.prevStreet.element.element.offsetHeight;

@@ -1,6 +1,16 @@
+.path {
+  position: relative;
+}
+
 .background {
   display: flex;
   flex-flow: row nowrap;
+}
+
+.imgBackground {
+  position: absolute;
+  top: 0;
+  z-index: -1;
 }
 
 .foreground {
