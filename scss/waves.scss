@@ -23,10 +23,13 @@ body {
 }
 
 .thoughtTextArea {
-	padding-bottom: $padding/2;
+	padding-bottom: $padding*0.5;
 }
 .thought{
 	//text-align:center;
+	max-height: calc(61vh - 308px);
+	overflow-y: auto;
+
 	font-family:monospace;
 	padding:$padding;
 	padding-bottom:0;
@@ -96,7 +99,7 @@ body {
 	.cardFunctionCanvas {
 		position: absolute;
 		mix-blend-mode: multiply;
-		top: -$padding/2;
+		top: -$padding*0.5;
 	}
 	&.imageGem {
 		background-size: contain;
@@ -212,6 +215,11 @@ body {
 		flex-flow: row nowrap;
 	}
 
+	.thoughtText{
+		max-height: 45vh;
+		overflow-y: auto;
+		overflow-x:visible;
+	}
 
 	
 	/* ==== Left ==== */

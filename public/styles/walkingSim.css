@@ -51,12 +51,14 @@
 }
 
 #root {
-  width: 300px;
+  width: 1px;
 }
 
 .interactionMessage {
   background: #fff;
   box-shadow: rgba(0, 0, 0, 0.7333333333) 0 0 10px 10px;
+  width: 300px;
+  transform: translateX(-50%);
 }
 .interactionMessage .instructions {
   padding-left: 2em;

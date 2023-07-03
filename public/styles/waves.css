@@ -23,6 +23,8 @@ body {
 }
 
 .thought {
+  max-height: calc(61vh - 308px);
+  overflow-y: auto;
   font-family: monospace;
   padding: 1rem;
   padding-bottom: 0;
@@ -189,6 +191,11 @@ body {
   flex: 1 1;
   display: flex;
   flex-flow: row nowrap;
+}
+.functionEditor2 .thoughtText {
+  max-height: 45vh;
+  overflow-y: auto;
+  overflow-x: visible;
 }
 .functionEditor2 .curveEditor {
   flex: 0 1 42em;

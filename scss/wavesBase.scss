@@ -1,4 +1,6 @@
 
+@use "sass:math";
+
 $padding: 1rem;
 
 
@@ -43,7 +45,7 @@ $padding: 1rem;
     .cardFunctionCanvas {
         position: absolute;
         mix-blend-mode: multiply;
-        top: $padding/-2;
+        top: math.div($padding, -2);
     }
     &.imageGem {
         background-size: contain;
@@ -78,6 +80,9 @@ $padding: 1rem;
 
 .thought{
 	//text-align:center;
+    
+		max-height: calc(61vh - 308px);
+		overflow-y: auto;
 	font-family:monospace;
 	padding:$padding;
 	padding-bottom:0;
@@ -117,9 +122,9 @@ $padding: 1rem;
 
 
 .btn {
-	padding: $padding/2;
-	margin: $padding/4;
-	border-radius: $padding/8;
+	padding: $padding*0.5;
+	margin: $padding*0.25;
+	border-radius: $padding*0.125;
 
 	cursor: pointer;
 
