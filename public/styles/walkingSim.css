@@ -84,22 +84,22 @@
 .streetTransition {
   perspective: 500px;
   position: relative;
-  transition: 0.5s;
+  transition: var(--streetTransitionTime);
   transform-style: preserve-3d;
 }
 .streetTransition .streetAssembly {
   transform: rotateY(0deg) translatex(0) translatez(0);
   transform-style: preserve-3d;
   transition: opacity inherit;
-  transition: 0.5s;
-  transform-origin: center;
+  transition: var(--streetTransitionTime);
+  transform-origin: left;
 }
 .streetTransition .street {
   transform: rotateY(0deg) translatex(0) translatez(0);
-  transform-origin: center;
+  transform-origin: left;
   position: absolute;
   transform-style: preserve-3d;
-  transition: opacity 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+  transition: opacity var(--streetTransitionTime) cubic-bezier(0.33, 1, 0.68, 1);
   -webkit-font-smoothing: subpixel-antialiased;
 }
 .streetTransition .streetTo {

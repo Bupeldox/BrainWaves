@@ -213,13 +213,13 @@ export const tstreetData = {
         junctions: [{
             street: "imgStreet2",
             pos: { x: 132, y: -136 },
-            backwards: false,
-            angle:30,
+            backwards: true,
+            angle:60+180,
         },{
             street: "imgStreet3",
             pos: { x: 458, y: -136 },
-            backwards: true,
-            angle:30,
+            backwards: false,
+            angle:60+180,
         },]
 
     },
@@ -243,13 +243,13 @@ export const tstreetData = {
         junctions: [{
             street: "imgStreet3",
             pos: { x: 365, y: -138 },
-            backwards: false,
-            angle:30,
+            backwards: true,
+            angle:60+180,
         },{
             street: "imgStreet1",
             pos: { x: 667, y: -138 },
-            backwards: true,
-            angle:30,
+            backwards: false,
+            angle:60+180,
         }]
 
     },
@@ -277,13 +277,13 @@ export const tstreetData = {
         },{
             street: "imgStreet1",
             pos: { x: 500, y: -140 },
-            backwards: false,
-            angle:30,
+            backwards: true,
+            angle:60+180,
         },{
             street: "imgStreet2",
             pos: { x: 787, y: -140 },
-            backwards: true,
-            angle:30,
+            backwards: false,
+            angle:60+180,
         }]
 
     },

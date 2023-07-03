@@ -71,6 +71,7 @@ export class Street {
     setPlayer(player, pos) {
         player.setParent(this.element.getPart("middleground"));
         player.pos = pos;
+        this.player = player;
         this.interactables.forEach((e, i) => {
             if (e instanceof InteractableHelper) {
                 e.player = player;
@@ -83,6 +84,7 @@ export class Street {
     }
 
     draw() {
+        this.element.element.style.left=-this.player.pos.x+"px";
         this.interactables.forEach((i) => { if (i.draw) { i.draw() } });
     }
 

@@ -86,25 +86,25 @@
 .streetTransition {
   perspective: 500px;
   position: relative;
-  $transitionTime: 0.5s;
-  transition: $transitionTime;
+  //--streetTransitionTime: 1s;//0.5s;
+  transition: var(--streetTransitionTime);
   transform-style: preserve-3d;
 
   .streetAssembly {
     transform: rotateY(0deg) translatex(0) translatez(0);
     transform-style: preserve-3d;
     transition: opacity inherit;
-    transition: $transitionTime;
-    transform-origin: center;
+    transition: var(--streetTransitionTime);
+    transform-origin: left;
   }
 
   .street {
     transform: rotateY(0deg) translatex(0) translatez(0);
     //transition:0.5s;
-    transform-origin: center;
+    transform-origin: left;
     position: absolute;
     transform-style: preserve-3d;
-    transition: opacity $transitionTime cubic-bezier(0.33, 1, 0.68, 1);
+    transition: opacity var(--streetTransitionTime) cubic-bezier(0.33, 1, 0.68, 1);
     -webkit-font-smoothing: subpixel-antialiased;
   }
 

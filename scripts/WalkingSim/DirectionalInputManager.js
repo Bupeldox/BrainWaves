@@ -56,7 +56,7 @@ export class DirectionalInputManager {
 
         vecTotal = vecTotal.add(guiOutput);
 
-        return vecTotal.normalised();
+        return vecTotal;//.normalised();
     }
 }
 

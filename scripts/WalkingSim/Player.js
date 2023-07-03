@@ -30,7 +30,7 @@ export class Player {
         if (isNaN(dir.x)) {
             dir = new Vec2(0, 0);
         }
-        this.isMoving = dir.magnitude() > 0.01;
+        this.isMoving = dir.magnitude() > 0.01;//deadzone;
 
         if (this.isMoving) {
             dir = dir.times(this.perspective(this.pos.y));
