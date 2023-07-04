@@ -68,4 +68,8 @@ export default class Vec2 {
 	timesComponentwise(vec) {
 		return new Vec2(this.x * vec.x, this.y * vec.y);
 	}
+	round(){
+		return new Vec2(Math.round(this.x),Math.round(this.y));
+
+	}
 }

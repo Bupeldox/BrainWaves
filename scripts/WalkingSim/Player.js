@@ -44,6 +44,7 @@ export class Player {
             } else if (dir.x < 0) {
                 this.flip = false;
             }
+            document.getElementById("debugPlayerPos").textContent = JSON.stringify(this.pos.round());
         }
     }
 

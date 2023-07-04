@@ -37,6 +37,9 @@ class InteractionInputManager{
     }
 
     setupButtonEvents(){
+        document.getElementById("startButton").addEventListener("click",()=>{
+            document.getElementById("startButton")?.remove();
+        })
         this.guiElement.getPart("btn-e").addEventListener("click",(e)=>{
             this.onInteractExit(e);
             this.onInteract(e);

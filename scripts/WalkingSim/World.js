@@ -20,12 +20,14 @@ export class World {
 
         if(!this.state){
             this.state = {
-                streetId:"street1",
-                playerPos:{ x:0, y:0 }
+                streetId:"imgStreet3",
+                playerPos:{"x":415,"y":-105}
             }
         }
 
         this.changeStreet(this.state.streetId, false);
+        this.update();
+        this.draw();
         this.inStreetTransition = false;
     }
 

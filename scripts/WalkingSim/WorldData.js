@@ -195,29 +195,30 @@ export const tstreetData = {
     },
     imgStreet1:{
         backgroundImage:{
-            name:"street1.png"
+            name:"street1.png",
+            height:150
         },
         interactablesList: [
             () => new MessageInteractable(
                 {
-                    id: "statue",
-                    icon: "🌿",
-                    pos: new Vec2(100, -70)
+                    id: "StatueFront",
+                    img: "sign.svg",
+                    pos: new Vec2({"x":207,"y":-97})
                 }
                 ,[
-                    "a honce!",
+                    "A honce!",
                     "I love this statue"
                 ]
             )
         ],
         junctions: [{
             street: "imgStreet2",
-            pos: { x: 132, y: -136 },
+            pos: { x: 99, y: -102 },
             backwards: true,
-            angle:60+180,
+            angle:(60+180),
         },{
             street: "imgStreet3",
-            pos: { x: 458, y: -136 },
+            pos: { x: 343, y: -102 },
             backwards: false,
             angle:60+180,
         },]
@@ -225,29 +226,30 @@ export const tstreetData = {
     },
     imgStreet2:{
         backgroundImage:{
-            name:"street2.png"
+            name:"street2.png",
+            height:150
         },
         interactablesList: [
             () => new MessageInteractable(
                 {
-                    id: "statue",
-                    icon: "🌿",
-                    pos: new Vec2(100, -70)
+                    id: "StatueBack",
+                    img: "sign.svg",
+                    pos: new Vec2({"x":381,"y":-103})
                 }
                 ,[
-                    "a honce!",
+                    "Such a bean",
                     "I love this statue"
                 ]
             )
         ],
         junctions: [{
             street: "imgStreet3",
-            pos: { x: 365, y: -138 },
+            pos: { x: 274, y: -103 },
             backwards: true,
             angle:60+180,
         },{
             street: "imgStreet1",
-            pos: { x: 667, y: -138 },
+            pos: { x: 500, y: -103 },
             backwards: false,
             angle:60+180,
         }]
@@ -255,33 +257,35 @@ export const tstreetData = {
     },
     imgStreet3:{
         backgroundImage:{
-            name:"street3.png"
+            name:"street3.png",
+            height:150
         },
         interactablesList: [
             () => new MessageInteractable(
                 {
-                    id: "statue",
-                    icon: "🌿",
-                    pos: new Vec2(100, -70)
+                    id: "StatueProfile",
+                    img: "sign.svg",
+                    pos: new Vec2({"x":463,"y":-97})
                 }
                 ,[
-                    "a honce!",
-                    "I love this statue"
+                    "A Honce!",
+                    "What a magnificent statue!",
+                    "I love this statue :)",
                 ]
             )
         ],
         junctions: [{
             street: "street1",
-            pos: { x: 192, y: -138 },
+            pos: { x: 144, y: -103 },
             backwards: true,
         },{
             street: "imgStreet1",
-            pos: { x: 500, y: -140 },
+            pos: { x: 375, y: -105 },
             backwards: true,
             angle:60+180,
         },{
             street: "imgStreet2",
-            pos: { x: 787, y: -140 },
+            pos: { x: 590, y: -105 },
             backwards: false,
             angle:60+180,
         }]

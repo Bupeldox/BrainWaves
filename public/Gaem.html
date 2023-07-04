@@ -108,10 +108,16 @@
     </div>
 
     <div class="container" id="walkingSimContainer">
-        <div id="root">
-
+        <div style="height: 0;
+        display: flex;
+        flex-flow: column;
+        justify-content: flex-end;">
+            <div id="debugCurrentStreet"></div>
+            <div id="debugPlayerPos" style="user-select: all;"></div>
         </div>
-        <button id="startButton">Start</button>
+        <div id="root">
+        </div>
+        <button id="startButton" style="z-index: 100;">Start</button>
         <style>
             .gui-container .space {
                 width: 33.3%;

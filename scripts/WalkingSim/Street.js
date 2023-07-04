@@ -8,6 +8,7 @@ export class Street {
         this.element = new TemplatedHtml("path", document.getElementById("root"));
         this.changeStreet = changeStreetFunc;
         this.goToBrainWaves = goToBrainWaves;
+        
         this.setupBackground(streetData.backgroundImage);
         if(!streetData.backgroundImage){
             this.setupForeground();
@@ -28,7 +29,8 @@ export class Street {
             return;
         }
         var bgElement = this.element.getPart("background");
-        bgElement.outerHTML="<img class='imgBackground' src='"+assetUrlBase+bgDat.name+"' height='200'>";
+        var height = bgDat.height??150;
+        bgElement.outerHTML="<img class='imgBackground' src='"+assetUrlBase+bgDat.name+"' height='"+height+"'>";
     }
 
     setupForeground() {

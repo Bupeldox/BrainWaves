@@ -18,8 +18,12 @@ export class InteractableBase{
             "instructions",
             this.element.element
         );
-
-        this.element.getPart("icon").textContent = this.goData.icon;
+        if(this.goData.icon){
+            this.element.getPart("icon").textContent = this.goData.icon;
+        }else if(this.goData.img){
+            this.element.getPart("icon").classList.add("imgInteractable");
+            this.element.getPart("icon").innerHTML="<img style='width:1.2em;' src='./assets/World/"+this.goData.img+"'></img>";
+        }
         
         this.element.element.style.top = -this.pos.y + "px";
         this.element.element.style.left = this.pos.x + "px";
