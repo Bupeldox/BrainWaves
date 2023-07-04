@@ -21,6 +21,17 @@ export class ThoughtInteractable extends MessageInteractable{
         super.setup(parentElement);
         this.instructionsElement.updateText("E , R-Mind Read")
     }
+    draw(){
+        if(this.isInRange){
+            if(!this.wasInRange){    
+                window.thoughtReadButton.classList.add("highlighted");
+            }
+        }else if(this.wasInRange){
+            window.thoughtReadButton.classList.remove("highlighted");
+        }
+        this.wasInRange = this.isInRange;
+        super.draw();
+    }
 
     onThoughtRead(){
         this.gotoBrainWavesFunc(this.thought,this.goData.icon);

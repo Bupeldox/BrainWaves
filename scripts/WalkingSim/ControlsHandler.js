@@ -11,6 +11,7 @@ export default class ControlsHandler{
         this.directionInput = new DirectionalInputManager(this.guiContainer.element);
         this.interactionInput = new InteractionInputManager(this.guiContainer.element);
         this.directionInput.onButtonPress = ()=>{this.interactionInput.onInteractExit()};
+        window.thoughtReadButton = this.guiContainer.getPart("btn-r");//this is disgusting pls change. It's used on the thoughtReadInteractable
     }
     pause(){
         this.directionInput.isPaused = true;

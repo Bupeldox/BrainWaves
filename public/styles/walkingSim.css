@@ -108,4 +108,8 @@
   opacity: 0;
 }
 
+.btn-r.highlighted {
+  background-color: #49e849;
+}
+
 /*# sourceMappingURL=walkingSim.css.map */
