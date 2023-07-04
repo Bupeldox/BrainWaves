@@ -195,7 +195,7 @@ export const tstreetData = {
     },
     imgStreet1:{
         backgroundImage:{
-            name:"Street1.png"
+            name:"street1.png"
         },
         interactablesList: [
             () => new MessageInteractable(
