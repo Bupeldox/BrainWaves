@@ -45,9 +45,20 @@ export class MessageInteractable extends InteractableBase {
             "interactionMessage",
             document.getElementById("root")
         );
+        this.messageElement.element.addEventListener("click",()=>{
+            this.onInteractExit();
+            if(this.messages.length>this.state.messageIndex){
+                this.onInteract(this.onMessageClose);
+            }
+        });
+        
+        this.messageElement.getPart("instructions").classList.add("show");
         if(this.messages.length>this.state.messageIndex+1){
-            this.messageElement.getPart("instructions").classList.add("show");
+        }else{
+            //this.messageElement.getPart("instructions").classList.add("show");
+            this.messageElement.getPart("instructions").textContent = "Close (Move)";
         }
+
         this.messageElement.updateText(text,"text")
     }
 }

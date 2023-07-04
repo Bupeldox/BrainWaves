@@ -39,10 +39,11 @@ export class FunctionEditor {
                     (i + 1) / (2 + ar.length),
                     this.baseElement.getCardStore()
                 );
+                var f = (i % 4);
+                var s = Math.floor(i/4);
+                cardd.position.y = 0.1 + s/3 ;
                 
-                cardd.position.y = 0.1 + (i % 3)/3;
-                
-                cardd.position.x = (0.3+Math.floor(i/3))/4;
+                cardd.position.x = (0.3+f)/4;
 
                 cardd.updateToNewPosition();
                 return cardd;
