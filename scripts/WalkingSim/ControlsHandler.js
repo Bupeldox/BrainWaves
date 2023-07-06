@@ -30,6 +30,7 @@ class InteractionInputManager{
     constructor(guiContainer){
         this.guiElement = new TemplatedHtml("mobile-interaction",guiContainer);
         
+        this.devInteractionRegister = new EventRegister();
         this.interactEventRegister = new EventRegister();
         this.mindReadEventRegister = new EventRegister();
         this.interactionExitEventRegister = new EventRegister();
@@ -50,6 +51,8 @@ class InteractionInputManager{
             this.onMindRead(e);
         });
 
+        
+
         document.addEventListener("keydown",(e)=>{
             this.onInteractExit(e);
 
@@ -59,6 +62,9 @@ class InteractionInputManager{
                     break;
                 case "r":
                     this.onMindRead(e);     
+                    break;
+                case"q": 
+                    this.onDevInteraction();
                     break;
             }
         })
@@ -78,7 +84,12 @@ class InteractionInputManager{
         }
         this.mindReadEventRegister.onEvent(p);
     }
-
+    onDevInteraction(p){
+        if(this.pause){
+            return;
+        }
+        this.devInteractionRegister.onEvent(p);
+    }
     onInteractExit(p){
         document.getElementById("startButton")?.remove();
         if(this.isPaused){

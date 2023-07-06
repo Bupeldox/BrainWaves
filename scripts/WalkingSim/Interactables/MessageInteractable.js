@@ -7,6 +7,10 @@ import { InteractableBase } from "./InteractablesBase";
 
 export class MessageInteractable extends InteractableBase {
     constructor (goData, messages) {
+        if(goData.hasOwnProperty("messages")){
+            messages = goData.messages;
+            goData = goData.goData;
+        }
         super(goData);
         this.messages = messages;
         this.state = stateHandler.getState(goData.id);

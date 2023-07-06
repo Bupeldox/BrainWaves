@@ -108,12 +108,17 @@
     </div>
 
     <div class="container" id="walkingSimContainer">
-        <div style="height: 0;
+        <div id="devshit" style="height: 0;
         display: flex;
         flex-flow: column;
         justify-content: flex-end;">
             <div id="debugCurrentStreet"></div>
             <div id="debugPlayerPos" style="user-select: all;"></div>
+            <select id="devTask"></select>
+            <div id="messageObjectOutputJson" style="user-select: all;
+            width: 100px;
+            overflow: clip;
+            height: 1.3em;"></div>
         </div>
         <div id="root">
         </div>
@@ -217,7 +222,13 @@
 
 
     <script src="./scripts/bundle.js"></script>
+    <script>
+         
+        if(!(new URLSearchParams(window.location.search)).get("dev")){
+            document.getElementById("devshit").style.display="none";
+        }
 
+    </script>
 </body>
 
 </html>

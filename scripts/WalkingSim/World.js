@@ -1,5 +1,6 @@
 import TemplatedHtml from "../TemplatedHtml";
 import Vec2 from "../Vec2";
+import { devInteractions } from "./InteractableDevInteractions";
 import { Player } from "./Player";
 import { stateHandler } from "./StateHandler";
 import { Street } from "./Street";
@@ -17,7 +18,7 @@ export class World {
         this.player = new Player(document.body,this.controlsHandler.directionInput);
         this.goToWaves = goToWaves;
         this.state = stateHandler.getState(worldStateName);
-
+        devInteractions.setup(this);
         if(!this.state){
             this.state = {
                 streetId:"imgStreet3",
@@ -76,14 +77,15 @@ export class World {
             playerPos = new Vec2(newStreetData.junctions.find(i => i.street == prevStreetId).pos);
         }
         this.streetId = streetId;
-
+        
+        
         if (prevStreetId) {
             var newStreet = new Street(tstreetData[streetId], (s) => { this.changeStreet(s); },(a,b)=>{this.goToBrainWaves(a,b)},this.controlsHandler.interactionInput);
             var prevStreet = this.currentStreet;
-
+            
             var junctionFrom = tstreetData[prevStreetId].junctions.find(i => i.street == streetId);
             var junctionTo = tstreetData[streetId].junctions.find(i => i.street == prevStreetId);
-
+            
             this.stuffThatNeedsUpdating = [];
             new StreetTransition(
                 prevStreet,
@@ -103,6 +105,7 @@ export class World {
             this.currentStreet.setPlayer(this.player, playerPos);
             this.stuffThatNeedsUpdating.push(this.currentStreet);
         } else {
+            this.currentStreet?.destroy();
             this.currentStreet = new Street(tstreetData[streetId], (s) => {
                  this.changeStreet(s); 
                 },(a,b)=>{this.goToBrainWaves(a,b)},this.controlsHandler.interactionInput);
@@ -114,6 +117,7 @@ export class World {
     update() {
         this.player.update();
         this.stuffThatNeedsUpdating.forEach((i) => i.update());
+        devInteractions.update(this.player);
     }
 
     draw() {

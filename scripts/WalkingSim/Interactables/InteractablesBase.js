@@ -1,10 +1,12 @@
 import TemplatedHtml from "../../TemplatedHtml";
+import Vec2 from "../../Vec2";
+import { DevInteractions } from "../InteractableDevInteractions";
 
 
 //interface
-export class InteractableBase{
+export class InteractableBase {
     constructor(goData,interactionManager){
-        this.pos = goData.pos;
+        this.pos = new Vec2(goData.pos);
         this.isInRange = false;
         this.goData = goData;
         this.deactivated = false;
@@ -24,11 +26,13 @@ export class InteractableBase{
             this.element.getPart("icon").classList.add("imgInteractable");
             this.element.getPart("icon").innerHTML="<img style='width:1.2em;' src='./assets/World/"+this.goData.img+"'></img>";
         }
-        
+        this.updatePos(this.pos);
+    }
+    updatePos(newPos){
+        this.pos = newPos;
         this.element.element.style.top = -this.pos.y + "px";
         this.element.element.style.left = this.pos.x + "px";
     }
-    
     update(){
 
     }
@@ -53,6 +57,7 @@ export class InteractableBase{
     onInteractExit(){
 
     }
+    
     deactivate(){
         this.deactivated=true;
         this.instructionsElement.element.classList.remove("show");
@@ -62,7 +67,6 @@ export class InteractableBase{
         delete this;
     }
 }
-
 
 
 

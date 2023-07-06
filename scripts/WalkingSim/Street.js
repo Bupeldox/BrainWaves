@@ -6,6 +6,7 @@ const assetUrlBase = "./assets/World/";
 export class Street {
     constructor(streetData, changeStreetFunc, goToBrainWaves, interactionInputManager) {
         this.element = new TemplatedHtml("path", document.getElementById("root"));
+        this.interactionInputManager = interactionInputManager;
         this.changeStreet = changeStreetFunc;
         this.goToBrainWaves = goToBrainWaves;
         
@@ -13,7 +14,7 @@ export class Street {
         if(!streetData.backgroundImage){
             this.setupForeground();
         }
-        this.setupMidground(streetData, interactionInputManager);
+        this.setupMidground(streetData);
     }
 
     setupBackground(bgDat) {
@@ -43,15 +44,11 @@ export class Street {
         }
     }
 
-    setupMidground(streetData, interactionHelper) {
+    setupMidground(streetData) {
         this.interactables = [];
         for (var i = 0; i < streetData.interactablesList.length; i++) {
-            var dat = streetData.interactablesList[i]();
-
-            dat.setup(this.element.getPart("middleground"), this.goToBrainWaves);
-
-            this.interactables.push(dat);
-            this.interactables.push(new InteractableHelper(this.player, dat, interactionHelper));
+            var dat = streetData.interactablesList[i];
+            this.addInteractable(dat);
         }
 
 
@@ -66,8 +63,18 @@ export class Street {
             let intr = new CallbackInteractable(interactableData);
             intr.setup(this.element.getPart("middleground"), () => { this.changeStreet(junctionDat.street) });
             this.interactables.push(intr);
-            this.interactables.push(new InteractableHelper(this.player, intr, interactionHelper));
+            this.interactables.push(new InteractableHelper(this.player, intr, this.interactionInputManager));
         }
+    }
+
+    addInteractable(thing){
+
+        var dat = thing();
+        dat.setup(this.element.getPart("middleground"), this.goToBrainWaves);
+
+        this.interactables.push(dat);
+        this.interactables.push(new InteractableHelper(this.player, dat, this.interactionInputManager));
+
     }
 
     setPlayer(player, pos) {
