@@ -64,6 +64,7 @@ export class World {
         if (this.inStreetTransition) {
             return;
         }
+        document.getElementById("debugCurrentStreet").textContent = streetId;
         
         this.inStreetTransition = true;
         var prevStreetId = this.streetId;
@@ -102,6 +103,7 @@ export class World {
                 );
 
             this.currentStreet = newStreet;
+            
             this.currentStreet.setPlayer(this.player, playerPos);
             this.stuffThatNeedsUpdating.push(this.currentStreet);
         } else {

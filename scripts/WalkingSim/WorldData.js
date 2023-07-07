@@ -271,7 +271,16 @@ export const tstreetData = {
                     "A Honce!",
                     "What a magnificent statue!",
                     "I love this statue :)",
-                ]
+                ],
+            ),
+            ()=>new MessageInteractable({"goData":{"id":"esrgsergt","icon":"🏠","pos":{"x":222.3000000000005,"y":-101.19999999999999}},"messages":["This looks like a house","There is stuff inside","It looks like there was a party last night","pizza boxes on the floor, drinks on the ceiling","Dead bodies in the cupboards","Looked like fun, shame i couldn't be there."]}),
+            ()=>new ThoughtInteractable(
+                {"id":"Sculpterwefwf","icon":"👩‍🎨","pos":{"x":408.29999999999916,"y":-97.79999999999995}},
+                ["This is my masterpiece","Just installed last week, I'm checking up on it","Beautiful isn't it, the way it catches the light at at different times is captivating","The emotions of it change with the weather."," I couldn't have comprehended it before it was unveiled. I'm so glad it is out in the open."],
+                {
+                    thought:"This scrub knows Nothing of art, the paint and suffering that went into every stroke of the wax mold that was lost to create this. Pitiful.",
+                    target:[8,3]
+                }
             )
         ],
         junctions: [{

@@ -14,7 +14,7 @@ export class StreetTransition {
         transitionTime = (2000 - Math.min(1500,transitionCount*400))*Math.max((angle/90),1);
         this.newStreet = newStreet;
         this.prevStreet = prevStreet;
-        document.getElementById("debugCurrentStreet").textContent = junctionFrom.street;
+        
 
         this.transitionElement.element.style.setProperty("--streetTransitionTime", (transitionTime/1000)+"s");
         

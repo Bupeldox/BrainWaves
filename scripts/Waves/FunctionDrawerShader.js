@@ -41,7 +41,7 @@ class FunctionDrawerShader {
         this.mousepos = [0, 0];
         this.progDraw;
 
-        let initScene = () => {
+        let initScene = async () => {
 
             this.gl = canvas.getContext("webgl");
             if (!this.gl)
@@ -63,8 +63,39 @@ class FunctionDrawerShader {
                 this.gl.attachShader(this.progDraw, shaderObj);
                 this.gl.linkProgram(this.progDraw);
             }
-            status = this.gl.getProgramParameter(this.progDraw, this.gl.LINK_STATUS);
+            
+
+            
+            function* linkingProgress(programs) {
+                const ext = this.gl.getExtension("KHR_parallel_shader_compile");
+                let todo = programs.slice();
+                while (todo.length) {
+                  if (ext) {
+                    todo = todo.filter(
+                      (x) => !gl.getProgramParameter(x, ext.COMPLETION_STATUS_KHR)
+                    );
+                  } else {
+                    const x = todo.pop();
+                    gl.getProgramParameter(x, gl.LINK_STATUS);
+                  }
+                  if (!todo.length) return;
+                  yield 1.0 - todo.length / programs.length;
+                }
+              }
+
+            
+
+            const ext = this.gl.getExtension("KHR_parallel_shader_compile");
+            if(ext){
+                status = this.gl.getProgramParameter(this.progDraw, ext.COMPLETION_STATUS_KHR);
+                console.log("doing khr thing");
+            }else{
+                status = this.gl.getProgramParameter(this.progDraw, this.gl.LINK_STATUS);
+                console.log("not doing khr thing");
+            }
             if (!status) console.error(this.gl.getProgramInfoLog(this.progDraw));
+
+
             this.progDraw.inPos = this.gl.getAttribLocation(this.progDraw, "inPos");
             this.progDraw.iTime = this.gl.getUniformLocation(this.progDraw, "iTime");
             this.progDraw.iMouse = this.gl.getUniformLocation(this.progDraw, "iMouse");
@@ -117,8 +148,12 @@ class FunctionDrawerShader {
             requestAnimationFrame(render);
         }
 
+        
+
         initScene();
+        
     }
+    
     onResize(){
         this.canvas.width = 0;
         this.canvas.width = this.canvas.parentElement.getBoundingClientRect().width;
@@ -127,7 +162,9 @@ class FunctionDrawerShader {
     }
     drawCardResult(cardData) {
         //^list of cards
-
+        if(!this.gl){
+            return;
+        }
         var activeCards = cardData.filter(i => i.activation != 0);
 
         //already sorted

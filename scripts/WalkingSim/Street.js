@@ -74,7 +74,7 @@ export class Street {
 
         this.interactables.push(dat);
         this.interactables.push(new InteractableHelper(this.player, dat, this.interactionInputManager));
-
+        return dat;
     }
 
     setPlayer(player, pos) {

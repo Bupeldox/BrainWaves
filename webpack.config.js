@@ -22,7 +22,7 @@ module.exports = {
   devServer: {
     static: './public',
 
-   hot: false,
+    hot: false,
   },
 
 };

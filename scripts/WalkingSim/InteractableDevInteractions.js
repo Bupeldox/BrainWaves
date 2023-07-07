@@ -3,6 +3,7 @@ import { MessageInteractable } from "./Interactables/MessageInteractable";
 const devInteractionCodes = {
     Export:1,
     MoveToggle:2,
+    Create:3
 };
 (function(){
     var hs = "";
@@ -52,18 +53,12 @@ class DevInteractions {
             break;
             case devInteractionCodes.MoveToggle:
                 if(inAccessible){return;}
+                this.toggleMoving(interactable);
                 
-                this.isMoving = !this.isMoving;
-                
-                if(this.isMoving){
-                    this.movingInteractable = interactable;
-                }else{
-                    this.movingInteractable = null;
-                }
             break;
             case devInteractionCodes.Create:
-                if(this.this.onlyOneCounter == 0){
-                    this.this.onlyOneCounter++;
+                if(this.onlyOneCounter == 0){
+                    this.onlyOneCounter++;
                     this.createInteractable();
                 }
             break;
@@ -71,6 +66,16 @@ class DevInteractions {
                 break;
         }
     }   
+    toggleMoving(interactable){
+        this.isMoving = !this.isMoving;
+                
+        if(this.isMoving){
+            this.movingInteractable = interactable;
+        }else{
+            this.movingInteractable = null;
+        }
+    }
+
     update(player){
         this.onlyOneCounter = 0;
         this.player = player;
@@ -85,14 +90,15 @@ class DevInteractions {
             {
                 id: "idkDoesItEvenNeedAnId?",
                 icon: "🆕",
-                pos: playerPos,
+                pos: playerPos.round(),
             }
             ,[
                 "The text",
                 "goes here"
             ]
         );
-        this.world.currentStreet.addInteractable(dat);
+        var obj = this.world.currentStreet.addInteractable(dat);
+        this.showJson(obj);
     }
 
     showJson(interactable) {

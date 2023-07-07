@@ -49,8 +49,8 @@ export class Player {
     }
 
     draw() {
-        this.element.element.style.top = -this.pos.y + "px";
-        this.element.element.style.left = this.pos.x + "px";
+        this.element.element.style.top = -Math.round(this.pos.y) + "px";
+        this.element.element.style.left = Math.round(this.pos.x) + "px";
 
         var scale = new Vec2(1, 1);
         
