@@ -108,10 +108,16 @@
     </div>
 
     <div class="container" id="walkingSimContainer">
-        <div id="devshit" style="height: 0;
-        display: flex;
-        flex-flow: column;
-        justify-content: flex-end;">
+        <div id="devshit" style="
+            position: absolute;
+            top: 4em;
+            left: 0;
+            background: #fff;
+            border:1px solid #553;
+            height: calc(100vh - calc(4em + 217px));
+            overflow-y: scroll;
+            padding: 1em;
+            ">
             <div id="debugCurrentStreet"></div>
             <div id="debugPlayerPos" style="user-select: all;"></div>
             <select id="devTask"></select>
@@ -198,6 +204,14 @@
             <button class="btn-e">Interact (E)</button><br>
             <button class="btn-r">Mind Read (R)</button>
         </div>
+
+        <div class="devMessageEdit">
+            <h2>Edit Messages of <span class="showIcon"></span></h2>
+            <div class="messages"></div>
+            <button class="btn-submit">Save</button>
+            <button class="btn-close">Close</button>
+        </div> 
+        <div class="devMessageEditRow"><input type="text" class="text"/><button class="btn-add">+\/</button><button class="btn-remove">x</button></div>
 
         <!--Waves-->
         <div class="thought">
