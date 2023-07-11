@@ -4,15 +4,27 @@ import { InteractableBase } from "./InteractablesBase";
 
 
 
+/*{
+    id,
+    backgroundImage?,
+    interactablesList:[
+        {
+            id,type,icon,pos,
+            data:{
+                messages
+                thought?
+            }
+        }
+    ]
+
+}
+*/
 
 export class MessageInteractable extends InteractableBase {
-    constructor (goData, messages) {
-        if(goData.hasOwnProperty("messages")){
-            messages = goData.messages;
-            goData = goData.goData;
-        }
+    constructor (goData, iData) {
+       
         super(goData);
-        this.messages = messages;
+        this.messages = iData.messages;
         this.state = stateHandler.getState(goData.id);
         if (!this.state) {
             this.state = {

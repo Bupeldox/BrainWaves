@@ -6,14 +6,14 @@ import { MessageInteractable } from "./MessageInteractable";
 
 export class ThoughtInteractable extends MessageInteractable{
 
-    constructor(goData, messages, thought){
+    constructor(goData, iData){
         //thought
         /*
             target,
             thought
         */
-        super(goData,messages)
-        this.thought = thought
+        super(goData,iData)
+        this.thought = iData.thought;
     }
 
     setup(parentElement,gotoBrainWavesFunc){

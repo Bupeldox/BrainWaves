@@ -21,7 +21,7 @@ export class World {
         devInteractions.setup(this);
         if(!this.state){
             this.state = {
-                streetId:"imgStreet3",
+                streetId:Object.keys(tstreetData)[0],
                 playerPos:{"x":415,"y":-105}
             }
         }

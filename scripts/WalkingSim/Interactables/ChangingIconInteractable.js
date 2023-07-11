@@ -3,11 +3,11 @@ import { MessageInteractable } from "./MessageInteractable";
 
 export class ChangingIconInteractable extends MessageInteractable{
 
-    constructor(goData,messagesWithIcons){
-        var messages = messagesWithIcons.map(i=>i.message);
-        super(goData,messages);
+    constructor(goData,iData){
+        var messages = iData.messages.map(i=>i.message);
+        super(goData,{messages:messages});
 
-        this.messagesWithIcons = messagesWithIcons;
+        this.messagesWithIcons = iData.messages;
     }
 
     setup(parentElem){

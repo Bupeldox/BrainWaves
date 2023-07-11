@@ -1,11 +1,12 @@
 import { stateHandler } from "../StateHandler";
+import { interactablesFunctions } from "../WorldData";
 import { MessageInteractable } from "./MessageInteractable";
 
 
 export class DoStuffInteractable extends MessageInteractable {
-    constructor(goData, messages, onState) {
-        super(goData, messages);
-        this.onState = onState;
+    constructor(goData, iData) {
+        super(goData, iData);
+        this.onState = interactablesFunctions[iData.onState];
     }
 
     setup(parent) {
