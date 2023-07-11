@@ -21,8 +21,11 @@ module.exports = {
   },
   devServer: {
     static: './public',
-
+   
     hot: false,
   },
+  watchOptions: {
+    ignored: '**/*.json',
 
+  },
 };

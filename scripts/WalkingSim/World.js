@@ -1,6 +1,6 @@
 import TemplatedHtml from "../TemplatedHtml";
 import Vec2 from "../Vec2";
-import { devInteractions } from "./InteractableDevInteractions";
+import { devInteractions } from "./DevInteractions";
 import { Player } from "./Player";
 import { stateHandler } from "./StateHandler";
 import { Street } from "./Street";

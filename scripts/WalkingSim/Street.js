@@ -9,9 +9,11 @@ export class Street {
         this.interactionInputManager = interactionInputManager;
         this.changeStreet = changeStreetFunc;
         this.goToBrainWaves = goToBrainWaves;
-        
-        this.setupBackground(streetData.backgroundImage);
-        if(!streetData.backgroundImage){
+        if(streetData.hasOwnProperty("backgroundImage")){
+            this.setupBackground(streetData.backgroundImage);
+        }
+        else{
+            this.setupBackground();
             this.setupForeground();
         }
         this.setupMidground(streetData);

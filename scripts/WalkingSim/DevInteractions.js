@@ -1,5 +1,6 @@
 import TemplatedHtml from "../TemplatedHtml";
 import { MessageInteractable } from "./Interactables/MessageInteractable";
+import { worldRawData } from "./WorldData";
 
 const devInteractionCodes = {
     Export: 1,
@@ -28,9 +29,42 @@ const devInteractionCodes = {
 
 })();
 
+class dealWithSavingStuff{
+    constructor(){
+
+    }
+    
+    getById(streetId,id){
+        var item = worldRawData.streets.find(i=>i.id == streetId).interactablesList.find(i=>i.basicDat.id==id);
+        return item;
+    }
+    updateItem(street,itemDat){
+        //get by id
+        //if it doesn't exist add it
+        //else replace it3
+        var item = this.getById(street,itemDat.basicDat.id);
+        item = itemDat;
+        //save the streetDat
+        this.saveStreetDat();
+    }
+    saveStreetDat(){
+
+        fetch("http://localhost:3000/", {
+            method: "POST",
+            body: JSON.stringify(worldRawData),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        });
+
+
+    }
+}
+
 class DevInteractions {
 
     constructor() {
+        this.saver = new dealWithSavingStuff();
         this.isMoving = false;
         this.movingInteractable = null;
         this.onlyOneCounter = 0;
@@ -85,7 +119,18 @@ class DevInteractions {
         if (this.isMoving) {
             this.movingInteractable = interactable;
         } else {
-            this.movingInteractable = null;
+            //get thign out
+            //change pos
+            //save
+
+            var item = this.saver.getById(this.world.state.streetId,this.movingInteractable.goData.id);
+            
+            item.basicDat.pos.x = this.movingInteractable.pos.x;
+            item.basicDat.pos.y = this.movingInteractable.pos.y;
+
+            this.saver.updateItem(this.world.state.streetId,item);
+            
+            this.movingInteractable = null; 
         }
     }
 
@@ -101,7 +146,7 @@ class DevInteractions {
         var playerPos = this.player.pos.clone();
         var dat = () => new MessageInteractable(
             {
-                id: "idkDoesItEvenNeedAnId?",
+                id: "idkDoesItEvenNeedAnId?"+Math.random(),
                 icon: "🆕",
                 pos: playerPos.round(),
             }
@@ -111,6 +156,7 @@ class DevInteractions {
             ]
         );
         var obj = this.world.currentStreet.addInteractable(dat);
+        this.saver.updateItem(this.world.state.streetId,obj);
         this.showJson(obj);
     }
 
@@ -132,6 +178,7 @@ class DevInteractions {
     showMessageEditUserInterface(i) {
         new EditMessagesUserInterface(i, document.getElementById("devshit"), () => { this.showJson(i) });
     }
+
 }
 
 function insertAfter(referenceNode, newNode) {

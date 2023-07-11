@@ -1,4 +1,4 @@
-import { devInteractions } from "./InteractableDevInteractions";
+import { devInteractions } from "./DevInteractions";
 
 const range = 20;
 

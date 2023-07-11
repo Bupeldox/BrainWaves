@@ -1,6 +1,6 @@
 import TemplatedHtml from "../../TemplatedHtml";
 import Vec2 from "../../Vec2";
-import { DevInteractions } from "../InteractableDevInteractions";
+import { DevInteractions } from "../DevInteractions";
 
 
 //interface

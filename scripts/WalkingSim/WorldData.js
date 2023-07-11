@@ -1,12 +1,11 @@
 
-// import Vec2 from "../Vec2";
-// import { CallbackInteractable } from "./Interactables/CallbackInteractable";
 import { ChangingIconInteractable } from "./Interactables/ChangingIconInteractable";
 import { DoStuffInteractable } from "./Interactables/DoStuffInteractable";
 import { MessageInteractable } from "./Interactables/MessageInteractable";
 import { ThoughtInteractable } from "./Interactables/ThoughInteractable";
 import worldJson from "./WorldData.json";
 
+export var worldRawData = worldJson; 
 
 //  const tempDisabletstreetData = {
 //     street1: {
@@ -366,4 +365,4 @@ function convertWorldJsonIntoSomethingTheRestOfTheCodeKnowsAboutBecauseICBAToCha
 
 
 
-export const tstreetData = convertWorldJsonIntoSomethingTheRestOfTheCodeKnowsAboutBecauseICBAToChangeThat();
+export var tstreetData = convertWorldJsonIntoSomethingTheRestOfTheCodeKnowsAboutBecauseICBAToChangeThat();
