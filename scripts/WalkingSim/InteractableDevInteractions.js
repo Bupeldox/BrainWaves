@@ -7,6 +7,7 @@ const devInteractionCodes = {
     Create: 3,
     EditMessages: 4
 };
+
 (function () {
     var hs = "";
     for (var i in devInteractionCodes) {
@@ -26,8 +27,6 @@ const devInteractionCodes = {
     })
 
 })();
-
-
 
 class DevInteractions {
 
@@ -143,7 +142,7 @@ class EditMessagesUserInterface {
 
     constructor(messageInteractable, htmlParent, onSave) {
         this.onSave = onSave;
-        this.i = messageInteractable;
+        this.messageInteractable = messageInteractable;
         this.element = new TemplatedHtml("devMessageEdit", htmlParent);
         
         messageInteractable.messages.forEach(i=>{
@@ -156,7 +155,7 @@ class EditMessagesUserInterface {
     }
     getNewRowElement(text) {
         var newInputElement = new TemplatedHtml("devMessageEditRow");
-        newInputElement.getPart("text").value = text;
+        newInputElement.getPart("text").value = text??"";
         newInputElement.getPart("btn-add").addEventListener("click", (e) => { this.addMessage(e) });
         newInputElement.getPart("btn-remove").addEventListener("click", (e) => { this.removeMessage(e) });
         this.element.getPart("messages").appendChild(newInputElement.element);
@@ -176,13 +175,13 @@ class EditMessagesUserInterface {
         caller.remove();
     }
     getMessageData() {
-        var messages = this.element.element.childNodes().map(i => i.getElementsByTagName("input").value);
+        var messages = [...this.element.getPart("messages").children].map(i => i.getElementsByTagName("input")[0].value);
         return messages;
     }
     onSubmit() {
-        var messages = getMessageData;
-        messageInteractable.messages = messages;
-        messages.state.messageIndex = 0;
+        var messages = this.getMessageData();
+        this.messageInteractable.messages = messages;
+        this.messageInteractable.state.messageIndex = 0;
         this.onSave();
         this.destroy();
     }
@@ -195,5 +194,5 @@ class EditMessagesUserInterface {
 
 
 
-
+//singleton thing, i cba to do this properly. its dev shit anyway.
 export const devInteractions = new DevInteractions();
