@@ -38,7 +38,7 @@ class FunctionDrawerShader {
         this.vp_size;
         this.prog;
         this.bufObj = {};
-        this.mousepos = [0, 0];
+        this.mousePos = [0, 0];
         this.progDraw;
 
         let initScene = async () => {
@@ -48,7 +48,7 @@ class FunctionDrawerShader {
                 return;
 
             this.canvas.addEventListener('mousemove', (e) => {
-                this.mousepos = [e.clientX, e.clientY];
+                this.mousePos = [e.clientX, e.clientY];
             });
 
             this.progDraw = this.gl.createProgram();
@@ -142,7 +142,7 @@ class FunctionDrawerShader {
 
             this.gl.uniform1f(this.progDraw.iTime, deltaMS / 1000.0);
             this.gl.uniform2f(this.progDraw.iResolution, this.canvas.width, this.canvas.height);
-            this.gl.uniform2f(this.progDraw.iMouse, this.mousepos[0], this.mousepos[1]);
+            this.gl.uniform2f(this.progDraw.iMouse, this.mousePos[0], this.mousePos[1]);
             this.gl.drawElements(this.gl.TRIANGLES, this.bufObj.inx.len, this.gl.UNSIGNED_SHORT, 0);
 
             requestAnimationFrame(render);
