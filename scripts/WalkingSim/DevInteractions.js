@@ -1,6 +1,52 @@
 import TemplatedHtml from "../TemplatedHtml";
-import { MessageInteractable } from "./Interactables/MessageInteractable";
+
 import { worldRawData } from "./WorldData";
+
+import { ChangingIconInteractable } from "./Interactables/ChangingIconInteractable";
+import { DoStuffInteractable } from "./Interactables/DoStuffInteractable";
+import { MessageInteractable } from "./Interactables/MessageInteractable";
+import { ThoughtInteractable } from "./Interactables/ThoughInteractable";
+
+class InteractableFactory {
+    constructor() {
+    }
+    createCretorFunc(data) {
+        var classType = this.getTheInteractableClass(data.type);
+
+        return () => { return (classType(data.basicDat, data.data)); };
+        /*
+            {
+                basicDat:{
+                    id,type,icon,pos,
+                }
+                data:{
+                    messages
+                    thought?
+                }
+            }
+           
+        */
+        //returns a function
+    }
+
+    getTheInteractableClass(type) {
+        switch (type) {
+            case "MessageInteractable":
+                return (...a) => new MessageInteractable(...a);
+            case "ChangingIconInteractable":
+                return (...a) => new ChangingIconInteractable(...a);
+            case "ThoughtInteractable":
+                return (...a) => new ThoughtInteractable(...a);
+            case "DoStuffInteractable":
+                return (...a) => new DoStuffInteractable(...a);
+            default:
+                break;
+        }
+    }
+}
+
+
+const interactableFactory = new InteractableFactory();
 
 const devInteractionCodes = {
     Export: 1,
@@ -43,7 +89,11 @@ class dealWithSavingStuff{
         //if it doesn't exist add it
         //else replace it3
         var item = this.getById(street,itemDat.basicDat.id);
-        item = itemDat;
+        if(!item){
+            worldRawData.streets.find(i=>i.id == street).interactablesList.push(itemDat);
+        }else{
+            item = itemDat;
+        }
         //save the streetDat
         this.saveStreetDat();
     }
@@ -95,7 +145,7 @@ class DevInteractions {
 
         switch (code) {
             case devInteractionCodes.Export:
-                onInteractable(()=>{this.showJson(interactable)});
+                //depricated
                 break;
             case devInteractionCodes.MoveToggle:
                 onInteractable(()=>{this.toggleMoving(interactable)});
@@ -144,39 +194,33 @@ class DevInteractions {
 
     createInteractable() {
         var playerPos = this.player.pos.clone();
-        var dat = () => new MessageInteractable(
-            {
-                id: "idkDoesItEvenNeedAnId?"+Math.random(),
-                icon: "🆕",
-                pos: playerPos.round(),
+        var objDat = {
+            "type": "MessageInteractable",
+            "basicDat": {
+                "id": "grass1"+Math.random(),
+                "icon": "🆕",
+                "pos": {
+                    "x": 100,
+                    "y": -70
+                }
+            },
+            "data": {
+                "messages": [
+                    "wow some Poa annua along with other species of grass!",
+                    "Dayum, what a specimen"
+                ]
             }
-            , [
-                "The text",
-                "goes here"
-            ]
-        );
-        var obj = this.world.currentStreet.addInteractable(dat);
-        this.saver.updateItem(this.world.state.streetId,obj);
-        this.showJson(obj);
-    }
-
-    showJson(interactable) {
-        //Actually export wow
-
-        if (!interactable instanceof MessageInteractable) {
-            document.getElementById("messageObjectOutputJson").textContent = "Can't export";
-            return;
-        }
-
-        var obj = {
-            goData: interactable.goData,
-            messages: interactable.messages
         };
-        document.getElementById("messageObjectOutputJson").textContent = JSON.stringify(obj);
+        
 
+        var dat = interactableFactory.createCretorFunc(objDat);
+        var obj = this.world.currentStreet.addInteractable(dat);
+        this.saver.updateItem(this.world.state.streetId,objDat);
+        
     }
+
     showMessageEditUserInterface(i) {
-        new EditMessagesUserInterface(i, document.getElementById("devshit"), () => { this.showJson(i) });
+        new EditMessagesUserInterface(i, document.getElementById("devshit"), () => {  });
     }
 
 }

@@ -1,8 +1,5 @@
 
-import { ChangingIconInteractable } from "./Interactables/ChangingIconInteractable";
-import { DoStuffInteractable } from "./Interactables/DoStuffInteractable";
-import { MessageInteractable } from "./Interactables/MessageInteractable";
-import { ThoughtInteractable } from "./Interactables/ThoughInteractable";
+
 import worldJson from "./WorldData.json";
 
 export var worldRawData = worldJson; 
@@ -293,6 +290,51 @@ export var worldRawData = worldJson;
 //     },
 // };
 
+import { ChangingIconInteractable } from "./Interactables/ChangingIconInteractable";
+import { DoStuffInteractable } from "./Interactables/DoStuffInteractable";
+import { MessageInteractable } from "./Interactables/MessageInteractable";
+import { ThoughtInteractable } from "./Interactables/ThoughInteractable";
+
+class InteractableFactory {
+    constructor() {
+    }
+    createCretorFunc(data) {
+        var classType = this.getTheInteractableClass(data.type);
+
+        return () => { return (classType(data.basicDat, data.data)); };
+        /*
+            {
+                basicDat:{
+                    id,type,icon,pos,
+                }
+                data:{
+                    messages
+                    thought?
+                }
+            }
+           
+        */
+        //returns a function
+    }
+
+    getTheInteractableClass(type) {
+        switch (type) {
+            case "MessageInteractable":
+                return (...a) => new MessageInteractable(...a);
+            case "ChangingIconInteractable":
+                return (...a) => new ChangingIconInteractable(...a);
+            case "ThoughtInteractable":
+                return (...a) => new ThoughtInteractable(...a);
+            case "DoStuffInteractable":
+                return (...a) => new DoStuffInteractable(...a);
+            default:
+                break;
+        }
+    }
+}
+
+
+const interactableFactory = new InteractableFactory();
 
 export const interactablesFunctions = {
     runOff: (that, state) => {
@@ -306,53 +348,14 @@ export const interactablesFunctions = {
 };
 
 
-class InteractableFactory{
-    constructor(){
 
-    }
-    createCretorFunc(data){
-        var classType = this.getTheInteractableClass(data.type);
-
-        return ()=>{return (classType(data.basicDat,data.data))};
-        /*
-            {
-                basicDat:{
-                    id,type,icon,pos,
-                }
-                data:{
-                    messages
-                    thought?
-                }
-            }
-           
-        */
-
-        //returns a function
-    }
-    
-    getTheInteractableClass(type) {
-        switch (type) {
-            case "MessageInteractable":
-                return (...a)=>new MessageInteractable(...a);
-            case "ChangingIconInteractable":
-                return (...a)=>new ChangingIconInteractable(...a);
-            case "ThoughtInteractable":
-                return (...a)=>new ThoughtInteractable(...a);
-            case "DoStuffInteractable":
-                return (...a)=>new DoStuffInteractable(...a);
-            default:
-                break;
-        }
-    }
-}
-
-const interactableFactoryThing = new InteractableFactory();
 
 function convertWorldJsonIntoSomethingTheRestOfTheCodeKnowsAboutBecauseICBAToChangeThat() {
     var streets = {};
+    
     for (var i = 0; i < worldJson.streets.length; i++) {
         var streetData = worldJson.streets[i];
-        var interactables = streetData.interactablesList.map(i => interactableFactoryThing.createCretorFunc(i));
+        var interactables = streetData.interactablesList.map(i => interactableFactory.createCretorFunc(i));
         
         var streetOutput = {
             interactablesList: interactables,

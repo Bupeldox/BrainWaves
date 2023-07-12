@@ -1,1 +1,118 @@
-{"streets":[{"id":"street1","backgroundImage":{"name":"street1.png","height":150},"interactablesList":[{"type":"MessageInteractable","basicDat":{"id":"grass1","icon":"🌿","pos":{"x":100,"y":-70}},"data":{"messages":["wow some Poa annua along with other species of grass!","Dayum, what a specimen"]}},{"type":"ChangingIconInteractable","basicDat":{"id":"pumpkin1","icon":"🎃","pos":{"x":165.79999999999978,"y":-75.40000000000003}},"data":{"messages":[{"icon":"🎃","message":"It's not even Halloween..."},{"icon":"🥣","message":"Thats Better :)"}]}},{"type":"ThoughtInteractable","basicDat":{"id":"dude1","icon":"🧜‍♀️","pos":{"x":100,"y":-70}},"data":{"messages":["WTF! How did i get here?!?!? What are these buildings, where r ur fins?! II NEEED WAAATTTEERRRRRRRR","*Dies of lack of water*"],"thought":{"thought":"I hope my family knows I love them.","target":[8]}}}],"junctions":[{"street":"street2","pos":{"x":200,"y":-70},"backwards":false}]},{"id":"street2","interactablesList":[{"type":"DoStuffInteractable","basicDat":{"id":"Monkeh1","icon":"🐒","pos":{"x":55.099999999999156,"y":-51.999999999999986}},"data":{"message":["It Stole my phone!!"],"onState":"runOff"}}],"junctions":[{"street":"street1","pos":{"x":200,"y":-70},"backwards":false}]}]}
+{
+    "streets": [
+        {
+            "id": "street1",
+            "backgroundImage": {
+                "name": "street1.png",
+                "height": 150
+            },
+            "interactablesList": [
+                {
+                    "type": "MessageInteractable",
+                    "basicDat": {
+                        "id": "grass1",
+                        "icon": "🌿",
+                        "pos": {
+                            "x": 100,
+                            "y": -70
+                        }
+                    },
+                    "data": {
+                        "messages": [
+                            "wow some Poa annua along with other species of grass!",
+                            "Dayum, what a specimen"
+                        ]
+                    }
+                },
+                {
+                    "type": "ChangingIconInteractable",
+                    "basicDat": {
+                        "id": "pumpkin1",
+                        "icon": "🎃",
+                        "pos": {
+                            "x": 46.09999999999917,
+                            "y": -24.10000000000003
+                        }
+                    },
+                    "data": {
+                        "messages": [
+                            {
+                                "icon": "🎃",
+                                "message": "It's not even Halloween..."
+                            },
+                            {
+                                "icon": "🥣",
+                                "message": "Thats Better :)"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "type": "ThoughtInteractable",
+                    "basicDat": {
+                        "id": "dude1",
+                        "icon": "🧜‍♀️",
+                        "pos": {
+                            "x": 100,
+                            "y": -70
+                        }
+                    },
+                    "data": {
+                        "messages": [
+                            "WTF! How did i get here?!?!? What are these buildings, where r ur fins?! II NEEED WAAATTTEERRRRRRRR",
+                            "*Dies of lack of water*"
+                        ],
+                        "thought": {
+                            "thought": "I hope my family knows I love them.",
+                            "target": [
+                                8
+                            ]
+                        }
+                    }
+                }
+            ],
+            "junctions": [
+                {
+                    "street": "street2",
+                    "pos": {
+                        "x": 200,
+                        "y": -70
+                    },
+                    "backwards": false
+                }
+            ]
+        },
+        {
+            "id": "street2",
+            "interactablesList": [
+                {
+                    "type": "DoStuffInteractable",
+                    "basicDat": {
+                        "id": "Monkeh1",
+                        "icon": "🐒",
+                        "pos": {
+                            "x": 55.099999999999156,
+                            "y": -51.999999999999986
+                        }
+                    },
+                    "data": {
+                        "message": [
+                            "It Stole my phone!!"
+                        ],
+                        "onState": "runOff"
+                    }
+                }
+            ],
+            "junctions": [
+                {
+                    "street": "street1",
+                    "pos": {
+                        "x": 200,
+                        "y": -70
+                    },
+                    "backwards": false
+                }
+            ]
+        }
+    ]
+}
