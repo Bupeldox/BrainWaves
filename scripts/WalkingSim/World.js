@@ -5,13 +5,14 @@ import { Player } from "./Player";
 import { stateHandler } from "./StateHandler";
 import { Street } from "./Street";
 import { StreetTransition } from "./StreetTransition";
-import { tstreetData } from "./WorldData.js";
+import { WorldDataHandler } from "./WorldData.js";
 
 
 export const worldStateName = "levelAndPlayerPos";
 
 export class World {
     constructor(controlsHandler, goToWaves) {
+        this.worldDataHandler = new WorldDataHandler((...a)=>{this.changeStreet(...a)})
         this.stuffThatNeedsUpdating = [];
         this.controlsHandler = controlsHandler;
         var guiContainer = new TemplatedHtml("gui-container", document.body);
@@ -21,7 +22,7 @@ export class World {
         devInteractions.setup(this);
         if (!this.state) {
             this.state = {
-                streetId: Object.keys(tstreetData)[0],
+                streetId: "street1",
                 playerPos: { "x": 415, "y": -105 }
             }
         }
@@ -67,24 +68,27 @@ export class World {
 
         this.inStreetTransition = true;
         var prevStreetId = this.streetId;
-        var newStreetData = tstreetData[streetId];
+        var newStreetData = this.worldDataHandler.getStreetData(streetId);
+
         var playerPos;
+
+        var getJunctionByTargetStreet = (street,id)=>street.interactables.filter(i=>i.type == "Junction").find(i => i.targetStreet == id);        
+        
+        this.streetId = streetId;
+
 
         if (!prevStreetId) {
             //initial player pos
             playerPos = new Vec2(this.state.playerPos);
-        } else {
-            playerPos = new Vec2(newStreetData.junctions.find(i => i.street == prevStreetId).pos);
-        }
-        this.streetId = streetId;
-
+        } 
 
         if (prevStreetId) {
-            var newStreet = new Street(tstreetData[streetId], (s) => { this.changeStreet(s); }, (a, b) => { this.goToBrainWaves(a, b) }, this.controlsHandler.interactionInput);
+            var newStreet = new Street(this.worldDataHandler.getStreetConstructData(streetId),  (a, b) => { this.goToBrainWaves(a, b) }, this.controlsHandler.interactionInput);
+            playerPos = new Vec2(getJunctionByTargetStreet(newStreet,prevStreetId).pos);
             var prevStreet = this.currentStreet;
 
-            var junctionFrom = tstreetData[prevStreetId].junctions.find(i => i.street == streetId);
-            var junctionTo = tstreetData[streetId].junctions.find(i => i.street == prevStreetId);
+            var junctionFrom = getJunctionByTargetStreet(this.currentStreet,streetId);
+            var junctionTo = getJunctionByTargetStreet(newStreet,prevStreetId);
 
             this.stuffThatNeedsUpdating = [];
             new StreetTransition(
@@ -111,9 +115,7 @@ export class World {
             this.stuffThatNeedsUpdating.push(this.currentStreet);
         } else {
             this.currentStreet?.destroy();
-            this.currentStreet = new Street(tstreetData[streetId], (s) => {
-                this.changeStreet(s);
-            }, (a, b) => { this.goToBrainWaves(a, b) }, this.controlsHandler.interactionInput);
+            this.currentStreet = new Street(this.worldDataHandler.getStreetConstructData(streetId),  (a, b) => { this.goToBrainWaves(a, b) }, this.controlsHandler.interactionInput);
 
             this.currentStreet.setPlayer(this.player, playerPos);
             this.stuffThatNeedsUpdating.push(this.currentStreet);

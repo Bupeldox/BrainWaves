@@ -2,12 +2,13 @@ import TemplatedHtml from "../TemplatedHtml";
 import Vec2 from "../Vec2";
 import { InteractableHelper } from "./InteractableHelper";
 import { CallbackInteractable } from "./Interactables/CallbackInteractable";
+
 const assetUrlBase = "./assets/World/";
 export class Street {
-    constructor(streetData, changeStreetFunc, goToBrainWaves, interactionInputManager) {
+    constructor(streetData, goToBrainWaves, interactionInputManager) {
         this.element = new TemplatedHtml("path", document.getElementById("root"));
         this.interactionInputManager = interactionInputManager;
-        this.changeStreet = changeStreetFunc;
+
         this.goToBrainWaves = goToBrainWaves;
         if(streetData.hasOwnProperty("backgroundImage")){
             this.setupBackground(streetData.backgroundImage);
@@ -54,19 +55,20 @@ export class Street {
         }
 
 
-        for (var i = 0; i < streetData.junctions.length; i++) {
-            let junctionDat = streetData.junctions[i];
-            let interactableData = {
-                element: "someGrass",
-                icon: "↕",
-                interactText: "Go to " + junctionDat.street,
-                pos: new Vec2(junctionDat.pos),
-            };
-            let intr = new CallbackInteractable(interactableData);
-            intr.setup(this.element.getPart("middleground"), () => { this.changeStreet(junctionDat.street) });
-            this.interactables.push(intr);
-            this.interactables.push(new InteractableHelper(this.player, intr, this.interactionInputManager));
-        }
+        // for (var i = 0; i < streetData.interactablesList.filter(i=>i.type == "Junction").length; i++) {
+        //     let junctionDat = streetData.interactablesList.filter(i=>i.type == "Junction")[i];
+        //     let interactableData = {
+        //         element: "someGrass",
+        //         street: junctionDat.street,
+        //         icon: "↕",
+        //         interactText: "Go to " + junctionDat.street,
+        //         pos: new Vec2(junctionDat.pos),
+        //     };
+        //     let intr = new CallbackInteractable(interactableData);
+        //     intr.setup(this.element.getPart("middleground"), () => { this.changeStreet(junctionDat.street) });
+        //     this.interactables.push(intr);
+        //     this.interactables.push(new InteractableHelper(this.player, intr, this.interactionInputManager));
+        // }
     }
 
     addInteractable(thing){

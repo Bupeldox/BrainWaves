@@ -294,6 +294,7 @@ import { ChangingIconInteractable } from "./Interactables/ChangingIconInteractab
 import { DoStuffInteractable } from "./Interactables/DoStuffInteractable";
 import { MessageInteractable } from "./Interactables/MessageInteractable";
 import { ThoughtInteractable } from "./Interactables/ThoughInteractable";
+import { JunctionInteractable } from "./Interactables/JunctionInteractable";
 
 class InteractableFactory {
     constructor() {
@@ -327,9 +328,14 @@ class InteractableFactory {
                 return (...a) => new ThoughtInteractable(...a);
             case "DoStuffInteractable":
                 return (...a) => new DoStuffInteractable(...a);
+            case "Junction":
+                return (...a) => new JunctionInteractable(this.changeStreetFunction,...a);
             default:
                 break;
         }
+    }
+    setChangeStreetFunction(f){
+        this.changeStreetFunction =f;
     }
 }
 
@@ -350,23 +356,47 @@ export const interactablesFunctions = {
 
 
 
-function convertWorldJsonIntoSomethingTheRestOfTheCodeKnowsAboutBecauseICBAToChangeThat() {
-    var streets = {};
+
+// function turnStreetDataIntoALoadOfFunction(csf) {
+
+//     interactableFactory.setChangeStreetFunction(csf);
+
+//     var streets = {};
     
-    for (var i = 0; i < worldJson.streets.length; i++) {
-        var streetData = worldJson.streets[i];
+//     for (var i = 0; i < worldJson.streets.length; i++) {
+//         var streetData = worldJson.streets[i];
+//         var interactables = streetData.interactablesList.map(i => interactableFactory.createCretorFunc(i));
+        
+//         var streetOutput = {
+//             interactablesList: interactables,
+//             backgroundImage:streetData.backgroundImage,
+//         };
+//         streets[streetData.id]=streetOutput;
+//     }
+//     return streets;
+// }
+
+export class WorldDataHandler {
+    constructor(changeStreetFunction){
+        interactableFactory.setChangeStreetFunction(changeStreetFunction);
+    }
+
+    getStreetData(id){
+        return worldJson.streets.find(i=>i.id == id);
+    }
+
+    getStreetConstructData(id){
+
+        var streetData = this.getStreetData(id);
         var interactables = streetData.interactablesList.map(i => interactableFactory.createCretorFunc(i));
         
         var streetOutput = {
             interactablesList: interactables,
-            junctions: streetData.junctions,
             backgroundImage:streetData.backgroundImage,
         };
-        streets[streetData.id]=streetOutput;
+        return streetOutput;
     }
-    return streets;
 }
 
 
 
-export var tstreetData = convertWorldJsonIntoSomethingTheRestOfTheCodeKnowsAboutBecauseICBAToChangeThat();

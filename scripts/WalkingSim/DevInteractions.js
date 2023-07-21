@@ -11,7 +11,7 @@ import { v } from "./UpdateWebpackFile"; console.log(v);
 
 class InteractableFactory {
     constructor() {
-        
+
     }
     createCretorFunc(data) {
         var classType = this.getTheInteractableClass(data.type);
@@ -56,7 +56,7 @@ const devInteractionCodes = {
     MoveToggle: 2,
     Create: 3,
     EditMessages: 4,
-    Restart:5
+    Restart: 5
 };
 
 (function () {
@@ -79,29 +79,38 @@ const devInteractionCodes = {
 
 })();
 
-class dealWithSavingStuff{
-    constructor(){
-        
+class dealWithSavingStuff {
+    constructor() {
+
     }
-    
-    getById(streetId,id){
-        var item = worldRawData.streets.find(i=>i.id == streetId).interactablesList.find(i=>i.basicDat.id==id);
+
+    getById(streetId, id) {
+
+        //var id = itemDat.basicDat.id;
+        var item = worldRawData.streets.find(i => i.id == streetId).interactablesList.find(i => i.basicDat.id == id);
+        
         return item;
     }
-    updateItem(street,itemDat){
+    updateItem(street, itemDat) {
         //get by id
         //if it doesn't exist add it
-        //else replace it3
-        var item = this.getById(street,itemDat.basicDat.id);
-        if(!item){
-            worldRawData.streets.find(i=>i.id == street).interactablesList.push(itemDat);
-        }else{
+        //else replace it
+
+        var item = this.getById(street, itemDat);
+
+        if (!item) {
+            if(item.hasOwnProperty("basicDat")){   
+                worldRawData.streets.find(i => i.id == street).interactablesList.push(itemDat);
+            }
+        } else {
             item = itemDat;
         }
+    
+
         //save the streetDat
         this.saveStreetDat();
     }
-    saveStreetDat(){
+    saveStreetDat() {
         fetch("http://localhost:3000/", {
             method: "POST",
             body: JSON.stringify(worldRawData),
@@ -119,6 +128,7 @@ class DevInteractions {
         this.isMoving = false;
         this.movingInteractable = null;
         this.onlyOneCounter = 0;
+        this.enabled = (new URLSearchParams(window.location.search)).get("dev");
     }
 
     setup(world) {
@@ -126,10 +136,11 @@ class DevInteractions {
     }
 
     onDevInteraction(interactable) {
-        if (!(new URLSearchParams(window.location.search)).get("dev")) {
+       
+
+        if(!this.enabled){
             return;
         }
-
         var code = +document.getElementById("devTask").value;
         var inAccessible = !(interactable.isInRange && !interactable.deactivated);
 
@@ -139,7 +150,7 @@ class DevInteractions {
                 f();
             }
         };
-        var onInteractable = (f)=>{
+        var onInteractable = (f) => {
             if (inAccessible) { return; }
             f();
         }
@@ -149,15 +160,15 @@ class DevInteractions {
                 //depricated
                 break;
             case devInteractionCodes.MoveToggle:
-                onInteractable(()=>{this.toggleMoving(interactable)});
+                onInteractable(() => { this.toggleMoving(interactable) });
 
                 break;
             case devInteractionCodes.Create:
                 onlyOne(() => { this.createInteractable() });
                 break;
             case devInteractionCodes.EditMessages:
-                if(interactable?.hasOwnProperty("messages")){
-                    onInteractable(() => { this.showMessageEditUserInterface(interactable);})
+                if (interactable?.hasOwnProperty("messages")) {
+                    onInteractable(() => { this.showMessageEditUserInterface(interactable); })
                 }
                 break;
             case devInteractionCodes.Restart:
@@ -170,8 +181,8 @@ class DevInteractions {
                 break;
         }
     }
-    sendRestartReq(){
-        
+    sendRestartReq() {
+
         fetch("http://localhost:3000/restart", {
             method: "POST",
             body: "",
@@ -179,7 +190,7 @@ class DevInteractions {
                 "Content-type": "application/json; charset=UTF-8"
             }
         });
-        
+
     }
     toggleMoving(interactable) {
         this.isMoving = !this.isMoving;
@@ -191,25 +202,31 @@ class DevInteractions {
             //change pos
             //save
 
-            var item = this.saver.getById(this.world.state.streetId,this.movingInteractable.goData.id);
-            
+            var item = this.saver.getById(this.world.state.streetId, this.movingInteractable.goData.id);
+
             item.basicDat.pos.x = this.movingInteractable.pos.x;
             item.basicDat.pos.y = this.movingInteractable.pos.y;
 
-            this.saver.updateItem(this.world.state.streetId,item);
-            
-            this.movingInteractable = null; 
+            this.saver.updateItem(this.world.state.streetId, item);
+
+            this.movingInteractable = null;
         }
     }
 
     update(player) {
+        if(!this.enabled){
+            return;
+        }
         this.onlyOneCounter = 0;
         this.player = player;
         if (this.isMoving && this.movingInteractable) {
             this.movingInteractable.updatePos(this.player.pos);
         }
     }
-    onStreetChange(){
+    onStreetChange() {
+        if(!this.enabled){
+            return;
+        }
         this.sendRestartReq();
     }
     createInteractable() {
@@ -217,7 +234,7 @@ class DevInteractions {
         var objDat = {
             "type": "MessageInteractable",
             "basicDat": {
-                "id": "grass1"+Math.random(),
+                "id": "grass1" + Math.random(),
                 "icon": "🆕",
                 "pos": {
                     "x": 100,
@@ -231,19 +248,19 @@ class DevInteractions {
                 ]
             }
         };
-        
+
 
         var dat = interactableFactory.createCretorFunc(objDat);
         var obj = this.world.currentStreet.addInteractable(dat);
-        this.saver.updateItem(this.world.state.streetId,objDat);
-        
+        this.saver.updateItem(this.world.state.streetId, objDat);
+
     }
 
     showMessageEditUserInterface(i) {
-        new EditMessagesUserInterface(i, document.getElementById("devshit"), () => {  });
+        new EditMessagesUserInterface(i, document.getElementById("devshit"), () => { });
     }
 
-    updateToSavedData(){
+    updateToSavedData() {
         fetch("http://localhost:3000/restart", {
             method: "POST",
             body: "",
@@ -265,8 +282,8 @@ class EditMessagesUserInterface {
         this.onSave = onSave;
         this.messageInteractable = messageInteractable;
         this.element = new TemplatedHtml("devMessageEdit", htmlParent);
-        
-        messageInteractable.messages.forEach(i=>{
+
+        messageInteractable.messages.forEach(i => {
             this.getNewRowElement(i);
 
         });
@@ -276,7 +293,7 @@ class EditMessagesUserInterface {
     }
     getNewRowElement(text) {
         var newInputElement = new TemplatedHtml("devMessageEditRow");
-        newInputElement.getPart("text").value = text??"";
+        newInputElement.getPart("text").value = text ?? "";
         newInputElement.getPart("btn-add").addEventListener("click", (e) => { this.addMessage(e) });
         newInputElement.getPart("btn-remove").addEventListener("click", (e) => { this.removeMessage(e) });
         this.element.getPart("messages").appendChild(newInputElement.element);

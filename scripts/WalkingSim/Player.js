@@ -14,6 +14,7 @@ export class Player {
         this.flip = false;
         this.isMoving = false;
         this.state = stateHandler.getState(playerStateId);
+        this.interactablesInRangeIds = [];
         if(!this.state){
             this.state={
                 functionInventory:[8,3,5,11],
@@ -26,6 +27,7 @@ export class Player {
         return 1 - y / 100;
     }
     update() {
+        this.interactablesInRangeIds = [];
         var dir = this.movementInput.getDirection();
         if (isNaN(dir.x)) {
             dir = new Vec2(0, 0);
