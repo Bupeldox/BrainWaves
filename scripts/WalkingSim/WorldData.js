@@ -360,6 +360,7 @@ function convertWorldJsonIntoSomethingTheRestOfTheCodeKnowsAboutBecauseICBAToCha
         var streetOutput = {
             interactablesList: interactables,
             junctions: streetData.junctions,
+            backgroundImage:streetData.backgroundImage,
         };
         streets[streetData.id]=streetOutput;
     }

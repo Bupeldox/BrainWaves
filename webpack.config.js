@@ -25,7 +25,7 @@ module.exports = {
     hot: false,
   },
   watchOptions: {
-    ignored: '**/*.json',
+    ignored: 'WorldDataHereSoItDoesntUpdateEveryTimeIChangeIt.json',
 
   },
 };

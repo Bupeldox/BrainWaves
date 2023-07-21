@@ -7,8 +7,11 @@ import { DoStuffInteractable } from "./Interactables/DoStuffInteractable";
 import { MessageInteractable } from "./Interactables/MessageInteractable";
 import { ThoughtInteractable } from "./Interactables/ThoughInteractable";
 
+import { v } from "./UpdateWebpackFile"; console.log(v);
+
 class InteractableFactory {
     constructor() {
+        
     }
     createCretorFunc(data) {
         var classType = this.getTheInteractableClass(data.type);
@@ -52,7 +55,8 @@ const devInteractionCodes = {
     Export: 1,
     MoveToggle: 2,
     Create: 3,
-    EditMessages: 4
+    EditMessages: 4,
+    Restart:5
 };
 
 (function () {
@@ -77,7 +81,7 @@ const devInteractionCodes = {
 
 class dealWithSavingStuff{
     constructor(){
-
+        
     }
     
     getById(streetId,id){
@@ -98,7 +102,6 @@ class dealWithSavingStuff{
         this.saveStreetDat();
     }
     saveStreetDat(){
-
         fetch("http://localhost:3000/", {
             method: "POST",
             body: JSON.stringify(worldRawData),
@@ -106,8 +109,6 @@ class dealWithSavingStuff{
                 "Content-type": "application/json; charset=UTF-8"
             }
         });
-
-
     }
 }
 
@@ -159,9 +160,26 @@ class DevInteractions {
                     onInteractable(() => { this.showMessageEditUserInterface(interactable);})
                 }
                 break;
+            case devInteractionCodes.Restart:
+                onlyOne(() => {
+                    this.sendRestartReq();
+                });
+
+                break;
             default:
                 break;
         }
+    }
+    sendRestartReq(){
+        
+        fetch("http://localhost:3000/restart", {
+            method: "POST",
+            body: "",
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        });
+        
     }
     toggleMoving(interactable) {
         this.isMoving = !this.isMoving;
@@ -191,7 +209,9 @@ class DevInteractions {
             this.movingInteractable.updatePos(this.player.pos);
         }
     }
-
+    onStreetChange(){
+        this.sendRestartReq();
+    }
     createInteractable() {
         var playerPos = this.player.pos.clone();
         var objDat = {
@@ -221,6 +241,16 @@ class DevInteractions {
 
     showMessageEditUserInterface(i) {
         new EditMessagesUserInterface(i, document.getElementById("devshit"), () => {  });
+    }
+
+    updateToSavedData(){
+        fetch("http://localhost:3000/restart", {
+            method: "POST",
+            body: "",
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        });
     }
 
 }

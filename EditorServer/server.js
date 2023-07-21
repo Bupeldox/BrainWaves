@@ -25,11 +25,17 @@ app.get("/",(req,res)=>{
 
 app.post('/', (req, res) => {
     console.log("saving");
-    fs.writeFileSync("./scripts/WalkingSim/WorldData.json",JSON.stringify(req.body));
+    fs.writeFileSync("./scripts/WalkingSim/WorldDataHereSoItDoesntUpdateEveryTimeIChangeIt.json",JSON.stringify(req.body));
     console.log("savd");
     res.statusCode = 200;
     res.send();
-})
+});
+app.post("/restart",(req,res)=>{
+    var str = fs.readFileSync("./scripts/WalkingSim/WorldDataHereSoItDoesntUpdateEveryTimeIChangeIt.json").toString();
+    fs.writeFileSync("./scripts/WalkingSim/WorldData.json",str);
+    res.statusCode = 200;
+    res.send();
+});
 
 
 console.log("hello");
