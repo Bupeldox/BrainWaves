@@ -32,6 +32,7 @@ app.post('/', (req, res) => {
 });
 app.post("/restart",(req,res)=>{
     var str = fs.readFileSync("./scripts/WalkingSim/WorldDataHereSoItDoesntUpdateEveryTimeIChangeIt.json").toString();
+    console.log("updating");
     fs.writeFileSync("./scripts/WalkingSim/WorldData.json",str);
     res.statusCode = 200;
     res.send();

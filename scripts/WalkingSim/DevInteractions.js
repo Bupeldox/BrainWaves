@@ -7,7 +7,8 @@ import { DoStuffInteractable } from "./Interactables/DoStuffInteractable";
 import { MessageInteractable } from "./Interactables/MessageInteractable";
 import { ThoughtInteractable } from "./Interactables/ThoughInteractable";
 
-import { v } from "./UpdateWebpackFile"; console.log(v);
+import { v } from "./UpdateWebpackFile";import { Exception } from "sass";
+ console.log(v);
 
 class InteractableFactory {
     constructor() {
@@ -85,10 +86,11 @@ class dealWithSavingStuff {
     }
 
     getById(streetId, id) {
-
         //var id = itemDat.basicDat.id;
-        var item = worldRawData.streets.find(i => i.id == streetId).interactablesList.find(i => i.basicDat.id == id);
-        
+        var item = worldRawData.streets
+        .find(i => i.id == streetId).interactablesList
+        .find(i => i.basicDat.id == id);
+
         return item;
     }
     updateItem(street, itemDat) {
@@ -96,16 +98,19 @@ class dealWithSavingStuff {
         //if it doesn't exist add it
         //else replace it
 
-        var item = this.getById(street, itemDat);
+        var item = this.getById(street, itemDat.basicDat.id);
 
         if (!item) {
-            if(item.hasOwnProperty("basicDat")){   
-                worldRawData.streets.find(i => i.id == street).interactablesList.push(itemDat);
+            if (itemDat.hasOwnProperty("basicDat")) {
+                var streetIndex = worldRawData.streets.findIndex(i => i.id == street)
+                worldRawData.streets[streetIndex].interactablesList.push(itemDat);
+            }else{
+                throw new Exception("watch doin' fool");
             }
         } else {
             item = itemDat;
         }
-    
+
 
         //save the streetDat
         this.saveStreetDat();
@@ -136,9 +141,8 @@ class DevInteractions {
     }
 
     onDevInteraction(interactable) {
-       
 
-        if(!this.enabled){
+        if (!this.enabled) {
             return;
         }
         var code = +document.getElementById("devTask").value;
@@ -214,7 +218,7 @@ class DevInteractions {
     }
 
     update(player) {
-        if(!this.enabled){
+        if (!this.enabled) {
             return;
         }
         this.onlyOneCounter = 0;
@@ -224,7 +228,7 @@ class DevInteractions {
         }
     }
     onStreetChange() {
-        if(!this.enabled){
+        if (!this.enabled) {
             return;
         }
         this.sendRestartReq();
@@ -234,19 +238,19 @@ class DevInteractions {
         var objDat = {
             "type": "MessageInteractable",
             "basicDat": {
-                "id": "grass1" + Math.random(),
+                "id": Math.random(),
                 "icon": "🆕",
                 "pos": {
-                    "x": 100,
-                    "y": -70
+                    "x": playerPos.x,
+                    "y": playerPos.y
                 }
             },
             "data": {
                 "messages": [
-                    "wow some Poa annua along with other species of grass!",
-                    "Dayum, what a specimen"
+                    "new message"
                 ]
             }
+
         };
 
 
