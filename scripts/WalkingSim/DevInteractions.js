@@ -53,11 +53,12 @@ class InteractableFactory {
 const interactableFactory = new InteractableFactory();
 
 const devInteractionCodes = {
-    Export: 1,
+    EditJson: 1,
     MoveToggle: 2,
-    Create: 3,
-    EditMessages: 4,
-    Restart: 5
+    EditMessages: 3,
+    Restart: 5,
+    Delete:8,
+    Create: 9,
 };
 
 (function () {
@@ -98,21 +99,35 @@ class dealWithSavingStuff {
         //if it doesn't exist add it
         //else replace it
 
-        var item = this.getById(street, itemDat.basicDat.id);
-
-        if (!item) {
+        var streetIndex = worldRawData.streets.findIndex(i=>i.id==street);
+        if(streetIndex<0){
+            throw new Exception("Street not found"); 
+        }
+        var interactableIndex = worldRawData.streets[streetIndex].interactablesList.findIndex(i=>i.basicDat.id == itemDat.basicDat.id);
+        if (interactableIndex<0) {
             if (itemDat.hasOwnProperty("basicDat")) {
-                var streetIndex = worldRawData.streets.findIndex(i => i.id == street)
                 worldRawData.streets[streetIndex].interactablesList.push(itemDat);
             }else{
                 throw new Exception("watch doin' fool");
             }
         } else {
-            item = itemDat;
+            //use the ids instead of this
+            worldRawData.streets[streetIndex].interactablesList[interactableIndex] = itemDat;
         }
 
 
         //save the streetDat
+        this.saveStreetDat();
+    }
+    deleteItem(streetId,itemId){
+        if(!this.getById(streetId,itemId)){
+            throw new Exception("doesnt exist");
+        }
+        var streetIndex = worldRawData.streets.findIndex(i=>i.id==streetId);
+        var interactableIndex = worldRawData.streets[streetIndex].interactablesList.findIndex(i=>i.basicDat.id == itemId);
+        
+        //use the ids instead of this
+        worldRawData.streets[streetIndex].interactablesList.splice(interactableIndex,1);
         this.saveStreetDat();
     }
     saveStreetDat() {
@@ -160,8 +175,8 @@ class DevInteractions {
         }
 
         switch (code) {
-            case devInteractionCodes.Export:
-                //depricated
+            case devInteractionCodes.EditJson:
+                onInteractable(() => { this.showJsonEditUserInterface(interactable);});
                 break;
             case devInteractionCodes.MoveToggle:
                 onInteractable(() => { this.toggleMoving(interactable) });
@@ -172,18 +187,27 @@ class DevInteractions {
                 break;
             case devInteractionCodes.EditMessages:
                 if (interactable?.hasOwnProperty("messages")) {
-                    onInteractable(() => { this.showMessageEditUserInterface(interactable); })
+                    onInteractable(() => { 
+                        this.showMessageEditUserInterface(interactable); 
+                    })
                 }
                 break;
             case devInteractionCodes.Restart:
                 onlyOne(() => {
                     this.sendRestartReq();
                 });
-
+            case devInteractionCodes.Delete:
+                onInteractable(()=>{
+                    this.deleteObj(interactable);
+                });
                 break;
             default:
                 break;
         }
+    }
+    deleteObj(obj){
+        this.saver.deleteItem(this.world.state.streetId,obj.goData.id);
+        obj.destroy();
     }
     sendRestartReq() {
 
@@ -253,15 +277,27 @@ class DevInteractions {
 
         };
 
-
         var dat = interactableFactory.createCretorFunc(objDat);
         var obj = this.world.currentStreet.addInteractable(dat);
         this.saver.updateItem(this.world.state.streetId, objDat);
-
     }
 
     showMessageEditUserInterface(i) {
-        new EditMessagesUserInterface(i, document.getElementById("devshit"), () => { });
+        new EditMessagesUserInterface(i, document.getElementById("devshit"), () => { 
+            var messageInteractableData = this.saver.getById(this.world.state.streetId, i.goData.id);
+            messageInteractableData.data.messages = i.messages;
+            this.saver.updateItem(this.world.state.streetId, messageInteractableData);
+        });
+    }
+    showJsonEditUserInterface(i){
+        new EditJsonUserInterface(
+            this.saver.getById(this.world.state.streetId, i.goData.id),
+            document.getElementById("devshit"),
+            (dat)=>{
+                debugger;
+                this.saver.updateItem(this.world.state.streetId, dat);
+            }
+        );
     }
 
     updateToSavedData() {
@@ -280,6 +316,33 @@ function insertAfter(referenceNode, newNode) {
     referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 }
 
+class EditJsonUserInterface{
+    constructor(dataToEdit, htmlParent, onSave) {
+        this.onSave = onSave;
+        this.dateToEdit = dataToEdit;
+        this.element = new TemplatedHtml("devJsonEdit", htmlParent);
+
+        var dataAsString = JSON.stringify(this.dateToEdit,undefined,4);
+        this.element.getPart('jsonEditor').value = dataAsString;
+
+        this.element.getPart("showIcon").textContent = dataToEdit.basicDat.icon;
+        this.element.getPart("btn-submit").addEventListener("click", () => { this.onSubmit(); });
+        this.element.getPart("btn-close").addEventListener("click", () => { this.destroy(); });
+        this.element.getPart("jsonEditor").addEventListener("keydown",(e)=>{ e.stopPropagation(); })
+    }
+    onSubmit(){
+        try{
+            var data = JSON.parse(this.element.getPart("jsonEditor").value);
+            this.onSave(data);
+            this.destroy();
+        }catch(ex){
+            this.element.getPart("error").textContent = ex.toString();
+        }
+    }
+    destroy(){
+        this.element.element.remove();
+    }
+}
 class EditMessagesUserInterface {
 
     constructor(messageInteractable, htmlParent, onSave) {

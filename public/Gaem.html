@@ -117,6 +117,7 @@
             height: calc(100vh - calc(4em + 217px));
             overflow-y: scroll;
             padding: 1em;
+            z-index: 1;
             ">
             <div id="debugCurrentStreet"></div>
             <div id="debugPlayerPos" style="user-select: all;"></div>
@@ -212,7 +213,13 @@
             <button class="btn-close">Close</button>
         </div> 
         <div class="devMessageEditRow"><input type="text" class="text"/><button class="btn-add">+\/</button><button class="btn-remove">x</button></div>
-
+        <div class="devJsonEdit">
+            <h2>Edit data of <span class="showIcon"></span></h2>
+            <textarea name="" id="" cols="30" rows="10" class="jsonEditor"></textarea>
+            <div class="error" style="color:#f00"></div>
+            <button class="btn-submit">Save</button>
+            <button class="btn-close">Close</button>
+        </div> 
         <!--Waves-->
         <div class="thought">
             <span class="targetItem"></span>

@@ -9,6 +9,8 @@ export class JunctionInteractable extends CallbackInteractable {
         this.type = "Junction";
         this.changeStreetFunc = changeStreetFunc;
         this.targetStreet = iData.street;
+        this.backwards = iData.backwards;
+        this.angle = iData.angle;
         this.goData.icon = "↕";
 
     }
